@@ -1,0 +1,16 @@
+#include "36chambers.dtsi" // Notice that the main dtsi files are included in the overlay.
+
+&default_transform {
+	col-offset = <5>;
+};
+
+
+&kscan0 {
+    col-gpios
+        = <&xiao_d 9 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 6 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 5 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 4 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 3 GPIO_ACTIVE_HIGH>
+        ;
+};
