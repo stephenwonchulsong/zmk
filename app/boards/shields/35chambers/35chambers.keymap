@@ -11,15 +11,18 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/mouse.h>
+
 
 #define default 0
 #define lower 1
 #define raise 2
 #define adjust 3
 #define extra 4
-#define lock 5
-#define locklow 6
-#define unlock 7
+#define mice 5
+#define lock 6
+#define locklow 7
+#define unlock 8
 // #define lockhigh 8
 
 
@@ -78,6 +81,15 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 
 / {
     behaviors {
+        mnl: mouse_n_language {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOUSE_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <350>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+        };
         bhm: balanced_homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
@@ -168,7 +180,7 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 //&trans        &trans &trans &trans  &trans &trans &trans        &trans
                         bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I           &kp O     &kp RET
-    &kp Q          &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K           &kp L    &bhm LCTL P
+    &kp Q          &kp S        &kp D        &mnl mice F        &kp G       &kp H       &kp J       &kp K           &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar        &dotrpar  &bhm LSHFT SEMI      
     &bhm LSHFT Z                &kp BSPC &lt lower ESC &tabgui 0 BSPC     &kp SPACE   &lt raise TAB  &kp CAPS         &mt RSHFT FSLH
                 >;
@@ -202,7 +214,7 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
     &trans       &none        &none        &none        &to lock                                   &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT Z &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT Z              &trans &trans &trans   &trans &trans &trans &kp BSLH
+    &bhm LSHFT Z              &trans &lt adjust DEL &trans   &trans &lt adjust TAB &trans &kp BSLH
                 >;
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
         };
@@ -216,6 +228,17 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
     &bhm LSHFT Z                &tabgui 0 DEL &lt lower ESC &kp BSPC     &kp SPACE   &lt raise DEL  &kp CAPS &mt RSHFT FSLH
                 >;
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
+        };
+        mice_layer {
+/* mice
+ */
+                        bindings = <
+    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp PG_UP    &kp U       &kp I           &kp O     &kp RET
+    &kp Q          &kp S        &bhm LGUI D  &mnl mice F  &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
+    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar        &dotrpar  &bhm LSHFT SEMI      
+    &bhm LSHFT Z                &kp BSPC &lt lower ESC &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT FSLH
+                >;
+            sensor-bindings = <&inc_dec_kp DEL BSPC>;
         };
         lock_layer {
 /* lock for locking keyboard when moving
