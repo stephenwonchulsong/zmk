@@ -2,8 +2,8 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
-west build -d build/36leftv1 -p -b seeeduino_xiao_ble -- -DSHIELD=36chambersV1_left
-west build -d build/36rightv1 -p -b seeeduino_xiao_ble -- -DSHIELD=36chambersV1_right
+west build -d build/35L -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_left
+west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 
  */
 
@@ -266,6 +266,6 @@ west build -d build/36rightv1 -p -b seeeduino_xiao_ble -- -DSHIELD=36chambersV1_
 
 
 /*
-west build -d build/36leftv1 -p -b seeeduino_xiao_ble -- -DSHIELD=36chambersV1_left
-west build -d build/36rightv1 -p -b seeeduino_xiao_ble -- -DSHIELD=36chambersV1_right
+west build -d build/35left -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_left
+west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 */
