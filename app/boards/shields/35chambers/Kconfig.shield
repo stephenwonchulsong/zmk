@@ -1,0 +1,5 @@
+config SHIELD_35CHAMBERS_LEFT
+	def_bool $(shields_list_contains,35chambers_left)
+
+config SHIELD_35CHAMBERS_RIGHT
+	def_bool $(shields_list_contains,35chambers_right)

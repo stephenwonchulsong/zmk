@@ -1,4 +1,4 @@
-#include "36chambersV1.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include "35chambers.dtsi" // Notice that the main dtsi files are included in the overlay.
 
 &kscan0 {
     col-gpios
