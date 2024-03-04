@@ -50,6 +50,27 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
                 , <&macro_tap &kp H &kp A &kp W &kp U &kp A &kp J &kp Y &kp D &kp S &kp N>
                 ;
         };
+        Grader1: GRDR1 {
+            label = "GRDR1";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_tap &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB &kp TAB
+                &kp SPACE
+                >
+                ;
+        };
         LR_PAR: LR_PAR {
             label = "LR_PAR";
             compatible = "zmk,behavior-macro";
