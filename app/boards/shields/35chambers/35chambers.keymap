@@ -6,7 +6,6 @@ west build -d build/35L -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_left
 west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 
  */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -230,10 +229,10 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 /* adjust
  */
                         bindings = <
-    &trans       &none        &none        &none        &to lock     &kp AMPS &kp ASTRK &kp LPAR  &kp EQUAL &kp UNDER
+    &trans       &none        &none        &none        &to lock                                   &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT Z &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT Z              &trans &lt lower ESC &trans   &kp RPAR &lt raise TAB &trans &kp BSLH
+    &bhm LSHFT Z              &kp DEL &lt adjust ESC &trans   &trans &lt adjust TAB &trans &kp BSLH
                 >;
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
         };
@@ -255,7 +254,7 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp PG_UP    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &kp S        &bhm LGUI D  &mo mice  &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar        &dotrpar  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                &kp BSPC &lt lower ESC &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT FSLH
+    &bhm LSHFT Z                &kp DEL &lt lower ESC &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT FSLH
                 >;
             sensor-bindings = <&inc_dec_kp DEL BSPC>;
         };
@@ -310,3 +309,4 @@ west build -d build/35R -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
 /*
 west build -d build/35left -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_left
 west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
+*/
