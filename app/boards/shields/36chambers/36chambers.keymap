@@ -199,7 +199,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
 //&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
 //&trans        &trans &trans &trans  &trans &trans &trans        &trans
                         bindings = <
-    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I           &kp O     &kp RET
+    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I           &kp O     &kp BSLH
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K           &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar        &dotrpar  &bhm LSHFT SEMI      
     &bhm LSHFT Z                &kp BSPC &lt lower DEL &tabgui 0 RET     &kp SPACE   &lt raise TAB  &kp CAPS         &mt RSHFT FSLH
@@ -210,7 +210,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
 /* lower
 */                      
                         bindings = <
-    &trans       &kp LC(LA(L))    &kp LC(LA(UP))   &kp LC(LA(U))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp RET 
+    &trans       &kp LC(LA(L))    &kp LC(LA(UP))   &kp LC(LA(U))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSLH 
     &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &kp LC(LA(N))    &kp LC(LA(DOWN)) &kp LC(LA(E))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &bhm LSHFT C_VOL_DN           &kp DEL &trans &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
@@ -219,7 +219,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
         };
     raise_layer {/* raise
  */                        bindings = <
-    &trans       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp RET
+    &trans       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSLH
     &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp F10
     &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &kp LBKT &kp RBKT &kp SQT &kp DQT &kp RIGHT
     &bhm LSHFT Z               &kp DEL &lt adjust DEL &trans  &trans &trans &trans                     &kp BSLH
@@ -230,7 +230,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
 /* adjust
  */
                         bindings = <
-    &trans       &none        &none        &none        &to lock                                   &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
+    &trans       &none        &none        &none        &to lock     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT Z &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
     &bhm LSHFT Z              &kp DEL &lt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &kp BSLH
