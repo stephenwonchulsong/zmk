@@ -221,7 +221,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
 /* raise
 */                        bindings = <
     &trans       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
-    &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp F10
+    &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
     &bhm LSHFT Z               &kp DEL &lt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
                 >;
