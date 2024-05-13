@@ -208,11 +208,11 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
         };
         lower_layer {
 /* lower
-*/                      
+*/                 
                         bindings = <
-    &trans       &kp LC(LA(L))    &kp LC(LA(UP))   &kp LC(LA(U))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &trans       &kp LC(LA(U))    &kp LC(LA(UP))   &kp LC(LA(L))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
-    &kp C_VOL_UP &kp LC(LA(N))    &kp LC(LA(DOWN)) &kp LC(LA(E))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
+    &kp C_VOL_UP &kp LC(LA(J))    &kp LC(LA(DOWN)) &kp LC(LA(D))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &bhm LSHFT C_VOL_DN           &kp DEL &trans &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
                 >;
             sensor-bindings = <&inc_dec_kp U Y>;
@@ -247,7 +247,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
     &bhm LSHFT Z                &tabgui 0 DEL &lt lower DEL &kp RET     &kp SPACE   &lt raise BSPC  &kp ESC &mt RSHFT FSLH
                 >;
-            sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
+            sensor-bindings = <&inc_dec_kp GRAVE LS(GRAVE)>;
         };
         mice_layer {
 /* mice
