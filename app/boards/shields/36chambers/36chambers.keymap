@@ -232,7 +232,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
  */
                         bindings = <
     &trans       &none        &none        &none        &to lock     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
-    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
+    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
     &bhm LSHFT F17              &kp DEL &lt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
                 >;
