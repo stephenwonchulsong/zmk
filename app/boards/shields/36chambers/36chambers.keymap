@@ -22,6 +22,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
 #define lock 6
 #define locklow 7
 #define unlock 8
+#define cmtoqw_layer
 // #define lockhigh 8
 
 
@@ -218,17 +219,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
                 >;
             sensor-bindings = <&inc_dec_kp ESC ESC>;
         };
-        C2Q_layer {
-/* C2Q
-*/                 
-                        bindings = <
-    &kp ESC        &kp W        &kp K        &kp S       &kp D       &kp O       &kp I       &kp L       &kp SEMI    &kp ESC
-    &kp Q          &kp P        &kp G        &kp T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
-    &kp A          &kp X        &kp C        &kp V       &kp B       &kp K       &kp M       &kp COMMA   &kp DOT  &kp O      
-    &kp Z          &kp BSPC &lt lower DEL &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-                >;
-            sensor-bindings = <&inc_dec_kp ESC ESC>;
-        };
+
         lower_layer {
 /* lower
 */                 
@@ -294,7 +285,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
                 >;
             sensor-bindings = <&inc_dec_kp Q Q>;
         };
-                locklow_layer {
+        locklow_layer {
 /* locklow
  */
                         bindings = <
@@ -316,7 +307,7 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
 //                 >;
 //             sensor-bindings = <&inc_dec_kp Q Q>;
 //         };
-                unlock_layer {
+        unlock_layer {
 /* unlock
  */
                         bindings = <
@@ -326,6 +317,17 @@ west build -d build/36right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_righ
     &none       &none &mo unlock &none &none &none       &none
                 >;
             sensor-bindings = <&inc_dec_kp Q Q>;
+        };
+        cmtoqw_layer {
+/* Colemak input to qwerty
+*/                 
+                        bindings = <
+    &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI    &kp ESC
+    &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
+    &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
+    &kp Z          &kp BSPC &lt lower DEL &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+                >;
+            sensor-bindings = <&inc_dec_kp ESC ESC>;
         };
     };
 };
