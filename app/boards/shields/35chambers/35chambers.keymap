@@ -19,10 +19,11 @@ west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_righ
 #define adjust 3
 #define extra 4
 #define mice 5
-#define lock 6
-#define locklow 7
-#define unlock 8
-// #define lockhigh 8
+// #define cmtoqw 6
+// #define lock 7
+// #define locklow 8
+// #define unlock 9
+// #define lockhigh 10
 
 
 &mt {
@@ -181,7 +182,6 @@ west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_righ
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
 /* default
  * ,----------------------------------.        ,----------------------------------.
  * |  TAB |   W  |   E  |   R  |   T  |        |   Y  |   U  |   I  |   O  |   P  |
@@ -198,14 +198,28 @@ west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_righ
 //&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
 //&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
 //&trans        &trans &trans &trans  &trans &trans &trans        &trans
+        default_layer {
+
                         bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
     &bhm LSHFT Z                &kp BSPC &lt lower ESC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
                 >;
-            sensor-bindings = <&inc_dec_kp ESC ESC>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
+        
+//         Colemak_layer {
+// /* Colemak
+// */                 
+//                         bindings = <
+//     &kp ESC        &kp W        &kp F        &kp P        &kp G       &kp J       &kp L       &kp U       &kp Y    &kp ESC
+//     &kp Q          &kp R        &kp S        &kp T        &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
+//     &kp A          &kp X        &kp C        &kp V        &kp B       &kp K       &kp M       &kp COMMA   &kp DOT  &kp O      
+//     &kp Z          &kp BSPC &lt lower ESC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+//                 >;
+//             sensor-bindings = <&inc_dec_kp ESC ESC>;
+//         };
         lower_layer {
 /* lower
 */                 
@@ -217,7 +231,7 @@ west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_righ
                 >;
             sensor-bindings = <&inc_dec_kp U Y>;
         };
-    raise_layer {
+        raise_layer {
 /* raise
 */                        bindings = <
     &trans       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
@@ -231,10 +245,10 @@ west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_righ
 /* adjust
  */
                         bindings = <
-    &trans       &none        &none        &none        &to lock     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
-    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG  &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
+    &trans       &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
+    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT F17              &kp DEL &lt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
+    &bhm LSHFT F17              &kp DEL &lt adjust ESC &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
                 >;
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
         };
@@ -255,33 +269,33 @@ west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_righ
                         bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
-    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
+    &kp LC(LEFT)   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &bhm LSHFT Z                &kp DEL &lt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
                 >;
             sensor-bindings = <&inc_dec_kp DEL BSPC>;
         };
-        lock_layer {
-/* lock for locking keyboard when moving
- */
-                        bindings = <
-    &none &none &none &none &none  &none &none &none &none &none
-    &none &none &none &none &none  &none &none &none &none &none
-    &none &none &none &none &none  &none &none &none &none &none
-    &none       &none &mo locklow  &none  &none &none &none        &none
-                >;
-            sensor-bindings = <&inc_dec_kp Q Q>;
-        };
-                locklow_layer {
-/* locklow
- */
-                        bindings = <
-    &none &none &none &none &none  &none &none &none &none &none
-    &mo unlock &none &none &none &none  &none &none &none &none &none
-    &none &none &none &none &none  &none &none &none &none &none
-    &none &none &mo locklow  &none  &none &none &none       &none
-                >;
-            sensor-bindings = <&inc_dec_kp Q Q>;
-        };
+//         lock_layer {
+// /* lock for locking keyboard when moving
+//  */
+//                         bindings = <
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none       &none &mo locklow  &none  &none &none &none        &none
+//                 >;
+//             sensor-bindings = <&inc_dec_kp Q Q>;
+//         };
+//         locklow_layer {
+// /* locklow
+//  */
+//                         bindings = <
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &mo unlock &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &mo locklow  &none  &none &none &none       &none
+//                 >;
+//             sensor-bindings = <&inc_dec_kp Q Q>;
+//         };
 //                 lockhigh_layer {
 // /* lockhigh
 //  */
@@ -293,22 +307,27 @@ west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_righ
 //                 >;
 //             sensor-bindings = <&inc_dec_kp Q Q>;
 //         };
-                unlock_layer {
-/* unlock
- */
+//         unlock_layer {
+// /* unlock
+//  */
+//                         bindings = <
+//     &none &none &none &none &to default &none &none &none &none &none
+//     &mo unlock &none &none &none        &none &none &none &none &none &none
+//     &none &none &none &none &none       &none &none &none &none &none
+//     &none       &none &mo unlock &none &none &none       &none
+//                 >;
+//             sensor-bindings = <&inc_dec_kp Q Q>;
+//         };
+        cmtoqw_layer {
+/* Colemak input to qwerty
+*/                 
                         bindings = <
-    &none &none &none &none &to default &none &none &none &none &none
-    &mo unlock &none &none &none        &none &none &none &none &none &none
-    &none &none &none &none &none       &none &none &none &none &none
-    &none       &none &mo unlock &none &none &none       &none
+    &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI    &kp ESC
+    &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
+    &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
+    &kp Z          &kp BSPC &lt lower DEL &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
                 >;
-            sensor-bindings = <&inc_dec_kp Q Q>;
+            sensor-bindings = <&inc_dec_kp ESC ESC>;
         };
     };
 };
-
-
-/*
-west build -d build/35left -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_left
-west build -d build/35right -p -b seeeduino_xiao_ble -- -DSHIELD=35chambers_right
-*/
