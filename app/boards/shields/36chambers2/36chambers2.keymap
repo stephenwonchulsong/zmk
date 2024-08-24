@@ -17,7 +17,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
 #define lower 1
 #define raise 2
 #define adjust 3
-#define extra 4
+#define commandllayer 4
 #define mice 5
 // #define cmtoqw 6
 // #define lock 7
@@ -92,9 +92,9 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
             tap-ms = <0>;
             #binding-cells = <0>;
             bindings
-                = <&macro_press &mo extra &kp RGUI>
+                = <&macro_press &mo commandllayer &kp RGUI>
                 , <&macro_pause_for_release>
-                , <&macro_release &mo extra &kp RGUI>
+                , <&macro_release &mo commandllayer &kp RGUI>
                 ;
         };
     };
@@ -174,6 +174,12 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
             global-quick-tap;
             bindings = <&lmrgui>, <&kp>;
         };
+        copypaste: copypaste {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LG(C)>, <&kp LG(V)>, <&kp LG(V)>;
+        };
    };
 };
 
@@ -204,10 +210,10 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &kp TAB        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                             &lt lower ESC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+    &bhm LSHFT Z                             &lt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise DEL  &kp CAPS &mt RSHFT FSLH
     &kp BSPC &kp DEL &kp X &kp Y &kp Z
                 >;
-            sensor-bindings = <&inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp BSPC BSPC>;
         };
         
 //         Colemak_layer {
@@ -225,18 +231,18 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
 /* lower
 */                 
                         bindings = <
-    &trans       &kp LC(LA(U))    &kp LC(LA(UP))   &kp LC(LA(L))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &kp ESC       &kp LC(LA(U))    &kp LC(LA(UP))   &kp LC(LA(L))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &kp LC(LA(J))    &kp LC(LA(DOWN)) &kp LC(LA(D))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &bhm LSHFT C_VOL_DN           &trans &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
+    &bhm LSHFT C_VOL_DN           &trans &trans                         &tns RPAR N0 &lt adjust DEL &kp CAPS             &trans
     &trans &trans &trans &trans &trans
                 >;
-            sensor-bindings = <&inc_dec_kp U Y>;
+            sensor-bindings = <&inc_dec_kp BSPC BSPC>;
         };
         raise_layer {
 /* raise
 */                        bindings = <
-    &trans       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
+    &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
     &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
     &bhm LSHFT Z                &lt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
@@ -251,17 +257,17 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &trans       &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT F17              &lt adjust ESC &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
+    &bhm LSHFT F17              &lt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
         };
-        extra_layer {
-/* extra
+        commandllayer_layer {
+/* commandllayer
  */
                         bindings = <
-    &kp GRAVE        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
-    &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
+    &kp TAB        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
+    &kp GRAVE      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
     &bhm LSHFT Z                 &lt lower DEL &kp RET     &kp SPACE   &lt raise BSPC  &kp ESC &mt RSHFT FSLH
     &trans &trans &trans &trans &trans
@@ -274,7 +280,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
                         bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
-    &kp LC(LEFT)   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
+    &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &bhm LSHFT Z                &lt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
