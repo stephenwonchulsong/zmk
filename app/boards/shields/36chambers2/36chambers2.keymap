@@ -211,7 +211,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
     &bhm LSHFT Z                             &lt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise ESC  &kp CAPS &mt RSHFT FSLH
-    &kp BSPC &kp DEL &kp X &kp Y &kp Z
+    &kp 1 &kp 2 &kp 3 &kp 4 &kp 5
                 >;
             sensor-bindings = <&inc_dec_kp BSPC BSPC>;
         };
