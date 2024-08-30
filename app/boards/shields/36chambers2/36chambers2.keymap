@@ -32,7 +32,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
 };
 
 &lt {
-    tapping-term-ms = <250>;
+    tapping-term-ms = <200>;
     flavor = "hold-preferred";
 };
 
