@@ -186,6 +186,14 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
             tapping-term-ms = <150>;
             bindings = <&lt lower BSPC>, <&kp BSPC>;
         };
+        qlt: quick_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&mo>, <&kp>;
+        };
     };
 
 };
@@ -216,7 +224,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &kp TAB        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                             &lt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise ESC  &kp CAPS &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise ESC  &kp CAPS &mt RSHFT FSLH
     &none &none &none &none &none    
                 >;
             sensor-bindings = <&inc_dec_kp BSPC BSPC>;
@@ -240,7 +248,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &kp ESC       &kp LC(LA(U))    &kp LC(LA(UP))   &kp LC(LA(I))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &kp LC(LA(N))    &kp LC(LA(DOWN)) &kp LC(LA(J))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &bhm LSHFT C_VOL_DN           &trans &trans                         &tns RPAR N0 &lt adjust ESC &kp CAPS             &trans
+    &bhm LSHFT C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust ESC &kp CAPS             &trans
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp BSPC BSPC>;
@@ -251,7 +259,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
     &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
-    &bhm LSHFT Z                &lt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
+    &bhm LSHFT Z                &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
@@ -263,7 +271,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &trans       &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT F17              &lt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
+    &bhm LSHFT F17              &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
@@ -275,7 +283,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &kp TAB        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
     &kp GRAVE      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
-    &bhm LSHFT Z                 &lt lower DEL &kp RET     &kp SPACE   &lt raise BSPC  &kp ESC &mt RSHFT FSLH
+    &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise BSPC  &kp ESC &mt RSHFT FSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp GRAVE LS(GRAVE)>;
@@ -287,7 +295,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                &lt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
+    &bhm LSHFT Z                &qlt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp DEL BSPC>;
