@@ -44,7 +44,7 @@ RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4)
         		;
 	};
 
-// // Original encoder config
+// // Original encoder config k
 // 	left_encoder: encoder_left {
 //         compatible = "alps,ec11";
 //         label = "LEFT_ENCODER";
