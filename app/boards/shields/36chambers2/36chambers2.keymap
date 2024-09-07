@@ -3,7 +3,11 @@
  *
  * SPDX-License-Identifier: MIT
 west build -d build/362left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_left
+docker cp 106012d233f7ca38753557e5791bd56dadb15c480bbd2de9038b9953dab2076f:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36v6L_alt.uf2
+docker cp root@106012d233f7:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36v6L_alt.uf2
+
 west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_right
+
 
  */
 
@@ -102,6 +106,12 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
 
 / {
     behaviors {
+        gresc: grave_escape {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&kp GRAVE>;
+            mods = <(MOD_RGUI|MOD_LSFT|MOD_LALT|MOD_LCTL)>;
+        };
         mnl: mouse_n_language {
             compatible = "zmk,behavior-hold-tap";
             label = "MOUSE_MODS";
@@ -221,15 +231,15 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
         default_layer {
 
                         bindings = <
-    &kp TAB        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
+    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise ESC  &kp CAPS &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
     &none &none &none &none &none    
                 >;
             sensor-bindings = <&inc_dec_kp BSPC BSPC>;
         };
-        
+
 //         Colemak_layer {
 // /* Colemak
 // */                 
@@ -245,10 +255,10 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
 /* lower
 */                 
                         bindings = <
-    &kp ESC       &kp LC(LA(U))    &kp LC(LA(UP))   &kp LC(LA(I))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
-    &kp C_VOL_UP &kp LC(LA(N))    &kp LC(LA(DOWN)) &kp LC(LA(J))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &bhm LSHFT C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust ESC &kp CAPS             &trans
+    &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
+    &bhm LSHFT C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp BSPC BSPC>;
@@ -280,10 +290,10 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
 /* commandllayer
  */
                         bindings = <
-    &kp TAB        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
-    &kp GRAVE      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
+    &kp GRAVE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
+    &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
-    &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise BSPC  &kp ESC &mt RSHFT FSLH
+    &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp GRAVE LS(GRAVE)>;
