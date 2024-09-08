@@ -8,6 +8,8 @@ docker cp root@106012d233f7:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/L
 
 west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_right
 
+docker cp hungry_shockley:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Desktop/36chambers2L.uf2
+docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/Desktop/36chambers2R.uf2
 
  */
 
@@ -237,7 +239,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
     &none &none &none &none &none    
                 >;
-            sensor-bindings = <&inc_dec_kp BSPC BSPC>;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
 
 //         Colemak_layer {
@@ -272,7 +274,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &bhm LSHFT Z                &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
-            sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
         adjust_layer {
 /* adjust
@@ -284,7 +286,7 @@ west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_ri
     &bhm LSHFT F17              &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
-            sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
+            sensor-bindings = <&inc_dec_kp HOME END>;
         };
         commandllayer_layer {
 /* commandllayer
