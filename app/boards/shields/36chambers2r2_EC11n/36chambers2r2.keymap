@@ -2,11 +2,11 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
-west build -d build/362left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_left
+west build -d build/362left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2r2_left
 
-west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_right
+west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2r2_right
 
-docker cp hungry_shockley:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Desktop/36chambers2L.uf2
+docker cp hungry_shockley:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Desktop/36chambers2Lr2.uf2
 docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/Desktop/36chambers2R.uf2
 
  */
@@ -222,6 +222,7 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/De
  * `-------------+------+------+------|        |------+------+------+-------------'
  * |   Z  |      |  NAV | Lower| BSPC |        |Space | raise| Caps |      |   /  |
  *  ------       `--------------------'        `--------------------'       ------' 
+ 14352 EWNSC
  */
 
 //&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
@@ -235,7 +236,7 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/De
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    &none &none &none &none &none    
+    &kp DEL &kp BSPC &kp PG_UP &kp PG_DN &kp BSPC    
                 >;
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };

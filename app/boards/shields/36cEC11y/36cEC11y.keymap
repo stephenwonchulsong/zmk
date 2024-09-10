@@ -2,12 +2,13 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
-west build -d build/362left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_left
+west build -d build/362left -p -b seeeduino_xiao_ble -- -DSHIELD=36cEC11y_left
 
-west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_right
 
-docker cp hungry_shockley:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Desktop/36chambers2L.uf2
-docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/Desktop/36chambers2R.uf2
+west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36cEC11y_right
+
+docker cp hungry_shockley:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Desktop/36cEC11yL.uf2
+docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/Desktop/36cEC11yR.uf2
 
  */
 
@@ -222,6 +223,7 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/De
  * `-------------+------+------+------|        |------+------+------+-------------'
  * |   Z  |      |  NAV | Lower| BSPC |        |Space | raise| Caps |      |   /  |
  *  ------       `--------------------'        `--------------------'       ------' 
+ 14352 EWNSC
  */
 
 //&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
@@ -231,15 +233,14 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/De
         default_layer {
 
                         bindings = <
-    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
-    &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
-    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    &none &none &none &none &none    
+    &kp ESC        &kp W           &kp E          &kp R           &kp T          &kp Y        &kp U         &kp I       &kp O    &kp ESC
+    &kp Q          &kp S           &kp D          &mnl mice F     &kp G          &kp H        &kp J         &kp K       &kp L    &bhm LCTL P
+    &kp A          &bhm LCTRL X    &bhm LALT C    &bhm LGUI V     &bhm LGUI B    &bhm LGUI N  &bhm LALT M   &comlpar    &dotrpar &bhm LSHFT SEMI      
+    &bhm LSHFT Z                                  &qlt lower BSPC &tabgui 0 RET  &kp SPACE    &lt raise TAB &kp CAPS    &mt RSHFT FSLH
+    &kp N1         &kp N2          &kp N3         &kp N4          &kp N5
                 >;
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+            // sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
-
 //         Colemak_layer {
 // /* Colemak
 // */                 
@@ -251,108 +252,64 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/De
 //                 >;
 //             sensor-bindings = <&inc_dec_kp ESC ESC>;
 //         };
-        lower_layer {
-/* lower
-*/                 
-                        bindings = <
-    &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
-    &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
-    &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &bhm LSHFT C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
-    &trans &trans &trans &trans &trans
-                >;
-            sensor-bindings = <&inc_dec_kp BSPC BSPC>;
-        };
-        raise_layer {
-/* raise
-*/                        bindings = <
-    &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
-    &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
-    &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
-    &bhm LSHFT Z                &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
-                >;
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
-        };
-        adjust_layer {
-/* adjust
- */
-                        bindings = <
-    &trans       &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
-    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
-    &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT F17              &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
-                >;
-            sensor-bindings = <&inc_dec_kp HOME END>;
-        };
-        commandllayer_layer {
-/* commandllayer
- */
-                        bindings = <
-    &kp GRAVE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
-    &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
-    &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
-    &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
-    &trans &trans &trans &trans &trans
-                >;
-            sensor-bindings = <&inc_dec_kp GRAVE LS(GRAVE)>;
-        };
-        mice_layer {
-/* mice
- */
-                        bindings = <
-    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
-    &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
-    &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                &qlt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
-                >;
-            sensor-bindings = <&inc_dec_kp DEL BSPC>;
-        };
-//         lock_layer {
-// /* lock for locking keyboard when moving
-//  */
+//         lower_layer {
+// /* lower
+// */                 
 //                         bindings = <
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none       &none &mo locklow  &none  &none &none &none        &none
+//     &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+//     &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
+//     &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B     &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
+//     &bhm LSHFT C_VOL_DN           &qlt lower BSPC &trans                        &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
+//     &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    
 //                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
+//             sensor-bindings = <&inc_dec_kp BSPC BSPC>;
 //         };
-//         locklow_layer {
-// /* locklow
-//  */
-//                         bindings = <
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &mo unlock &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &mo locklow  &none  &none &none &none       &none
+//         raise_layer {
+// /* raise
+// */                        bindings = <
+//     &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5     &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
+//     &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
+//     &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
+//     &bhm LSHFT Z                &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
+//     &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
 //                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
+//             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
 //         };
-//                 lockhigh_layer {
-// /* lockhigh
+//         adjust_layer {
+// /* adjust
 //  */
 //                         bindings = <
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none        &mo unlock &none &none  &none &mo lockhigh &none        &none
+//     &trans       &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
+//     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR    &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
+//     &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B  &kp EXCL &kp AT    &kp POUND &none &kp BSLH
+//     &bhm LSHFT F17              &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
+//     &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
 //                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
+//             sensor-bindings = <&inc_dec_kp HOME END>;
 //         };
-//         unlock_layer {
-// /* unlock
+//         commandllayer_layer {
+// /* commandllayer
 //  */
 //                         bindings = <
-//     &none &none &none &none &to default &none &none &none &none &none
-//     &mo unlock &none &none &none        &none &none &none &none &none &none
-//     &none &none &none &none &none       &none &none &none &none &none
-//     &none       &none &mo unlock &none &none &none       &none
+//     &kp GRAVE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
+//     &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
+//     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
+//     &bhm LSHFT Z             &qlt lower DEL &kp RET   &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
+//     &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
 //                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
+//             sensor-bindings = <&inc_dec_kp GRAVE LS(GRAVE)>;
+//         };
+//         mice_layer {
+// /* mice
+//  */
+//                         bindings = <
+//     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
+//     &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
+//     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B  &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
+//     &bhm LSHFT Z               &qlt lower DEL &mkp LCLK  &trans   &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
+//     &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+//                 >;
+//             sensor-bindings = <&inc_dec_kp DEL BSPC>;
 //         };
 //         cmtoqw_layer {
 // /* Colemak input to qwerty

@@ -1,0 +1,12 @@
+file_format: "1"
+id: 36cEC11y
+name: 36cEC11y
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+siblings:
+  - 36cEC11y_left
+  - 36cEC11y_right
