@@ -1,0 +1,371 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+west build -d build/363left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_left
+
+west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_right
+
+docker cp hungry_shockley:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
+docker cp hungry_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
+
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/mouse.h>
+
+#define default 0
+#define lower 1
+#define raise 2
+#define adjust 3
+#define commandllayer 4
+#define mice 5
+// #define cmtoqw 6
+// #define lock 7
+// #define locklow 8
+// #define unlock 9
+// #define lockhigh 10
+
+
+&mt {
+    tapping-term-ms = <250>;
+    flavor = "hold-preferred";
+};
+
+&lt {
+    tapping-term-ms = <250>;
+    flavor = "hold-preferred";
+};
+
+/ {
+    macros {
+        R_1W: R_1W {
+            label = "R_1W";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp S>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp H &kp A &kp W &kp U &kp A &kp J &kp Y &kp D &kp S &kp N>
+                ;
+        };
+        Grader1: GRDR1 {
+            label = "GRDR1";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_tap &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB
+                &kp 3 &kp TAB &kp TAB &kp TAB
+                &kp SPACE
+                >
+                ;
+        };
+        LR_PAR: LR_PAR {
+            label = "LR_PAR";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp N9 &kp N0>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp LEFT>
+                ;
+        };
+        lmrgui: lmrgui {
+            label = "LAYER_MOD";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &mo commandllayer &kp RGUI>
+                , <&macro_pause_for_release>
+                , <&macro_release &mo commandllayer &kp RGUI>
+                ;
+        };
+    };
+};
+
+/ {
+    behaviors {
+        gresc: grave_escape {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&kp GRAVE>;
+            mods = <(MOD_RGUI|MOD_LSFT|MOD_LALT|MOD_LCTL)>;
+        };
+        mnl: mouse_n_language {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOUSE_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <350>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+        };
+        bhm: balanced_homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;    // <---[[moderate duration]]
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+        tns: tap_number_symbols {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NUM_SYMBOLS";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;    // <---[[moderate duration]]
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };//the following two go together
+        comlpar: comma_parenthesis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COMMA_LPARENTH";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp LPAR>;
+            mods = <(MOD_RSFT)>;
+        };
+        dotrpar: dot_parenthesis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DOT_RPARENTH";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&kp RPAR>;
+            mods = <(MOD_RSFT)>;
+        };//the following two go together        
+        comlrpar: comma_parentheses {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COMMA_BOTHPARENTH";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&LR_PAR>;
+            mods = <(MOD_RSFT)>;
+        };
+        dotqmark: dot_qmark {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DOT_QMARK";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&kp QMARK>;
+            mods = <(MOD_RSFT)>;
+        };
+        qtab: q_cmdandtab {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Q_CMDANDTAB";
+            #binding-cells = <0>;
+            bindings = <&kp Q>, <&kp LG(TAB)>;
+            mods = <(MOD_LGUI)>;
+        };
+        tabgui: tabandgui {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAB_GUI";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <125>;
+            global-quick-tap;
+            bindings = <&lmrgui>, <&kp>;
+        };
+        copypaste: copypaste {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LG(C)>, <&kp LG(V)>, <&kp LG(V)>;
+        };
+        td_mt_bspc: tap_dance_layer_tap {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&lt lower BSPC>, <&kp BSPC>;
+        };
+        qlt: quick_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&mo>, <&kp>;
+        };
+    };
+
+};
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+/* default
+ * ,----------------------------------.        ,----------------------------------.
+ * |  TAB |   W  |   E  |   R  |   T  |        |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+------|        |------+------+------+------+------|
+ * |   Q  |   S  |   D  |   F  |   G  |        |   H  |   J  |   K  |   L  | Enter|             
+ * |------+------+------+------+------|        |------+------+------+------+------|
+ * |   A  |   X  |   C  |   V  |   B  |        |   N  |   M  |   ,  |   .  |   ;  |
+ * `-------------+------+------+------|        |------+------+------+-------------'
+ * |   Z  |      |  NAV | Lower| BSPC |        |Space | raise| Caps |      |   /  |
+ *  ------       `--------------------'        `--------------------'       ------' 
+ */
+
+//&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
+//&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
+//&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
+//&trans        &trans &trans &trans  &trans &trans &trans        &trans
+//14532 EWSNC
+        default_layer {
+
+                        bindings = <
+    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
+    &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
+    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+    &kp RIGHT &kp LEFT &kp DOWN &kp UP &kp C
+                >;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+        };
+
+//         Colemak_layer {
+// /* Colemak
+// */                 
+//                         bindings = <
+//     &kp ESC        &kp W        &kp F        &kp P        &kp G       &kp J       &kp L       &kp U       &kp Y    &kp ESC
+//     &kp Q          &kp R        &kp S        &kp T        &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
+//     &kp A          &kp X        &kp C        &kp V        &kp B       &kp K       &kp M       &kp COMMA   &kp DOT  &kp O      
+//     &kp Z          &kp BSPC &lt lower ESC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+//                 >;
+//             sensor-bindings = <&inc_dec_kp ESC ESC>;
+//         };
+        lower_layer {
+/* lower
+*/                 
+                        bindings = <
+    &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
+    &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
+    &bhm LSHFT C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
+    &trans &trans &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp BSPC BSPC>;
+        };
+        raise_layer {
+/* raise
+*/                        bindings = <
+    &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
+    &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
+    &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
+    &bhm LSHFT Z                &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
+    &trans &trans &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+        };
+        adjust_layer {
+/* adjust
+ */
+                        bindings = <
+    &trans       &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
+    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
+    &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
+    &bhm LSHFT F17              &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
+    &trans &trans &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp HOME END>;
+        };
+        commandllayer_layer {
+/* commandllayer
+ */
+                        bindings = <
+    &kp GRAVE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
+    &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
+    &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
+    &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
+    &trans &trans &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp GRAVE LS(GRAVE)>;
+        };
+        mice_layer {
+/* mice
+ */
+                        bindings = <
+    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
+    &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &kp L    &bhm LCTL P
+    &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
+    &bhm LSHFT Z                &qlt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
+    &trans &trans &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp DEL BSPC>;
+        };
+//         lock_layer {
+// /* lock for locking keyboard when moving
+//  */
+//                         bindings = <
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none       &none &mo locklow  &none  &none &none &none        &none
+//                 >;
+//             sensor-bindings = <&inc_dec_kp Q Q>;
+//         };
+//         locklow_layer {
+// /* locklow
+//  */
+//                         bindings = <
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &mo unlock &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &mo locklow  &none  &none &none &none       &none
+//                 >;
+//             sensor-bindings = <&inc_dec_kp Q Q>;
+//         };
+//                 lockhigh_layer {
+// /* lockhigh
+//  */
+//                         bindings = <
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none &none &none &none &none  &none &none &none &none &none
+//     &none        &mo unlock &none &none  &none &mo lockhigh &none        &none
+//                 >;
+//             sensor-bindings = <&inc_dec_kp Q Q>;
+//         };
+//         unlock_layer {
+// /* unlock
+//  */
+//                         bindings = <
+//     &none &none &none &none &to default &none &none &none &none &none
+//     &mo unlock &none &none &none        &none &none &none &none &none &none
+//     &none &none &none &none &none       &none &none &none &none &none
+//     &none       &none &mo unlock &none &none &none       &none
+//                 >;
+//             sensor-bindings = <&inc_dec_kp Q Q>;
+//         };
+//         cmtoqw_layer {
+// /* Colemak input to qwerty
+// */                 
+//                         bindings = <
+//     &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI    &kp ESC
+//     &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
+//     &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
+//     &kp Z          &kp BSPC &lt lower DEL &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+//     &trans &trans &trans &trans &trans
+//                 >;
+//             sensor-bindings = <&inc_dec_kp ESC ESC>;
+//         };
+    };
+};
