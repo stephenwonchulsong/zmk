@@ -4,16 +4,18 @@
  * SPDX-License-Identifier: MIT
  */
 
+
 #include <dt-bindings/zmk/matrix_transform.h>
 
 / {
 	chosen {
-		zmk,kscan = &kscan0;
-		zmk,matrix_transform = &default_transform;
-	};
+        zmk,kscan = &kscan0;
+        zmk,matrix-transform = &default_transform;
+    };
 
-	default_transform: keymap_transform_0 {
-		compatible = "zmk,matrix-transform";
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+
 		columns = <11>;
 		rows = <5>;
 // | SW1  | SW2  | SW3  | SW4  | SW5  |   | SW5  | SW4  | SW3  | SW2  | SW1  |
