@@ -236,7 +236,7 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
     &kp Q          &kp S        &kp D        &mnl mice F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm LSHFT SEMI      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    &kp RIGHT &kp LEFT &kp DOWN &kp UP &kp C
+    &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
                 >;
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
