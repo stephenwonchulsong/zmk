@@ -212,7 +212,7 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
     keymap {
         compatible = "zmk,keymap";
 
-/* default
+/* defaulttg
  * ,----------------------------------.        ,----------------------------------.
  * |  TAB |   W  |   E  |   R  |   T  |        |   Y  |   U  |   I  |   O  |   P  |
  * |------+------+------+------+------|        |------+------+------+------+------|

@@ -11,7 +11,7 @@
 //         , <&xiao_d 5 GPIO_ACTIVE_HIGH>
 //         , <&xiao_d 4 GPIO_ACTIVE_HIGH>
 //         , <&xiao_d 3 GPIO_ACTIVE_HIGH>
-//         ;
+//         ;4ienienienienienieccccsccNNtttttttd
 // };
 //experimental
 / {
@@ -22,11 +22,11 @@
 
 
     col-gpios
-        , <&xiao_d 9 GPIO_ACTIVE_HIGH>
+        = <&xiao_d 9 GPIO_ACTIVE_HIGH>
         , <&xiao_d 6 GPIO_ACTIVE_HIGH>
         , <&xiao_d 5 GPIO_ACTIVE_HIGH>
         , <&xiao_d 4 GPIO_ACTIVE_HIGH>
-        = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 3 GPIO_ACTIVE_HIGH>
         // , <&xiao_d 0 GPIO_ACTIVE_HIGH>
         ;
 
@@ -38,7 +38,7 @@
     	// , <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
     	;
     };
-};
+
 	right_encoder: encoder_right {
         compatible = "alps,ec11";
         label = "RIGHT_ENCODER";
@@ -47,20 +47,13 @@
         steps = <80>;
     };
 
-	// // right_encoder: encoder_right {
-    // //     compatible = "alps,ec11";
-    // //     label = "RIGHT_ENCODER";
-    // //     a-gpios = <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    // //     b-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    // //     resolution = <2>;
-	// // 	status = "disabled";
-
-
 	sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&right_encoder>;
         triggers-per-rotation = <20>;
     };
+};
+
 &right_encoder {
     status = "okay";
 };
