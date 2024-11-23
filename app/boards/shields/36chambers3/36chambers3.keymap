@@ -6,8 +6,8 @@ west build -d build/363left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_lef
 
 west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_right
 
-docker cp hungry_shockley:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
-docker cp hungry_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
+docker cp nifty_hoover:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
+docker cp nifty_hoover:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
 
  */
 
@@ -336,7 +336,7 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                &qlt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
+    &bhm LSHFT Z                &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp DEL BSPC>;
