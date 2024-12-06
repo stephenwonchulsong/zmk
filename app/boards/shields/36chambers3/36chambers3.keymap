@@ -334,9 +334,9 @@ docker cp hungry_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
  */
                         bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
-    &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
+    &kp LC(LA(LS(LG(TAB))))          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                &qlt lower DEL &mkp LCLK     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
+    &bhm LSHFT Z                &qlt lower DEL &kp RET     &mkp RCLK   &lt raise TAB  &kp CAPS         &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp DEL BSPC>;
