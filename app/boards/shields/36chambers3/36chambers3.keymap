@@ -96,13 +96,31 @@ docker cp nifty_hoover:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Deskt
             bindings
                 = <&macro_tap 
                 &kp LBRC &kp LEFT &kp LEFT
-                &kp BSLH &kp D &kp S &kp X &kp D &kp L &kp D>
+                &kp BSLH &kp F &kp K &kp X &kp F &kp L &kp F>
                 ,<&macro_press &kp 
                 LALT>
                 ,<&macro_tap 
                 &kp RIGHT &kp RIGHT>
                 ,<&macro_release 
-                &kp LSHFT>
+                &kp LALT>
+                ;
+        };
+        textbf: textbf {
+            label = "textbf";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            tap-ms = <10>;
+            bindings
+                = <&macro_tap 
+                &kp LBRC &kp LEFT &kp LEFT
+                &kp BSLH &kp F &kp K &kp X &kp F &kp B &kp E>
+                ,<&macro_press 
+                &kp LALT>
+                ,<&macro_tap 
+                &kp RIGHT &kp RIGHT>
+                ,<&macro_release 
+                &kp LALT>
                 ;
         };
         LR_PAR: LR_PAR {
@@ -335,7 +353,7 @@ docker cp nifty_hoover:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Deskt
                         bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &kp S        &bhm LGUI D  &mo mice     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
-    &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
+    &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &bhm LSHFT Z                &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
