@@ -31,7 +31,7 @@ docker cp stoic_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Des
 // #define locklow 8
 // #define unlock 9
 // #define lockhigh 10
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1600  // default: 600
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 2000  // default: 600
 
 &mt {
     tapping-term-ms = <250>;
