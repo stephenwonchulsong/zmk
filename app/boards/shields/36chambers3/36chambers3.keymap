@@ -150,6 +150,19 @@ docker cp stoic_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Des
                 , <&macro_release &mo commandllayer &kp RGUI>
                 ;
         };
+        parencite: parencite {
+            label = "parencite";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <20>;
+            bindings
+                = <&macro_press &mo colemak>
+                , <&macro_tap &kp BSLH &kp P &kp A &kp R &kp E &kp N &kp C &kp I &kp T &kp E &kp LBRC &kp LBRC>
+                , <&macro_release &mo colemak>
+                , <&macro_tap &kp LEFT &kp LBRKT &kp RBRKT &kp LBRKT &kp RBRKT &kp RIGHT>
+                ;
+        };
     };
 };
 
@@ -293,14 +306,25 @@ docker cp stoic_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Des
         colemak_layer {
 /* Colemak
 */                 
+    //                     bindings = <
+    // &kp ESC        &kp W        &kp F        &kp P        &kp G       &kp J       &kp L       &kp U       &kp Y    &kp ESC
+    // &kp Q          &kp R        &kp S        &mnl extra T        &kp D       &kp H       &kp N       &kp E       &kp I    &bhm LCTL SEMI
+    // &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI K &bhm LALT M &comlpar    &dotrpar  &mnl mouse SEMI  
+    // &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+    // &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+    //             >;
+    //         sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+    //     };
+        // /* Colemak input to qwerty
+// */                 
                         bindings = <
-    &kp ESC        &kp W        &kp F        &kp P        &kp G       &kp J       &kp L       &kp U       &kp Y    &kp ESC
-    &kp Q          &kp R        &kp S        &mnl extra T        &kp D       &kp H       &kp N       &kp E       &kp I    &bhm LCTL SEMI
-    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI K &bhm LALT M &comlpar    &dotrpar  &mnl mouse SEMI  
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-                >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+//     &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI    &kp ESC
+//     &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
+//     &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
+//     &kp Z          &kp BSPC &lt lower DEL &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+//     &trans &trans &trans &trans &trans
+//                 >;
+            sensor-bindings = <&inc_dec_kp ESC ESC>;
         };
         lower_layer {
 /* lower
@@ -356,7 +380,7 @@ docker cp stoic_shockley:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Des
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &bhm LGUI S        &mo extra  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
-    &bhm LSHFT Z                &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
+    &parencite              &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
