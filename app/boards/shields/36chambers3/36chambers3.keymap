@@ -26,7 +26,6 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
 #define commandllayer 5
 #define extra 6
 #define mouse 7
-#define mousealt 8
 // #define cmtoqw 6
 // #define lock 7
 // #define locklow 8
@@ -171,14 +170,11 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
                 = <&macro_tap &kp LPAR &kp DLLR>
                 , <&macro_press &kp RSHFT> 
                 , <&kp R>
-                , <&macro_release &kp RHSFT>
-                , <&kp AMP &kp UNDER &kp LBRC &kp A &kp G &kp Y &kp RBRC &kp DLLR>
+                , <&macro_release &kp RSHFT>
+                , <&kp AMPS &kp UNDER &kp LBRC &kp A &kp G &kp Y &kp RBRC &kp DLLR>
                 ;
         };
     };
-};
-
-/ {
     behaviors {
         gresc: grave_escape {
             compatible = "zmk,behavior-mod-morph";
@@ -279,57 +275,22 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             bindings = <&mo>, <&kp>;
         };
     };
-
 };
-
-/ {
     keymap {
         compatible = "zmk,keymap";
 
-/* defaulttg
- * ,----------------------------------.        ,----------------------------------.
- * |  TAB |   W  |   E  |   R  |   T  |        |   Y  |   U  |   I  |   O  |   P  |
- * |------+------+------+------+------|        |------+------+------+------+------|
- * |   Q  |   S  |   D  |   F  |   G  |        |   H  |   J  |   K  |   L  | Enter|             
- * |------+------+------+------+------|        |------+------+------+------+------|
- * |   A  |   X  |   C  |   V  |   B  |        |   N  |   M  |   ,  |   .  |   ;  |
- * `-------------+------+------+------|        |------+------+------+-------------'
- * |   Z  |      |  NAV | Lower| BSPC |        |Space | raise| Caps |      |   /  |
- *  ------       `--------------------'        `--------------------'       ------' 
- */
-
-//&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
-//&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
-//&trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
-//&trans        &trans &trans &trans  &trans &trans &trans        &trans
-//14532 EWSNC
         qwerty_layer {
-
-                        bindings = <
+            bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp HOME
     &kp Q          &kp S        &mnl extra D  &mnl extra F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &mnl mouse SEMI      
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &mnl mousealt SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
     &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
-
         colemak_layer {
-/* Colemak
-*/                 
-    //                     bindings = <
-    // &kp ESC        &kp W        &kp F        &kp P        &kp G       &kp J       &kp L       &kp U       &kp Y    &kp ESC
-    // &kp Q          &kp R        &kp S        &mnl extra T        &kp D       &kp H       &kp N       &kp E       &kp I    &bhm LCTL SEMI
-    // &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI K &bhm LALT M &comlpar    &dotrpar  &mnl mouse SEMI  
-    // &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    // &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-    //             >;
-    //         sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
-    //     };
-        // /* Colemak input to qwerty
-// */                 
-                        bindings = <
+            bindings = <
     &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI &kp ESC
     &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
     &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
@@ -339,9 +300,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
         lower_layer {
-/* lower
-*/                 
-                        bindings = <
+            bindings = <
     &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
@@ -351,8 +310,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
         raise_layer {
-/* raise
-*/                        bindings = <
+            bindings = <
     &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
     &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
@@ -362,9 +320,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
         adjust_layer {
-/* adjust
- */
-                        bindings = <
+            bindings = <
     &tog qwerty &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
@@ -374,9 +330,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
         commandllayer_layer {
-/* commandllayer
- */
-                        bindings = <
+            bindings = <
     &kp GRAVE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
     &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
@@ -386,9 +340,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
         extra_layer {
-/* extra
- */
-                        bindings = <
+            bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &bhm LGUI S        &mo extra  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
@@ -397,10 +349,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
-        mouse_layer {
-/* mouse
- */
-                        bindings = <
+        mouse_layer {bindings = <
     &kp ESC &kp LG(LA(LEFT)) &mkp MB4  &kp LG(LA(RIGHT))  &kp T       &msc SCRL_UP   &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT    &kp HOME
     &kp Q   &kp LG(LEFT)     &mkp MB5  &kp LG(RIGHT)      &kp G       &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
     &kp A   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mnl mouse SEMI      
@@ -409,73 +358,5 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
-        mousealt_layer {
-/* mouse
- */
-                        bindings = <
-    &kp ESC &kp LG(LA(LEFT)) &mkp MB4  &kp LG(LA(RIGHT))  &kp T       &msc SCRL_UP   &msc SCRL_LEFT &mkp MB1   &msc SCRL_RIGHT    &kp HOME
-    &kp Q   &kp LG(LEFT)     &mkp MB5  &kp LG(RIGHT)      &kp G       &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_UP &mmv MOVE_DOWN    &bhm LCTL P
-    &kp A   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mmv MOVE_RIGHT      
-    &bhm LSHFT Z                &qlt lower BSPC &mkp MB1     &mnl mousealt SPACE   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
-                >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
-        };
-//         lock_layer {
-// /* lock for locking keyboard when moving
-//  */
-//                         bindings = <
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none       &none &mo locklow  &none  &none &none &none        &none
-//                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
-//         };
-//         locklow_layer {
-// /* locklow
-//  */
-//                         bindings = <
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &mo unlock &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &mo locklow  &none  &none &none &none       &none
-//                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
-//         };
-//                 lockhigh_layer {
-// /* lockhigh
-//  */
-//                         bindings = <
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none &none &none &none &none  &none &none &none &none &none
-//     &none        &mo unlock &none &none  &none &mo lockhigh &none        &none
-//                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
-//         };
-//         unlock_layer {
-// /* unlock
-//  */
-//                         bindings = <
-//     &none &none &none &none &to default &none &none &none &none &none
-//     &mo unlock &none &none &none        &none &none &none &none &none &none
-//     &none &none &none &none &none       &none &none &none &none &none
-//     &none       &none &mo unlock &none &none &none       &none
-//                 >;
-//             sensor-bindings = <&inc_dec_kp Q Q>;
-//         };
-//         cmtoqw_layer {
-// /* Colemak input to qwerty
-// */                 
-//                         bindings = <
-//     &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI    &kp ESC
-//     &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
-//     &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
-//     &kp Z          &kp BSPC &lt lower DEL &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-//     &trans &trans &trans &trans &trans
-//                 >;
-//             sensor-bindings = <&inc_dec_kp ESC ESC>;
-//         };
     };
 };
