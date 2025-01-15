@@ -169,7 +169,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             bindings
                 = <&macro_tap &kp LPAR &kp DLLR>
                 , <&macro_press &kp RSHFT> 
-                , <&kp R>
+                , <&kp S>
                 , <&macro_release &kp RSHFT>
                 , <&kp AMPS &kp UNDER &kp LBRC &kp A &kp G &kp Y &kp RBRC &kp DLLR>
                 ;
