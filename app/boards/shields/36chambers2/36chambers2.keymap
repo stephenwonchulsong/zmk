@@ -6,7 +6,7 @@ west build -d build/362left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_lef
 
 west build -d build/362right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers2_right
 
-docker cp admiring_shamir:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers2L.uf2
+docker cp admiring_shamir:/workspaces/zmk/app/build/362left/zephyr/zmk.uf2 ~/Desktop/36chambers2L.uf2
 docker cp admiring_shamir:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/Desktop/36chambers2R.uf2
 
  */
