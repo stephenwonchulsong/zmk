@@ -5,9 +5,10 @@
 west build -d build/361left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_left
 west build -d build/361right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers_right
 
-docker cp admiring_shamir:/workspaces/zmk/app/build/361left/zephyr/zmk.uf2 ~/Desktop/36chambers1L.uf2
-docker cp admiring_shamir:/workspaces/zmk/app/build/361Right/zephyr/zmk.uf2 ~/Desktop/36chambers1R.uf2
-
+docker cp funny_cray:/workspaces/zmk/app/build/361left/zephyr/zmk.uf2 ~/Desktop/36chambers1L.uf2
+docker cp funny_cray:/workspaces/zmk/app/build/361Right/zephyr/zmk.uf2 ~/Desktop/36chambers1R.uf2
+admiring_shamir
+funny_cray
  */
 
 #include <behaviors.dtsi>
