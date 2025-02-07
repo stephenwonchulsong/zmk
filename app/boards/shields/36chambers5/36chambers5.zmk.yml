@@ -1,0 +1,12 @@
+file_format: "1"
+id: 36chambers5
+name: 36CHAMBERS5
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+siblings:
+  - 36chambers5_left
+  - 36chambers5_right
