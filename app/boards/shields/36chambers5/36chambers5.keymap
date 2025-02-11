@@ -285,7 +285,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/365Right/zephyr/zmk.uf2 ~/Desktop
     &kp Q          &kp S        &mnl extra D  &mnl extra F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &mnl mouse SEMI      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+    &kp DEL &kp ESC &none &kp BSPC &none
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -295,7 +295,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/365Right/zephyr/zmk.uf2 ~/Desktop
     &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
     &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
     &kp Z                       &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-     &trans &trans &trans &trans &trans
+    &kp E &kp N0 &kp N &kp W &kp S
                  >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -326,6 +326,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/365Right/zephyr/zmk.uf2 ~/Desktop
     &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
     &bhm LSHFT F17              &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
     &trans &trans &trans &trans &trans
+
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
