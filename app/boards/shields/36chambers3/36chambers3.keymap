@@ -6,8 +6,8 @@ west build -d build/363left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_lef
 
 west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_right
 
-docker cp admiring_shamir:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
-docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
+docker cp funny_cray:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
+docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
 
  */
 
@@ -31,8 +31,8 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
 // #define locklow 8
 // #define unlock 9
 // #define lockhigh 10
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 3000  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 30
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 35
 
 &mt {
     tapping-term-ms = <250>;
@@ -285,7 +285,8 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
     &kp Q          &kp S        &mnl extra D  &mnl extra F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &mnl mouse SEMI      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+    &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
+     
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -302,7 +303,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
         lower_layer {
             bindings = <
     &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
-    &trans       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
+    &kp LG(LEFT)       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &bhm LSHFT C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
     &trans &trans &trans &trans &trans
@@ -315,7 +316,7 @@ docker cp admiring_shamir:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
     &kp F1       &none        &none       &none        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &bhm LSHFT A &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
     &bhm LSHFT Z                &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
+    &msc SCRL_RIGHT &mkp MB2 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN
                 >;
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
