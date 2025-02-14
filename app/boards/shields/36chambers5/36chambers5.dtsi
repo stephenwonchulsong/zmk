@@ -29,13 +29,13 @@ RC(0,5) RC(1,5) RC(2,5) RC(3,5) RC(4,5)
 		>;
 	};
 
-	kscan0: kscan {
-		compatible = "zmk,kscan-gpio-matrix";
-		label = "KSCAN";
+// 	kscan0: kscan {
+// 		compatible = "zmk,kscan-gpio-matrix";
+// 		label = "KSCAN";
 
-		diode-direction = "col2row";
+// 		diode-direction = "col2row";
 
-	};
+// 	};
 // right_encoder: encoder_right {
 //         compatible = "alps,ec11";
 //         label = "RIGHT_ENCODER";
@@ -50,3 +50,6 @@ RC(0,5) RC(1,5) RC(2,5) RC(3,5) RC(4,5)
 //         triggers-per-rotation = <20>;
 //     };
 };
+// &right_encoder {
+//     status = "okay";
+//     };
