@@ -35,12 +35,12 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 35
 
 &mt {
-    tapping-term-ms = <250>;
+    tapping-term-ms = <200>;
     flavor = "hold-preferred";
 };
 
 &lt {
-    tapping-term-ms = <250>;
+    tapping-term-ms = <200>;
     flavor = "hold-preferred";
 };
 
