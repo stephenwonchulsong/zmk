@@ -285,7 +285,9 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
     &kp Q          &kp S        &mnl extra D  &mnl extra F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &mnl mouse SEMI      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
-    &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
+    /*&mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN*/
+    &msc SCRL_RIGHT &kp HOME &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN
+
      
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
@@ -355,7 +357,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
     &kp Q   &kp LG(LEFT)     &mkp MB5  &kp LG(RIGHT)      &kp G       &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
     &kp A   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mnl mouse SEMI      
     &bhm LSHFT Z                &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
+    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
