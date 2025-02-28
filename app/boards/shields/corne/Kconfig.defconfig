@@ -41,3 +41,10 @@ endchoice
 endif # LVGL
 
 endif
+
+if SHIELD_CORNE_RIGHT
+config I2C
+    default y
+config ZMK_POINTING
+    default y
+endif
