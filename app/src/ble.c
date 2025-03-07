@@ -66,7 +66,9 @@ static uint8_t active_profile;
 #define DEVICE_NAME CONFIG_BT_DEVICE_NAME
 #define DEVICE_NAME_LEN (sizeof(DEVICE_NAME) - 1)
 
-BUILD_ASSERT(DEVICE_NAME_LEN <= 16, "ERROR: BLE device name is too long. Max length: 16");
+BUILD_ASSERT(
+    DEVICE_NAME_LEN <= CONFIG_BT_DEVICE_NAME_MAX,
+    "ERROR: BLE device name is too long. Max length: " STRINGIFY(CONFIG_BT_DEVICE_NAME_MAX));
 
 static struct bt_data zmk_ble_ad[] = {
     BT_DATA_BYTES(BT_DATA_GAP_APPEARANCE, 0xC1, 0x03),
@@ -379,10 +381,11 @@ int zmk_ble_put_peripheral_addr(const bt_addr_le_t *addr) {
             LOG_DBG("Storing peripheral %s in slot %d", addr_str, i);
             bt_addr_le_copy(&peripheral_addrs[i], addr);
 
+#if IS_ENABLED(CONFIG_SETTINGS)
             char setting_name[32];
             sprintf(setting_name, "ble/peripheral_addresses/%d", i);
             settings_save_one(setting_name, addr, sizeof(bt_addr_le_t));
-
+#endif // IS_ENABLED(CONFIG_SETTINGS)
             return i;
         }
     }
