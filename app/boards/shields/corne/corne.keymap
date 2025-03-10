@@ -2,8 +2,10 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
 
-west build -d build/corne_left -p -b nice_nano -- -DSHIELD=corne_left
-west build -d build/corne_right -p -b nice_nano -- -DSHIELD=corne_right
+west build -d build/corne_left -p -b nice_nano -- -DSHIELD=corne_left -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+
+west build -d build/corne_right -p -b nice_nano -- -DSHIELD=corne_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+
 
 docker cp funny_cray:/workspaces/zmk/app/build/corne_left/zephyr/zmk.uf2 ~/Desktop/corne_left.uf2
 docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desktop/corne_right.uf2

@@ -348,7 +348,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
     &kp Q          &bhm LGUI S        &mo extra  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &parencite              &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
+    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
