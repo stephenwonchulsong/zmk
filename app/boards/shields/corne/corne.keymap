@@ -275,10 +275,10 @@ docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desk
 
         qwerty_layer {
             bindings = <
-    &kp TAB      &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp HOME        &kp BSPC
+    &kp TAB      &kp GRAVE        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp HOME        &kp BSPC
     &kp ESC      &kp Q          &kp S        &mnl extra D  &mnl extra F  &kp G       &kp H       &kp J       &kp K       &kp L    &bhm LCTL P    &kp RET
     &bhm LSHFT Z &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &bhm RSHFT SEMI &mt RSHFT FSLH    
-                               &qlt lower BSPC &tabgui 0 RET &mkp MB1 &mkp MB2  &kp SPACE &lt raise TAB  
+                              &mkp MB1 &qlt lower BSPC &tabgui 0 RET    &kp SPACE &lt raise TAB  &kp CAPS
                 >;
 
         };
@@ -287,7 +287,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desk
     &kp TAB  &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC &kp BSPC 
     &kp ESC  &kp LG(LEFT)       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL &kp EQUAL
     &bhm LSHFT C_VOL_DN      &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL &trans
-                               &qlt lower BSPC &tabgui 0 RET &mkp MB1 &mkp MB2  &tns RPAR N0 &lt adjust TAB   
+                               &mkp MB1 &qlt lower BSPC &tabgui 0 RET &tns RPAR N0 &lt adjust TAB &mkp MB2 
                 >;
         };
         raise_layer {
@@ -303,7 +303,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desk
     &kp TAB &trans &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER &trans
     &kp ESC &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE &trans
     &bhm LSHFT F17    &bhm LSHFT F18 &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH &trans
-                               &qlt adjust DEL &tabgui 0 RET &mkp MB1 &mkp MB2  &kp RPAR &lt adjust TAB  
+                                &mkp MB1 &qlt adjust DEL &tabgui 0 RET  &kp RPAR   &kp RPAR &lt adjust TAB  
                 >;
         };
         commandllayer_layer {
@@ -311,7 +311,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desk
     &kp TAB &kp GRAVE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P &trans
     &kp ESC &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET &trans
     &bhm LSHFT Z &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI &trans
-                               &qlt adjust DEL &tabgui 0 RET &mkp MB1 &mkp MB2  &kp SPACE &lt raise TAB  
+                              &mkp MB1 &qlt adjust DEL &tabgui 0 RET  &kp SPACE &lt raise TAB  &mkp MB2 
                 >;
         };
         extra_layer {
@@ -319,7 +319,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desk
     &kp TAB &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET &trans
     &kp ESC &kp Q          &bhm LGUI S        &mo extra  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P &trans
     &parencite     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      &trans
-             &qlt lower DEL &kp LS(LC(LA(LG(RET))))   &mkp MB1 &mkp MB2  &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))  
+             &qlt lower DEL &mkp MB1 &kp LS(LC(LA(LG(RET))))    &mkp MB2  &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))  &mkp MB2
                 >;
         };
     };
