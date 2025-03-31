@@ -29,52 +29,42 @@ RC(3,0)                 RC(3,3) RC(3,4)  RC(3,6) RC(3,7) RC(3,8)         RC(3,10
 RC(0,5) RC(1,5) RC(2,5) RC(3,5) RC(4,5)
 		>;
 	};
-
-	// kscan0: kscan {
-	// 	compatible = "zmk,kscan-gpio-matrix";
-	// 	label = "KSCAN";
-
-	// 	diode-direction = "col2row";
-	// 		row-gpios
-    //     		= <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    //     		, <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    //     		, <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    //     		, <&xiao_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    //     		, <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    //     		;
-	// };
-
-// // Original encoder config k
-// 	left_encoder: encoder_left {
-//         compatible = "alps,ec11";
-//         label = "LEFT_ENCODER";
-//         a-gpios = <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-//         b-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-//         resolution = <2>;
-//     };
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
 
 
-	// // right_encoder: encoder_right {
-    // //     compatible = "alps,ec11";
-    // //     label = "RIGHT_ENCODER";
-    // //     a-gpios = <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    // //     b-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    // //     resolution = <2>;
-	// // 	status = "disabled";
+    col-gpios
+        = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 4 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 5 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 6 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 9 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 0 GPIO_ACTIVE_HIGH>
+        ;
 
-	// from Klein 
-	// right_encoder: encoder_right {
-    //     compatible = "alps,ec11";
-    //     label = "LEFT_ENCODER";
-    //     a-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    //     b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    //     steps = <80>;
-    // };
+	row-gpios
+    	= <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+    	, <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+    	, <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+    	, <&xiao_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+    	, <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+    	;
+    };
 
-	// sensors {
-    //     compatible = "zmk,keymap-sensors";
-    //     sensors = <&right_encoder>;
-    //     triggers-per-rotation = <20>;
-    // };
+	right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        label = "RIGHT_ENCODER";
+        a-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+    };
+
+	sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&right_encoder>;
+        triggers-per-rotation = <20>;
+    };
+	
 };
 
