@@ -298,7 +298,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
 
         qwerty_layer {
             bindings = <
-    &mkp MB1        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp F12
+    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp F12
     &kp Q          &kp S        &mnl mouse D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
@@ -371,7 +371,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
         };
         mouse_layer {bindings = <
     &kp ESC &kp LG(LA(LEFT)) &mkp MB4  &kp LG(LA(RIGHT))  &kp T       &msc SCRL_UP   &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT    &kp HOME
-    &kp LG(LEFT)    &mkp MB2 &mo mouse  &kp ESC &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
+    &kp LG(LEFT)    &mkp MB2 &mo mouse  &mkp MB1 &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
     &kp A   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mnl mouse SEMI      
     &bhm LSHFT Z                &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
     &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
