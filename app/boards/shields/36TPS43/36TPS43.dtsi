@@ -1,0 +1,75 @@
+/*
+ * Copyright (c) 2020 Pete Johanson
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+&xiao_i2c {
+    status = "okay";
+    dr-gpios = <&xiao 3 GPIO_ACTIVE_LOW>;
+
+    iqs5xx: iqs5xx@0 {
+        compatible = "azoteq,iqs5xx";
+        reg = <0>;
+        status = "okay";
+        dr-gpios = <&pro_micro 5 (GPIO_ACTIVE_HIGH)>;
+
+        sensitivity = "4x";
+        sleep;
+        no-taps;
+    };
+};
+
+
+/ {
+    model = "Cirque Touchpad";
+    compatible = "cirque,cirque_touchpad";
+
+    chosen {
+        bootargs = "console=ttyUSB0,115200";  // Example console settings
+    };
+
+    i2c0: i2c@0 {
+        compatible = "i2c-gpio";
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        clock-supply = <&vcc33>; // Supply for I2C
+
+        cirque_touchpad@74 {
+            compatible = "cirque,cirque_pinnacle";
+            reg = <0x74>; // I2C address, can be adjusted based on the actual device
+            interrupt-parent = <& gpio1>;
+            interrupts = <9>; // Change this to the GPIO pin used for interrupts
+            pinctrl-names = "default";
+            pinctrl-0 = <&cirque_touchpad_int>;
+
+            // Optional properties: Adjust based on your specific hardware
+            cirque_x_invert = <0>; // 0 or 1 depending on X axis inversion
+            cirque_y_invert = <0>; // 0 or 1 depending on Y axis inversion
+            no_taps = <0>; // 0 to enable taps, 1 to disable
+            no_secondary_tap = <0>; // 0 to enable secondary tap, 1 to disable
+            x_axis_z_min = <5>; // Customize sensitivity
+            y_axis_z_min = <4>; // Customize sensitivity
+        };
+    };
+
+    gpio1: gpio@500 {
+        compatible = "gpio";
+        gpio-controller;
+        #gpio-cells = <2>;
+        // Add necessary GPIO settings for the pins utilized
+    };
+
+    // Power supply settings
+    vcc33: regulator@1 {
+        compatible = "regulator-fixed";
+        reg = <1>;
+        regulator-name = "3.3V"; // power line for the device
+        regulator-min-microvolt = <3300000>;
+        regulator-max-microvolt = <3300000>;
+    };
+};
+```

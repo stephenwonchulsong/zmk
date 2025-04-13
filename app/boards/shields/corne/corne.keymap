@@ -6,6 +6,9 @@ west build -d build/corne_left -p -b nice_nano -- -DSHIELD=corne_left -DZMK_EXTR
 
 west build -d build/corne_right -p -b nice_nano -- -DSHIELD=corne_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
+west build -d build/corne_left -p -b nice_nano -- -DSHIELD="corne_left azoteq_adapter_left"
+
+west build -d build/corne_left -p -b nice_nano_v2 -- -DSHIELD="corne_left azoteq_adapter_left_enabled" -DZMK_EXTRA_MODULES="/workspaces/zmk/app/azoteq_iqs5xx-input-module-main"
 
 docker cp funny_cray:/workspaces/zmk/app/build/corne_left/zephyr/zmk.uf2 ~/Desktop/corne_left.uf2
 docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desktop/corne_right.uf2
@@ -228,7 +231,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/corne_right/zephyr/zmk.uf2 ~/Desk
         dotqmark: dot_qmark {
             compatible = "zmk,behavior-mod-morph";
             label = "DOT_QMARK";
-            #binding-cells = <0>;arstd
+            #binding-cells = <0>;
             bindings = <&kp DOT>, <&kp QMARK>;
             mods = <(MOD_RSFT)>;
         };
