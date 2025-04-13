@@ -1,0 +1,24 @@
+file_format: "1"
+id: corne
+name: Corne
+type: shield
+url: https://github.com/foostan/crkbd/
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - underglow
+  - studio
+  - pointer
+siblings:
+  - corne_left
+  - corne_right
+# manifest:
+#   remotes:
+#     - name: petejohanson
+#       url-base: https://github.com/petejohanson
+#   projects:
+#     - name: cirque-input-module
+#       remote: petejohanson
+#       revision: main
