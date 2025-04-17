@@ -327,7 +327,7 @@ docker cp funny_cray:/workspaces/zmk/app/build/362Right/zephyr/zmk.uf2 ~/Desktop
         };
         lower_layer {
             bindings = <
-    &kp ESC       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &kp ESC       &lefttop    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &kp LG(LEFT)       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &bhm LSHFT C_VOL_DN      &trans      &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
