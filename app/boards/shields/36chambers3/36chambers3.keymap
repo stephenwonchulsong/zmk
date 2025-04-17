@@ -173,7 +173,96 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
                 , <&macro_release &kp RSHFT>
                 , <&kp AMPS &kp UNDER &kp LBRC &kp A &kp G &kp Y &kp RBRC &kp DLLR>
                 ;
+        topthirds: topthirds {
+            label = "topthirds";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_press &kp LCTL>
+                , <&macro_press &kp LALT>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp N8 &kp F4>
+                , <&macro_release &kp LSHFT>
+                , <&macro_release &kp LCTL>
+                , <&macro_release &kp LALT>
+                , <&macro_release &kp LGUI>
+                ;
+        botthirds: botthirds {
+            label = "botthirds";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_press &kp LCTL>
+                , <&macro_press &kp LALT>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp N5 &kp F6>
+                , <&macro_release &kp LSHFT>
+                , <&macro_release &kp LCTL>
+                , <&macro_release &kp LALT>
+                , <&macro_release &kp LGUI>
+                ;
         };
+        centerthirds: centerthirds {
+            label = "centerthirds";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_press &kp LCTL>
+                , <&macro_press &kp LALT>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp N2 &kp F5>
+                , <&macro_release &kp LSHFT>
+                , <&macro_release &kp LCTL>
+                , <&macro_release &kp LALT>
+                , <&macro_release &kp LGUI>
+                ;
+        };
+        // leftthirds: leftthirds {
+        //     label = "leftthirds";
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <10>;
+        //     tap-ms = <30>;
+        //     bindings
+        //         = <&macro_press &kp LSHFT>
+        //         , <&macro_press &kp LCTL>
+        //         , <&macro_press &kp LALT>
+        //         , <&macro_press &kp LGUI>
+        //         , <&macro_tap &kp N1 &kp M>
+        //         , <&macro_release &kp LSHFT>
+        //         , <&macro_release &kp LCTL>
+        //         , <&macro_release &kp LALT>
+        //         , <&macro_release &kp LGUI>
+        //         ;
+        // };
+        // rightthirds: rightthirds {
+        //     label = "rightthirds";
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     wait-ms = <10>;
+        //     tap-ms = <30>;
+        //     bindings
+        //         = <&macro_press &kp LSHFT>
+        //         , <&macro_press &kp LCTL>
+        //         , <&macro_press &kp LALT>
+        //         , <&macro_press &kp LGUI>
+        //         , <&macro_tap &kp N3 &kp M>
+        //         , <&macro_release &kp LSHFT>
+        //         , <&macro_release &kp LCTL>
+        //         , <&macro_release &kp LALT>
+        //         , <&macro_release &kp LGUI>
+        //         ;
+        // };
+    };
     };
     behaviors {
         gresc: grave_escape {
@@ -292,13 +381,74 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
             bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
             tap-ms = <20>;
         };
+        homef12: homef12 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp ESC>, <&kp HOME>, <&kp F12>;
+        };
+        lefttop: lefttop {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(LG(PG_UP)))>, <&kp LS(LC(LA(LG(N7))))>;
+        };
+        righttop: righttop {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(LG(HOME)))>, <&kp LS(LC(LA(LG(N9))))>;
+        };
+        leftbot: leftbot {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(LG(PG_DN)))>, <&kp LS(LC(LA(LG(N4))))>;
+        };
+        rightbot: rightbot {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(LG(END)))>, <&kp LS(LC(LA(LG(N6))))>;
+        };
+        toptop: toptop {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(UP))>, <&topthirds>, <&kp LS(LC(LA(LG(F7))))>;
+        };
+        botbot: botbot {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(DOWN))>, <&botthirds>, <&kp LS(LC(LA(LG(F9))))>;
+        };
+        leftleft: leftleft {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(LEFT))>, <&kp LS(LC(LA(LG(N1))))>,  <&kp LS(LC(LA(LG(F1))))>;
+        };
+        rightright: rightright {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(RIGHT))>, <&kp LS(LC(LA(LG(N3))))>, <&kp LS(LC(LA(LG(F2))))>;
+        };
+        centercenter: centercenter {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LA(RET))>, <&centerthirds>;
+        };
+};
 };
     keymap {
         compatible = "zmk,keymap";
 
         qwerty_layer {
             bindings = <
-    &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp F12
+    &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp F12
     &kp Q          &kp S        &mnl mouse D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
@@ -321,9 +471,9 @@ docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop
         };
         lower_layer {
             bindings = <
-    &kp F12       &kp LC(LA(LG(PG_UP)))    &kp LC(LA(UP))   &kp LG(LC(LA(HOME)))      &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
-    &kp LG(LEFT)       &kp LC(LA(LEFT)) &kp LC(LA(RET))  &kp LC(LA(RIGHT))    &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
-    &kp C_VOL_UP &kp LC(LA(LG(PG_DN)))    &kp LC(LA(DOWN)) &kp LG(LC(LA(END)))  &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
+    &kp F12      &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &kp LG(LEFT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
+    &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &bhm LSHFT C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
     &trans &trans &trans &trans &trans
                 >;
