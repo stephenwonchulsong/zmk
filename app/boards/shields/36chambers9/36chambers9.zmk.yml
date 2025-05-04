@@ -1,0 +1,13 @@
+file_format: "1"
+id: 36chambers9
+name: 36CHAMBERS9
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+  - I2C
+siblings:
+  - 36chambers9_left
+  - 36chambers9_right
