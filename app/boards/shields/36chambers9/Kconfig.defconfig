@@ -5,7 +5,8 @@ config ZMK_KEYBOARD_NAME
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
-
+config SPI
+    default y
 endif
 
 if SHIELD_36CHAMBERS9_LEFT || SHIELD_36CHAMBERS9_RIGHT
