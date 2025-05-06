@@ -8,6 +8,7 @@ features:
   - keys
   - encoder
   - I2C
+  - SPI
 siblings:
   - 36chambers9_left
   - 36chambers9_right
