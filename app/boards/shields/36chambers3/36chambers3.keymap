@@ -9,6 +9,9 @@ west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_ri
 docker cp funny_cray:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
 docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
 
+docker cp sleepy_burnell:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
+docker cp sleepy_burnell:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
+
  */
 
 #include <behaviors.dtsi>
