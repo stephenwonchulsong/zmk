@@ -34,11 +34,11 @@ RC(5,1)                                  RC(5,5)
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
     col-gpios
-        = <&shifter 1 GPIO_ACTIVE_HIGH>
+        = <&shifter 0 GPIO_ACTIVE_HIGH>
+        , <&shifter 1 GPIO_ACTIVE_HIGH>
         , <&shifter 2 GPIO_ACTIVE_HIGH>
         , <&shifter 3 GPIO_ACTIVE_HIGH>
         , <&shifter 4 GPIO_ACTIVE_HIGH>
-        , <&shifter 5 GPIO_ACTIVE_HIGH>
     ;
 
 	row-gpios
@@ -47,15 +47,15 @@ RC(5,1)                                  RC(5,5)
     	, <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
     	, <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
     	, <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&shifter 6 GPIO_ACTIVE_HIGH>
+        , <&shifter 5 GPIO_ACTIVE_HIGH>
     	;
     };
 
 	right_encoder: encoder_right {
         compatible = "alps,ec11";
         label = "RIGHT_ENCODER";
-        a-gpios = <&shifter 8 (GPIO_ACTIVE_HIGH)>;
-        b-gpios = <&shifter 7 (GPIO_ACTIVE_HIGH)>;
+        a-gpios = <&shifter 7 (GPIO_ACTIVE_HIGH)>;
+        b-gpios = <&shifter 6 (GPIO_ACTIVE_HIGH)>;
         steps = <80>;
     };
 
