@@ -1,6 +1,6 @@
 file_format: "1"
-id: 36chambers9
-name: 36CHAMBERS9
+id: 36chambers9R
+name: 36CHAMBERS9/R
 type: shield
 url: https://github.com/
 requires: [seeeduino_xiao_ble]
@@ -10,5 +10,5 @@ features:
   - I2C
   - SPI
 siblings:
-  - 36chambers9_left
-  - 36chambers9_right
+  - 36chambers9R_left
+  - 36chambers9R_right
