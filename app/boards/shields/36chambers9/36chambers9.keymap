@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
 west build -d build/369left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_left
 
-west build -d build/369rright -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9r_right
+west build -d build/369right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_right
 
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
