@@ -1,4 +1,4 @@
-#include "36chambers9R.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include "36chambers9.dtsi" // Notice that the main dtsi files are included in the overlay.
 
 &default_transform {
 	col-offset = <6>;
