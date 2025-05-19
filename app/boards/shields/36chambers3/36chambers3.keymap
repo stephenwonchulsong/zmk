@@ -445,6 +445,31 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Des
             bindings = <&kp LC(LA(RET))>, <&centerthirds>;
         };
 };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_MB1L {
+            timeout-ms = <50>;
+            key-positions = <4 14>;
+            bindings = <&mkp MB1>;
+        };
+        combo_MB1R {
+            timeout-ms = <50>;
+            key-positions = <5 15>;
+            bindings = <&mkp MB1>;
+        };
+        combo_MB2L {
+            timeout-ms = <50>;
+            key-positions = <2 12>;
+            bindings = <&mkp MB2>;
+        };
+        combo_MB2R {
+            timeout-ms = <50>;
+            key-positions = <7 17>;
+            bindings = <&mkp MB2>;
+        };
+
+    };
 };
     keymap {
         compatible = "zmk,keymap";
