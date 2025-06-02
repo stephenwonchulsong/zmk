@@ -1,7 +1,7 @@
 #include "36chambers9.dtsi" // Notice that the main dtsi files are included in the overlay.
 
 &default_transform {
-	col-offset = <6>;
+	col-offset = <5>;
 }; 
 
 	// right_encoder: encoder_right {
@@ -17,6 +17,6 @@
     //     sensors = <&right_encoder>;
     //     triggers-per-rotation = <20>;
     // };
-&right_encoder {
-    status = "okay";
-};
+// &right_encoder {
+//     status = "okay";
+// };
