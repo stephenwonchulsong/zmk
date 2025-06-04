@@ -481,7 +481,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
-    &kp HOME &kp ESC &kp LG(LEFT) &kp END &kp LG(RIGHT)
+    &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)
     /*  &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
     /* &msc SCRL_RIGHT &kp F12 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN*/
     /*&kp LG(RIGHT) &kp F12 &mkp MB2 &kp LG(LEFT) &mkp MB1*/
@@ -542,7 +542,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         extra_layer {
             bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
-    &kp Q          &bhm LGUI S        &mo mouse  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
+    &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &parencite              &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
