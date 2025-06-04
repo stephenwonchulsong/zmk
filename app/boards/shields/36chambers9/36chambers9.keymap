@@ -2,9 +2,9 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
-west build -d build/363left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_left
+west build -d build/369Left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_left
 
-west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_right
+west build -d build/369right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_right
 
 docker cp funny_cray:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
 docker cp funny_cray:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
@@ -476,7 +476,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 
         qwerty_layer {
             bindings = <    
-    &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp F12
+    &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp LG(LS(SPACE))
     &kp Q          &kp S        &mnl mouse D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
@@ -531,7 +531,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         commandllayer_layer {
             bindings = <
-    &mkp MB1        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
+    &kp TILDE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
     &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
     &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
