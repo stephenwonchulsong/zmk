@@ -453,6 +453,11 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <4 14>;
             bindings = <&mkp MB1>;
         };
+        combo_MB1L2 {
+            timeout-ms = <50>;
+            key-positions = <3 13>;
+            bindings = <&mkp MB1>;
+        };
         combo_MB1R {
             timeout-ms = <50>;
             key-positions = <5 15>;
@@ -468,7 +473,16 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <7 17>;
             bindings = <&mkp MB2>;
         };
-
+        combo_LGLSSPACEL {
+            timeout-ms = <50>;
+            key-positions = <13 14>;
+            bindings = <&kp LG(LS(SPACE))>;
+        };
+        combo_LGLSSPACER {
+            timeout-ms = <50>;
+            key-positions = <15 16>;
+            bindings = <&kp LG(LS(SPACE))>;
+        };
     };
 };
     keymap {
