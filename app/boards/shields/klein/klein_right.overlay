@@ -20,9 +20,27 @@
         ;
 };
 
+// &xiao_i2c {
+//     status = "okay";
+//     glidepoint: glidepoint@2a {
+//         status = "okay";
+//     };
+// };
+
 &xiao_i2c {
     status = "okay";
     glidepoint: glidepoint@2a {
+        compatible = "cirque,pinnacle";
+        reg = <0x2a>;
         status = "okay";
+        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; //this is my setting
+        // dr-gpios = <&gpio0 9 (GPIO_ACTIVE_HIGH)>; //this is original setting
+        sensitivity = "4x";
+        // sleep;
+        no-taps;
     };
+};
+&glidepoint_listener {
+    status = "okay";
+    device = <&glidepoint>;
 };
