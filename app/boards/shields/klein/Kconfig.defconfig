@@ -6,6 +6,12 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
     
+config ZMK_POINTING
+    default y
+
+config I2C
+    default y
+
 endif
 
 if SHIELD_KLEIN_LEFT || SHIELD_KLEIN_RIGHT
@@ -15,12 +21,3 @@ config ZMK_SPLIT
 
 endif
 
-if SHIELD_KLEIN_RIGHT
-
-config ZMK_POINTING
-    default y
-
-config I2C
-    default y
-
-endif
