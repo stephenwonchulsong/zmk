@@ -7,7 +7,7 @@ west build -d build/kleinright -p -b seeeduino_xiao_ble -- -DSHIELD=klein_right
 west build -d build/kleinleft -p -b seeeduino_xiao_ble -- -DSHIELD=klein_left -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 west build -d build/kleinright -p -b seeeduino_xiao_ble -- -DSHIELD=klein_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
-docker cp sleepy_burnell:/workspaces/zmk/app/build/kleinright/zephyr/zmk.uf2 ~/Desktop/kleinright.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/kleinright/zephyr/zmk.uf2 ~/Desktop/kleinright.uf2
 
  * SPDX-License-Identifier: MIT
  */
