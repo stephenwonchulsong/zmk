@@ -66,7 +66,6 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3)                                 RC(3,6) RC(3,7) 
         status = "disabled";
         dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; //this is my setting
         // dr-gpios = <&gpio0 9 (GPIO_ACTIVE_HIGH)>; //this is original setting
-
         sensitivity = "4x";
         // sleep;
         no-taps;
@@ -86,13 +85,17 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3)                                 RC(3,6) RC(3,7) 
     // };
 };
 
-/ {
-  glidepoint_listener {
-    compatible = "zmk,input-listener";
-    device = <&glidepoint>;
 
-    // xy-swap;
-    // y-invert;
-    // x-invert;
-  };
+//   glidepoint_listener {
+//     compatible = "zmk,input-listener";
+//     device = <&glidepoint>;
+//     // xy-swap;
+//     // y-invert;
+//     // x-invert;
+//   };
+/ {
+    glidepoint_listener: glidepoint_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+    };
 };
