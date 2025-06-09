@@ -6,8 +6,8 @@ west build -d build/369Left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_lef
 
 west build -d build/369right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_right
 
-docker cp funny_cray:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
-docker cp funny_cray:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
 
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
@@ -519,7 +519,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp LG(LS(SPACE))
     &kp Q          &kp S        &dmousecombo 0 D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
     &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)
     /*  &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
@@ -534,7 +534,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI &kp ESC
     &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
     &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
-    &kp Z                       &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp CAPS &mt RSHFT FSLH
+    &kp Z                       &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
      &trans &trans &trans &trans &trans
                  >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
