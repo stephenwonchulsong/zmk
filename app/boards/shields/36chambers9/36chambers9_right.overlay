@@ -1,22 +1,5 @@
-#include "36chambers9.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include "36chambers9.dtsi" 
 
 &default_transform {
 	col-offset = <5>;
 }; 
-
-	right_encoder: encoder_right {
-        compatible = "alps,ec11";
-        label = "RIGHT_ENCODER";
-        a-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <80>;
-    };
-
-	sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&right_encoder>;
-        triggers-per-rotation = <20>;
-    };
-&right_encoder {
-    status = "okay";
-};
