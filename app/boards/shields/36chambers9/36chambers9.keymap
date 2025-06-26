@@ -11,7 +11,6 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/De
 
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
-
  */
 
 #include <behaviors.dtsi>
