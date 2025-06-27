@@ -542,7 +542,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         lower_layer {
             bindings = <
     &kp END      &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
-    &kp LG(LEFT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
+    &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &msc SCRL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &msc SCRL_DOWN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
     &trans &trans &trans &trans &trans
