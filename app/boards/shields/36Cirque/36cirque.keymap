@@ -18,7 +18,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 ~/De
 
 #define qwerty 0
 
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 3000  // default: 600
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 6000  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 30
 
 / {

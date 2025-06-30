@@ -483,31 +483,31 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <3 13>;
             bindings = <&mkp MB1>;
         };
-        combo_MB1R {
-            timeout-ms = <50>;
-            key-positions = <5 15>;
-            bindings = <&mkp MB1>;
-        };
-        combo_MB2L {
-            timeout-ms = <50>;
-            key-positions = <2 12>;
-            bindings = <&mkp MB2>;
-        };
-        combo_MB2R {
-            timeout-ms = <50>;
-            key-positions = <7 17>;
-            bindings = <&mkp MB2>;
-        };
-        combo_LGLSSPACEL {
-            timeout-ms = <50>;
-            key-positions = <13 14>;
-            bindings = <&kp LG(LS(SPACE))>;
-        };
-        combo_LGLSSPACER {
-            timeout-ms = <50>;
-            key-positions = <15 16>;
-            bindings = <&kp LG(LS(SPACE))>;
-        };
+        // combo_MB1R {
+        //     timeout-ms = <50>;
+        //     key-positions = <5 15>;
+        //     bindings = <&mkp MB1>;
+        // };
+        // combo_MB2L {
+        //     timeout-ms = <50>;
+        //     key-positions = <2 12>;
+        //     bindings = <&mkp MB2>;
+        // };
+        // combo_MB2R {
+        //     timeout-ms = <50>;
+        //     key-positions = <7 17>;
+        //     bindings = <&mkp MB2>;
+        // };
+        // combo_LGLSSPACEL {
+        //     timeout-ms = <50>;
+        //     key-positions = <13 14>;
+        //     bindings = <&kp LG(LS(SPACE))>;
+        // };
+        // combo_LGLSSPACER {
+        //     timeout-ms = <50>;
+        //     key-positions = <15 16>;
+        //     bindings = <&kp LG(LS(SPACE))>;
+        // };
     };
 };
     keymap {
@@ -521,7 +521,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
     /* &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)*/
-    &kp HOME &kp ESC &kp ESC &kp END &kp LG(RIGHT)
+    &kp HOME &mkp MB1 &mkp MB1 &kp END &kp LG(RIGHT)
     /*  &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
     /* &msc SCRL_RIGHT &kp F12 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN*/
     /*&kp LG(RIGHT) &kp F12 &mkp MB2 &kp LG(LEFT) &mkp MB1*/
@@ -543,8 +543,8 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             bindings = <
     &kp END      &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
-    &msc SCRL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &msc SCRL_DOWN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
+    &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
+    &kp C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
