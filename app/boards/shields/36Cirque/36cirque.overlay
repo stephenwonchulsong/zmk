@@ -61,16 +61,29 @@
         spi-max-frequency = <1000000>;
         status = "okay";
         dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; // between D4 & D5
-        sensitivity = "1x";
-        sleep;// no-taps;
+        // sensitivity = "3x";
+        sleep;
+        no-taps;
     };
 };
 
+// / {
+//     glidepoint_listener {
+//         compatible = "zmk,input-listener";
+//         device = <&glidepoint>;
+//     };
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
 / {
     glidepoint_listener {
         compatible = "zmk,input-listener";
         device = <&glidepoint>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_XY_SWAP)>;
+        input-processors = <&zip_xy_scaler 5 2>;
+
     };
+};
+/ {
 
     chosen {
         zmk,kscan = &kscan0;
@@ -96,4 +109,9 @@
             ;
     };
 };
+/* 
+west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+
+docker cp magical_haslett:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 ~/Desktop/36cirque.uf2
+*/
 
