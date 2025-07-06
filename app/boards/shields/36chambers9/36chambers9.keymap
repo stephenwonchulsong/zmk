@@ -34,7 +34,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 // #define unlock 9
 // #define lockhigh 10
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 140
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 120
 
 &mt {
     tapping-term-ms = <200>;
