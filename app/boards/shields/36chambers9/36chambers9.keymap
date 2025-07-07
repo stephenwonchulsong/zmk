@@ -473,29 +473,20 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 
     combos {
         compatible = "zmk,combos";
-        combo_MB1L {
+        combo_MB2L {
             timeout-ms = <50>;
             key-positions = <4 14>;
-            bindings = <&mkp MB1>;
-        };
-        combo_MB1L2 {
-            timeout-ms = <50>;
-            key-positions = <3 13>;
-            bindings = <&mkp MB1>;
+            bindings = <&mkp MB2>;
         };
         combo_MB1R {
             timeout-ms = <50>;
-            key-positions = <6 16>;
+            key-positions = <5 15>;
             bindings = <&mkp MB1>;
         };
-        combo_MB2L {
-            timeout-ms = <50>;
-            key-positions = <16 26>;
-            bindings = <&mkp MB2>;
-        };
+
         // combo_MB2R {
         //     timeout-ms = <50>;
-        //     key-positions = <7 17>;
+        //     key-positions = <7 17>;fsfs
         //     bindings = <&mkp MB2>;
         // };
         // combo_LGLSSPACEL {
