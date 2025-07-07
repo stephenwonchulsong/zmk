@@ -483,16 +483,16 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <3 13>;
             bindings = <&mkp MB1>;
         };
-        // combo_MB1R {
-        //     timeout-ms = <50>;
-        //     key-positions = <5 15>;
-        //     bindings = <&mkp MB1>;
-        // };
-        // combo_MB2L {
-        //     timeout-ms = <50>;
-        //     key-positions = <2 12>;
-        //     bindings = <&mkp MB2>;
-        // };
+        combo_MB1R {
+            timeout-ms = <50>;
+            key-positions = <6 16>;
+            bindings = <&mkp MB1>;
+        };
+        combo_MB2L {
+            timeout-ms = <50>;
+            key-positions = <16 26>;
+            bindings = <&mkp MB2>;
+        };
         // combo_MB2R {
         //     timeout-ms = <50>;
         //     key-positions = <7 17>;
