@@ -480,7 +480,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         combo_MB1R {
             timeout-ms = <50>;
-            key-positions = <5 15>;
+            key-positions = <15 25>;
             bindings = <&mkp MB1>;
         };
 
@@ -508,7 +508,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             bindings = <    
     &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
     &kp Q          &kp S        &dmousecombo 0 D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
-    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
+    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
     /* &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)*/
@@ -564,7 +564,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             bindings = <
     &kp TILDE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
     &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
-    &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
+    &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar &dotrpar &kp SEMI
     &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
     &trans &trans &trans &trans &trans
                 >;
