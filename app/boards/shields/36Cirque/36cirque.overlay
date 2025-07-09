@@ -78,7 +78,7 @@
     glidepoint_listener {
         compatible = "zmk,input-listener";
         device = <&glidepoint>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
+        // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
         // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
         // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
         input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
