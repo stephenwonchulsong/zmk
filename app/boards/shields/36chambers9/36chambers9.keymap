@@ -34,7 +34,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 // #define unlock 9
 // #define lockhigh 10
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 60
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 40
 
 &mt {
     tapping-term-ms = <200>;
@@ -52,8 +52,8 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             label = "R_1W";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings
                 = <&macro_press &kp LSHFT>
                 , <&macro_tap &kp S>
@@ -391,6 +391,14 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             flavor = "hold-preferred";
             bindings = <&mo>, <&kp>;
         };
+        qmt: quick_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&kp>, <&kp>;
+        };
         wintop: window_top {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -511,10 +519,10 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 
         qwerty_layer {
             bindings = <    
-    &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
+    &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &to 1
     &kp Q          &kp S        &dmousecombo 0 D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
     /* &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)*/
     &kp HOME &mkp MB1 &mkp MB1 &kp END &kp LG(RIGHT)
@@ -527,10 +535,10 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         colemak_layer {
             bindings = <
-    &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &kp HOME
+    &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &to 0
     &kp Q          &kp R        &kp S        &kp T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
     &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &tns COLON SEMI      
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &kp HOME &mkp MB1 &mkp MB1 &kp END &kp LG(RIGHT)
                  >;
             sensor-bindings = <&scroll_up_down>;
@@ -578,7 +586,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         extra_layer {
             bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
-    &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
+    &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp F18       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &parencite              &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
