@@ -34,7 +34,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 // #define unlock 9
 // #define lockhigh 10
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 40
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 30
 
 &mt {
     tapping-term-ms = <200>;
@@ -537,7 +537,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             bindings = <
     &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &to 0
     &kp Q          &kp R        &kp S        &kp T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
-    &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &tns COLON SEMI      
+    &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &kp HOME &mkp MB1 &mkp MB1 &kp END &kp LG(RIGHT)
                  >;
