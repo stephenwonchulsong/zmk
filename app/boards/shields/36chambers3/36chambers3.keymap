@@ -34,7 +34,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
 // #define unlock 9
 // #define lockhigh 10
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 140
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 30
 
 &mt {
     tapping-term-ms = <200>;
@@ -52,8 +52,8 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             label = "R_1W";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings
                 = <&macro_press &kp LSHFT>
                 , <&macro_tap &kp S>
@@ -391,6 +391,14 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
             flavor = "hold-preferred";
             bindings = <&mo>, <&kp>;
         };
+        qmt: quick_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&kp>, <&kp>;
+        };
         wintop: window_top {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -473,16 +481,11 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
 
     combos {
         compatible = "zmk,combos";
-        combo_MB1L {
-            timeout-ms = <50>;
-            key-positions = <4 14>;
-            bindings = <&mkp MB1>;
-        };
-        combo_MB1L2 {
-            timeout-ms = <50>;
-            key-positions = <3 13>;
-            bindings = <&mkp MB1>;
-        };
+        // combo_MB1L {
+        //     timeout-ms = <50>;
+        //     key-positions = <4 14>;
+        //     bindings = <&mkp MB1>;
+        // };
         combo_MB1R {
             timeout-ms = <50>;
             key-positions = <5 15>;
@@ -490,24 +493,55 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
         };
         combo_MB2L {
             timeout-ms = <50>;
-            key-positions = <2 12>;
+            key-positions = <6 16>;
             bindings = <&mkp MB2>;
         };
-        combo_MB2R {
+        combo_SCROLLDN {
             timeout-ms = <50>;
-            key-positions = <7 17>;
-            bindings = <&mkp MB2>;
+            key-positions = <11 21>;
+            bindings = <&msc SCRL_DOWN>;
         };
-        combo_LGLSSPACEL {
+        combo_SCROLLUP {
             timeout-ms = <50>;
-            key-positions = <13 14>;
-            bindings = <&kp LG(LS(SPACE))>;
+            key-positions = <1 11>;
+            bindings = <&msc SCRL_UP>;
         };
-        combo_LGLSSPACER {
+        combo_SCROLLLEFT {
             timeout-ms = <50>;
-            key-positions = <15 16>;
-            bindings = <&kp LG(LS(SPACE))>;
+            key-positions = <10 11>;
+            bindings = <&msc SCRL_LEFT>;
         };
+        combo_SCROLLRIGHT {
+            timeout-ms = <50>;
+            // key-positions = <4 14>;
+            key-positions = <11 12>;
+            bindings = <&msc SCRL_RIGHT>;
+        };
+        combo_BACK {
+            timeout-ms = <50>;
+            key-positions = <10 20>;
+            bindings = <&kp LG(LBKT)>;
+        };
+        combo_LESC {
+            timeout-ms = <50>;
+            key-positions = <20 30>;
+            bindings = <&kp ESC>;
+        };
+        // combo_MB2R {
+        //     timeout-ms = <50>;
+        //     key-positions = <7 17>;fsfs
+        //     bindings = <&mkp MB2>;
+        // };
+        // combo_LGLSSPACEL {
+        //     timeout-ms = <50>;
+        //     key-positions = <13 14>;
+        //     bindings = <&kp LG(LS(SPACE))>;
+        // };
+        // combo_LGLSSPACER {
+        //     timeout-ms = <50>;
+        //     key-positions = <15 16>;
+        //     bindings = <&kp LG(LS(SPACE))>;
+        // };
     };
 };
     keymap {
@@ -515,13 +549,13 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
 
         qwerty_layer {
             bindings = <    
-    &homef12        &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &kp ESC
+    &mkp MB1       &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &homef12
     &kp Q          &kp S        &dmousecombo 0 D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
-    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
     /* &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)*/
-    &kp HOME &kp ESC &kp ESC &kp END &kp LG(RIGHT)
+    &to 1 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
     /*  &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
     /* &msc SCRL_RIGHT &kp F12 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN*/
     /*&kp LG(RIGHT) &kp F12 &mkp MB2 &kp LG(LEFT) &mkp MB1*/
@@ -531,20 +565,20 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
         };
         colemak_layer {
             bindings = <
-    &kp ESC        &kp W        &kp K        &kp S       &kp F       &kp O       &kp I       &kp L       &kp SEMI &kp ESC
-    &kp Q          &kp P        &kp G        &kp E       &kp T       &kp H       &kp Y       &kp N       &kp U    &kp R
-    &kp A          &kp X        &kp C        &kp V       &kp B       &kp J       &kp M       &kp COMMA   &kp DOT  &kp O      
-    &kp Z                       &qlt lower BSPC &tabgui 0 RET  &kp SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
-     &trans &trans &trans &trans &trans
+    &mkp MB1        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &homef12
+    &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
+    &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &to 0 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
                  >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&scroll_up_down>;
         };
         lower_layer {
             bindings = <
-    &kp END      &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &mkp MB2      &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
-    &msc SCRL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &msc SCRL_DOWN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
+    &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
+    &kp C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
     &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -561,7 +595,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
         };
         adjust_layer {
             bindings = <
-    &tog qwerty &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
+    &tog 0 &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
     &bhm LSHFT C_VOL_DN            &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
@@ -571,9 +605,9 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
         };
         commandllayer_layer {
             bindings = <
-    &kp TILDE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp P
+    &mkp MB1        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp TILDE
     &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
-    &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &bhm LGUI N &bhm LALT M &comlpar &dotrpar &kp SEMI
+    &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar &dotrpar &kp SEMI
     &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
     &trans &trans &trans &trans &trans
                 >;
@@ -582,7 +616,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/De
         extra_layer {
             bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
-    &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp CAPS       &kp K           &textit    &bhm LCTL P
+    &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp F18       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &parencite              &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
