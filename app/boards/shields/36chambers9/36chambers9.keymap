@@ -46,6 +46,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     flavor = "hold-preferred";
 };
 
+
 /{ // <---[[root node]]    
     macros {
         R_1W: R_1W {
@@ -377,12 +378,18 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             tapping-term-ms = <200>;
             bindings = <&kp LG(C)>, <&kp LG(V)>, <&kp LG(V)>;
         };
-        td_mt_bspc: tap_dance_layer_tap {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&lt lower BSPC>, <&kp BSPC>;
-        };
+        // td_mt_bspc: tap_dance_layer_tap {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <150>;
+        //     bindings = <&lt lower BSPC>, <&kp BSPC>;
+        // };
+        // td_mtt_spc: tap_dance_layer_tap {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <150>;
+        //     bindings = <&mt LSHFT SPACE>, <&kp SPACE>;
+        // };
         qlt: quick_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -491,10 +498,20 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <5 15>;
             bindings = <&mkp MB1>;
         };
-        combo_MB2L {
+        combo_MB2R {
             timeout-ms = <50>;
             key-positions = <6 16>;
             bindings = <&mkp MB2>;
+        };
+        combo_MB1L {
+            timeout-ms = <50>;
+            key-positions = <4 14>;
+            bindings = <&mkp MB1>;
+        };
+        combo_MB1L_1 {
+            timeout-ms = <50>;
+            key-positions = <3 13>;
+            bindings = <&mkp MB1>;
         };
         combo_SCROLLDN {
             timeout-ms = <50>;
@@ -549,10 +566,10 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 
         qwerty_layer {
             bindings = <    
-    &mkp MB1       &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &homef12
+    &homef12       &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &homef12
     &kp Q          &kp S        &dmousecombo 0 D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
     /* &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)*/
     &to 1 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
@@ -565,17 +582,17 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         colemak_layer {
             bindings = <
-    &mkp MB1        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &homef12
+    &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &homef12
     &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
     &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &to 0 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
                  >;
             sensor-bindings = <&scroll_up_down>;
         };
         lower_layer {
             bindings = <
-    &mkp MB2      &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
+    &kp TILDE     &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &kp C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
@@ -605,7 +622,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         commandllayer_layer {
             bindings = <
-    &mkp MB1        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp TILDE
+    &kp TILDE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp TILDE
     &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar &dotrpar &kp SEMI
     &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
