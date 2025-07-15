@@ -481,11 +481,11 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 
     combos {
         compatible = "zmk,combos";
-        combo_MB1L {
-            timeout-ms = <50>;
-            key-positions = <4 14>;
-            bindings = <&mkp MB1>;
-        };
+        // combo_MB1L {
+        //     timeout-ms = <50>;
+        //     key-positions = <4 14>;
+        //     bindings = <&mkp MB1>;
+        // };
         combo_MB1R {
             timeout-ms = <50>;
             key-positions = <5 15>;
@@ -496,7 +496,37 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <6 16>;
             bindings = <&mkp MB2>;
         };
-
+        combo_SCROLLDN {
+            timeout-ms = <50>;
+            key-positions = <11 21>;
+            bindings = <&msc SCRL_DOWN>;
+        };
+        combo_SCROLLUP {
+            timeout-ms = <50>;
+            key-positions = <1 11>;
+            bindings = <&msc SCRL_UP>;
+        };
+        combo_SCROLLLEFT {
+            timeout-ms = <50>;
+            key-positions = <10 11>;
+            bindings = <&msc SCRL_LEFT>;
+        };
+        combo_SCROLLRIGHT {
+            timeout-ms = <50>;
+            // key-positions = <4 14>;
+            key-positions = <11 12>;
+            bindings = <&msc SCRL_RIGHT>;
+        };
+        combo_BACK {
+            timeout-ms = <50>;
+            key-positions = <10 20>;
+            bindings = <&kp LG(LBKT)>;
+        };
+        combo_LESC {
+            timeout-ms = <50>;
+            key-positions = <20 30>;
+            bindings = <&kp ESC>;
+        };
         // combo_MB2R {
         //     timeout-ms = <50>;
         //     key-positions = <7 17>;fsfs
@@ -519,13 +549,13 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 
         qwerty_layer {
             bindings = <    
-    &mkp MB1       &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &to 1
+    &mkp MB1       &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &homef12
     &kp Q          &kp S        &dmousecombo 0 D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     /* &kp N &kp C &kp W &kp S &kp E*/
     /* &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)*/
-    &kp HOME &kp ESC &kp ESC &kp END &kp LG(RIGHT)
+    &to 1 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
     /*  &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
     /* &msc SCRL_RIGHT &kp F12 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN*/
     /*&kp LG(RIGHT) &kp F12 &mkp MB2 &kp LG(LEFT) &mkp MB1*/
@@ -535,11 +565,11 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         colemak_layer {
             bindings = <
-    &mkp MB1        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &to 0
-    &kp Q          &kp R        &kp S        &kp T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
+    &mkp MB1        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &homef12
+    &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
     &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &qmt LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
-    &kp HOME &kp ESC &kp ESC &kp END &kp LG(RIGHT)
+    &to 0 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
                  >;
             sensor-bindings = <&scroll_up_down>;
         };
