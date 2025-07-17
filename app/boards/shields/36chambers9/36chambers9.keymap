@@ -539,10 +539,35 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <10 20>;
             bindings = <&kp LG(LBKT)>;
         };
-        combo_LESC {
+        combo_G {
             timeout-ms = <50>;
-            key-positions = <20 30>;
-            bindings = <&kp ESC>;
+            key-positions = <2 3>;
+            bindings = <&kp G>;
+        };
+        combo_D {
+            timeout-ms = <50>;
+            key-positions = <12 13>;
+            bindings = <&kp D>;
+        };
+        combo_B {
+            timeout-ms = <50>;
+            key-positions = <22 23>;
+            bindings = <&kp B>;
+        };
+        combo_J {
+            timeout-ms = <50>;
+            key-positions = <6 7>;
+            bindings = <&kp J>;
+        };
+        combo_H {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            bindings = <&kp H>;
+        };
+        combo_K {
+            timeout-ms = <50>;
+            key-positions = <26 27>;
+            bindings = <&kp K>;
         };
         // combo_MB2R {
         //     timeout-ms = <50>;
