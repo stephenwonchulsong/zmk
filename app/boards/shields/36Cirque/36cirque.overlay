@@ -54,35 +54,45 @@
 //     };
 &xiao_spi {
     status = "okay";
-    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>; // between D3 & D4
+    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>; // this is d7
     glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
         reg = <0>;
         spi-max-frequency = <1000000>;
         status = "okay";
-        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; // between D4 & D5
-        // sensitivity = "3x";
+        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; // this is d3
+        // sensitivity = "4x";
         // sleep;
         no-taps;
     };
 };
-
-// / {
-//     glidepoint_listener {
-//         compatible = "zmk,input-listener";
-//         device = <&glidepoint>;
-//     };
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
+// #include <behaviors/input_gestures_accel.dtsi>
+
+// &pointer_accel {
+//     input-type = <INPUT_EV_REL>;  // For relative input devices
+//     track-remainders;             // Accumulate fractional movements
+//     min-factor = <800>;          // 0.8x at very slow speeds
+//     max-factor = <2000>;         // 3.0x at fast speeds
+//     speed-threshold = <1200>;     // 1200 counts/sec for 1x
+//     speed-max = <6000>;          // 6000 counts/sec for max accel
+//     acceleration-exponent = <2>;  // Quadratic acceleration curve
+// };
+
 / {
     glidepoint_listener {
         compatible = "zmk,input-listener";
         device = <&glidepoint>;
         // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>; // swap x and y, invert x and y
+        input-processors = <
+            &pointer_accel /*Accleration*/
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
+            &zip_xy_scaler 4 1
+        >; // swap x and y, invert x and y
         // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
         // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
-        input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
+        // input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
     };
 };
 / {
@@ -112,7 +122,7 @@
     };
 };
 /* 
-west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main;/workspaces/zmk/modules/zmk-pointing-acceleration-main"
 
 docker cp magical_haslett:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 ~/Desktop/36cirque.uf2
 */

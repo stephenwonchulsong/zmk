@@ -1,0 +1,41 @@
+#include "36chambers9c.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+&xiao_spi {
+    status = "okay";
+    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>; // this is d7
+    glidepoint: glidepoint@0 {
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        status = "okay";
+        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; // this is d3
+        // sensitivity = "3x";
+        // sleep;
+        no-taps;
+    };
+};
+
+/ {
+    glidepoint_listener {
+        status = "okay";
+        compatible = "zmk,input-listener";
+        device = <&glidepoint>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>; // swap x and y, invert x and y
+        // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
+        // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
+        input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
+        input-processors = <&zip_temp_layer 8 2000>; // say in layer 8 for 2 seconds
+    };
+};
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+/ {
+    /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        // require-prior-idle-ms = <2000>;
+        excluded-positions = <1 2 3 10 11 12 13 14 20 34>;
+    };
+};
