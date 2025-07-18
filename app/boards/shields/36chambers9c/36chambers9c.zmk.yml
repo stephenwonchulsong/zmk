@@ -1,0 +1,14 @@
+file_format: "1"
+id: 36Chambers9c
+name: 36CHAMBERS9c
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+  - pointer
+siblings:
+  - 36Chambers9c_left
+  - 36Chambers9c_right
+  - 36Chambers9c_cirque
