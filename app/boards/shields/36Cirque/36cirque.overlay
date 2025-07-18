@@ -122,7 +122,7 @@
     };
 };
 /* 
-west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main;/workspaces/zmk/modules/zmk-pointing-acceleration-main"
+west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main;:/workspaces/zmk/app/zmk-pointing-acceleration-main"
 
 docker cp magical_haslett:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 ~/Desktop/36cirque.uf2
 */
