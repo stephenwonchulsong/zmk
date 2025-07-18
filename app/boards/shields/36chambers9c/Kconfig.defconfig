@@ -1,0 +1,25 @@
+if SHIELD_36CHAMBERS9C_CIRQUE
+
+config ZMK_KEYBOARD_NAME
+    default "36Chambers9c"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+    default y
+
+config ZMK_POINTING
+    default y
+
+config SPI
+    default y
+
+endif
+
+if SHIELD_36CHAMBERS9C_LEFT || SHIELD_36CHAMBERS9C_RIGHT || SHIELD_36CHAMBERS9C_CIRQUE
+
+config ZMK_SPLIT
+    default y
+
+config I2C
+    default n
+
+endif

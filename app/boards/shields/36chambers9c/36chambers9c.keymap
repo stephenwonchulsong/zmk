@@ -8,21 +8,24 @@ west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_ri
 docker cp funny_cray:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
 docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
 
-west build -d build/369Left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_left
-west build -d build/369right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9_right
 
-docker cp magical_haslett:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
-docker cp magical_haslett:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
+west build -d build/369cLeft -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_left -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/369cRight -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/369cCirque -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
-docker cp sleepy_burnell:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9L.uf2
-docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9R.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/369cLeft/zephyr/zmk.uf2 ~/Desktop/36chambers9cL.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/369cRight/zephyr/zmk.uf2 ~/Desktop/36chambers9cR.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 ~/Desktop/36chambers9cC.uf2
+
+docker cp sleepy_burnell:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9Lc.uf2
+docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9Rc.uf2
  */
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
-// #include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/pointing.h>
 
 #define qwerty 0
@@ -33,6 +36,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 #define commandllayer 5
 #define extra 6
 #define mouse 7
+#define automouse 8
 // #define cmtoqw 6
 // #define lock 7
 // #define locklow 8
@@ -544,35 +548,35 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             key-positions = <10 20>;
             bindings = <&kp LG(LBKT)>;
         };
-        combo_T {
-            timeout-ms = <50>;
-            key-positions = <2 3>;
-            bindings = <&kp T>;
-        };
         combo_G {
             timeout-ms = <50>;
-            key-positions = <12 13>;
+            key-positions = <2 3>;
             bindings = <&kp G>;
+        };
+        combo_D {
+            timeout-ms = <50>;
+            key-positions = <12 13>;
+            bindings = <&kp D>;
         };
         combo_B {
             timeout-ms = <50>;
             key-positions = <22 23>;
             bindings = <&kp B>;
         };
-        combo_Y {
+        combo_J {
             timeout-ms = <50>;
             key-positions = <6 7>;
-            bindings = <&kp Y>;
+            bindings = <&kp J>;
         };
         combo_H {
             timeout-ms = <50>;
             key-positions = <16 17>;
             bindings = <&kp H>;
         };
-        combo_N {
+        combo_K {
             timeout-ms = <50>;
             key-positions = <26 27>;
-            bindings = <&kp N>;
+            bindings = <&kp K>;
         };
         // combo_MB2R {
         //     timeout-ms = <50>;
@@ -672,9 +676,18 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         mouse_layer {bindings = <
     &kp ESC &kp LG(LA(LEFT)) &mkp MB4  &kp LG(LA(RIGHT))  &kp T       &msc SCRL_UP   &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT    &kp HOME
-    &kp LG(LEFT)    &mkp MB2 &mo mouse  &mkp MB1 &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
+    &kp LG(LBKT)    &mkp MB2 &mo mouse  &mkp MB1 &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
     &msc SCRL_UP   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mnl mouse SEMI      
     &msc SCRL_DOWN                &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
+    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
+                >;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+        };
+        automouse_layer {bindings = <
+    &kp ESC &msc SCRL_LEFT &msc SCRL_UP  &msc SCRL_RIGHT  &kp T       &kp Y       &kp U       &kp I       &kp O     &homef12
+    &kp TAB   &mkp MB2 &msc SCRL_DOWN  &mkp MB1 &kp LG(RIGHT)   &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
+    &kp LG(LBKT)          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
+    &bhm LSHFT Z                             &qlt lower BSPC &kp LGUI &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
