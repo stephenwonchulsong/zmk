@@ -26,7 +26,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 #include <dt-bindings/zmk/pointing.h>
 
 #define qwerty 0
-#define colemak 1
+#define colemnk 1
 #define lower 2
 #define raise 3
 #define adjust 4
@@ -610,11 +610,11 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             // sensor-bindings = <&inc_dec_kp X Y>;
             sensor-bindings = <&scroll_up_down>;
         };
-        colemak_layer {
+        colemnk_layer {
             bindings = <
     &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &homef12
-    &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
-    &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
+    &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp A       &kp E       &kp I    &kp SEMI
+    &kp N          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
     &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &to 0 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
                  >;
