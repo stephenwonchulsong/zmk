@@ -1,0 +1,10 @@
+#include "36chambers9ex.dtsi" 
+
+&default_transform {
+	col-offset = <6>;
+}; 
+
+&right_encoder {
+    status = "okay";
+};
+
