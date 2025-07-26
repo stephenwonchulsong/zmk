@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2020 The ZMK Contributors
- *;
+ *
  * SPDX-License-Identifier: MIT
 west build -d build/363left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_left
 west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_right
