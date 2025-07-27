@@ -14,7 +14,7 @@
 
 	default_transform: keymap_transform_0 {
 		compatible = "zmk,matrix-transform";
-		columns = <10>;
+		columns = <12>;
         
 		rows = <5>;
 // | SW1  | SW2  | SW3  | SW4  | SW5  |   | SW5  | SW4  | SW3  | SW2  | SW1  |
@@ -35,11 +35,12 @@ RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)  RC(4,6) RC(4,7) RC(4,8) RC(4,9)
         diode-direction = "col2row";
 
     col-gpios
-        = <&xiao_d 10 GPIO_ACTIVE_HIGH>    //Col0
-        , <&xiao_d 9 GPIO_ACTIVE_HIGH>       //Col1
-        , <&xiao_d 8 GPIO_ACTIVE_HIGH>      //Col2
-        , <&xiao_d 7 GPIO_ACTIVE_HIGH>      //Col3
+        = <&xiao_d 10 GPIO_ACTIVE_HIGH>  //Col0
+        , <&xiao_d 9 GPIO_ACTIVE_HIGH>   //Col1
+        , <&xiao_d 8 GPIO_ACTIVE_HIGH>   //Col2
+        , <&xiao_d 7 GPIO_ACTIVE_HIGH>   //Col3
         , <&xiao_d 5 GPIO_ACTIVE_HIGH>   //Col4
+        // , <&xiao_d 6 GPIO_ACTIVE_HIGH> //Col5
 
         // = <&gpio1 15 GPIO_ACTIVE_HIGH>    //Col0
         // , <&gpio1 14 GPIO_ACTIVE_HIGH>       //Col1       
