@@ -615,7 +615,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &to 0
     &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
     &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
-    &bhm LSHFT Z                &mkp MB1     &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &bhm LSHFT Z                &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
                  >;
             sensor-bindings = <&scroll_up_down>;
@@ -625,7 +625,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp TILDE     &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &bhm LSHFT Z                &mkp MB1     &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &bhm LSHFT Z           &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RPAR N0   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -635,7 +635,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
     &kp F1       &kp LCTL        &kp LALT       &kp LGUI        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &kp LSHFT &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
-    &bhm LSHFT Z         &trans       &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
+    &bhm LSHFT Z         &trans       &qlt adjust DEL &trans  &tns LSHFT SPACE &trans &trans                     &mt RSHFT BSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
                 >;
             sensor-bindings = <&scroll_l_r>;

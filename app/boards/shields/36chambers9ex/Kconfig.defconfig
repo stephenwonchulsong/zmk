@@ -1,7 +1,7 @@
 if SHIELD_36CHAMBERS9EX_LEFT
 
 config ZMK_KEYBOARD_NAME
-	default "36Chambers9ex"
+	default "36chambers9ex"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
