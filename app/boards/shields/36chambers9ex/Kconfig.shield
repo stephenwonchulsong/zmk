@@ -1,5 +1,5 @@
-config SHIELD_36CHAMBERS9_LEFT
+config SHIELD_36CHAMBERS9EX_LEFT
 	def_bool $(shields_list_contains,36chambers9ex_left)
 
-config SHIELD_36CHAMBERS9_RIGHT
+config SHIELD_36CHAMBERS9EX_RIGHT
 	def_bool $(shields_list_contains,36chambers9ex_right)
