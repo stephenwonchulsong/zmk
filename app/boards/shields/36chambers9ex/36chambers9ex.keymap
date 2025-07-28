@@ -5,8 +5,8 @@
 west build -d build/363left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_left
 west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_right
 
-docker cp funny_cray:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
-docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
 
 west build -d build/369exleft -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9ex_left
 west build -d build/369exright -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9ex_right
