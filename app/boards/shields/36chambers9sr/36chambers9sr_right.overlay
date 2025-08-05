@@ -1,0 +1,45 @@
+#include "36chambers9sr.dtsi" // Notice that the main dtsi files are included in the overlay.
+&xiao_spi {
+    status = "okay";
+    cs-gpios = <&xiao_d 9 GPIO_ACTIVE_LOW>;
+    shifter: 595@0 {
+        compatible = "zmk,gpio-595";
+        status = "okay";
+        gpio-controller;
+        spi-max-frequency = <200000>;
+        reg = <0>;
+        #gpio-cells = <2>;
+        ngpios = <8>;
+    };
+};
+/ {
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+    col-gpios
+        = <&shifter 0 GPIO_ACTIVE_HIGH>
+        , <&shifter 1 GPIO_ACTIVE_HIGH>
+        , <&shifter 2 GPIO_ACTIVE_HIGH>
+        , <&shifter 3 GPIO_ACTIVE_HIGH>
+        , <&shifter 4 GPIO_ACTIVE_HIGH>
+        ;
+	row-gpios
+    	= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row0
+        , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row1
+        , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
+        , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row3
+        , <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
+        , <&shifter 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        ;
+    };
+//     &right_encoder {
+//     status = "okay";
+// };
+    // right_encoder: encoder_right {
+    //     compatible = "alps,ec11";
+    //     a-gpios = <<&shifter 6 GPIO_ACTIVE_HIGH>;
+    //     b-gpios = <<&shifter 7 GPIO_ACTIVE_HIGH>;
+    //     steps = <80>;
+    //     status = "okay";
+    // };
+};
