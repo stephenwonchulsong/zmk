@@ -54,7 +54,7 @@
 //     };
 &xiao_spi {
     status = "okay";
-    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>; // this is d7
+    cs-gpios = <&gpio0 28 GPIO_ACTIVE_LOW>; // this is d7
     glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
         reg = <0>;

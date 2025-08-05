@@ -1,0 +1,77 @@
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+&xiao_spi {
+    status = "okay";
+    cs-gpios = <&gpio0 28 GPIO_ACTIVE_LOW>; // this is d7
+    glidepoint: glidepoint@0 {
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        status = "okay";
+        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; // this is d3
+        // sensitivity = "4x";
+        // sleep;
+        no-taps;
+    };
+};
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+// #include <behaviors/input_gestures_accel.dtsi>
+
+// &pointer_accel {
+//     input-type = <INPUT_EV_REL>;  // For relative input devices
+//     track-remainders;             // Accumulate fractional movements
+//     min-factor = <800>;          // 0.8x at very slow speeds
+//     max-factor = <2000>;         // 3.0x at fast speeds
+//     speed-threshold = <1200>;     // 1200 counts/sec for 1x
+//     speed-max = <6000>;          // 6000 counts/sec for max accel
+//     acceleration-exponent = <2>;  // Quadratic acceleration curve
+// };
+
+/ {
+    glidepoint_listener {
+        compatible = "zmk,input-listener";
+        device = <&glidepoint>;
+        // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
+            &zip_xy_scaler 4 1
+        >; // swap x and y, invert x and y
+        // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
+        // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
+        // input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
+    };
+};
+/ {
+
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix_transform = &default_transform;
+    };
+    
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <1>;
+        rows = <1>;
+        map = <RC(0,0)>;
+    };
+    
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+        row-gpios
+            = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+        col-gpios 
+            = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+            ;
+    };
+};
+/* 
+west build -d build/36cirque2 -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque2 -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+
+docker cp magical_haslett:/workspaces/zmk/app/build/36cirque2/zephyr/zmk.uf2 ~/Desktop/36cirque2.uf2
+*/
+

@@ -1,0 +1,14 @@
+if 36CIRQUE2
+
+# Name must be less than 16 characters long!
+config ZMK_KEYBOARD_NAME
+    default "36cirque2"
+
+# Cirque Glidepoint trackpad
+config ZMK_POINTING
+    default y
+
+# Assuming pointing device uses SPI
+config SPI
+    default y
+endif
