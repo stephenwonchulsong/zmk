@@ -1,0 +1,2 @@
+config 36CIRQUE2
+    def_bool $(shields_list_contains,36cirque2)
