@@ -250,42 +250,42 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
                 , <&macro_release &kp LGUI>
                 ;
         };
-        // leftthirds: leftthirds {
-        //     label = "leftthirds";
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     wait-ms = <10>;
-        //     tap-ms = <30>;
-        //     bindings
-        //         = <&macro_press &kp LSHFT>
-        //         , <&macro_press &kp LCTL>
-        //         , <&macro_press &kp LALT>
-        //         , <&macro_press &kp LGUI>
-        //         , <&macro_tap &kp N1 &kp M>
-        //         , <&macro_release &kp LSHFT>
-        //         , <&macro_release &kp LCTL>
-        //         , <&macro_release &kp LALT>
-        //         , <&macro_release &kp LGUI>
-        //         ;
-        // };
-        // rightthirds: rightthirds {
-        //     label = "rightthirds";
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     wait-ms = <10>;
-        //     tap-ms = <30>;
-        //     bindings
-        //         = <&macro_press &kp LSHFT>
-        //         , <&macro_press &kp LCTL>
-        //         , <&macro_press &kp LALT>
-        //         , <&macro_press &kp LGUI>
-        //         , <&macro_tap &kp N3 &kp M>
-        //         , <&macro_release &kp LSHFT>
-        //         , <&macro_release &kp LCTL>
-        //         , <&macro_release &kp LALT>
-        //         , <&macro_release &kp LGUI>
-        //         ;
-        // };
+        leftthirds: leftthirds {
+            label = "leftthirds";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_press &kp LCTL>
+                , <&macro_press &kp LALT>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp N1 &kp M>
+                , <&macro_release &kp LSHFT>
+                , <&macro_release &kp LCTL>
+                , <&macro_release &kp LALT>
+                , <&macro_release &kp LGUI>
+                ;
+        };
+        rightthirds: rightthirds {
+            label = "rightthirds";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_press &kp LCTL>
+                , <&macro_press &kp LALT>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp N3 &kp M>
+                , <&macro_release &kp LSHFT>
+                , <&macro_release &kp LCTL>
+                , <&macro_release &kp LALT>
+                , <&macro_release &kp LGUI>
+                ;
+        };
     };
     };
     behaviors {
@@ -487,7 +487,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(RET))>, <&centerthirds>;
+            bindings = <&kp LC(LA(RET))>, <&centerthirds>, <&kp LS(LC(LA(LG(F3))))>;
         };
 };
 
@@ -520,30 +520,30 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         combo_SCROLLDN {
             timeout-ms = <50>;
-            key-positions = <11 21>;
+            key-positions = <20 30>;
             bindings = <&msc SCRL_DOWN>;
         };
         combo_SCROLLUP {
             timeout-ms = <50>;
-            key-positions = <1 11>;
+            key-positions = <10 20>;
             bindings = <&msc SCRL_UP>;
         };
-        combo_SCROLLLEFT {
-            timeout-ms = <50>;
-            key-positions = <10 11>;
-            bindings = <&msc SCRL_LEFT>;
-        };
-        combo_SCROLLRIGHT {
-            timeout-ms = <50>;
-            // key-positions = <4 14>;
-            key-positions = <11 12>;
-            bindings = <&msc SCRL_RIGHT>;
-        };
-        combo_BACK {
-            timeout-ms = <50>;
-            key-positions = <10 20>;
-            bindings = <&kp LG(LBKT)>;
-        };
+        // combo_SCROLLLEFT {
+        //     timeout-ms = <50>;
+        //     key-positions = <10 11>;
+        //     bindings = <&msc SCRL_LEFT>;
+        // };
+        // combo_SCROLLRIGHT {
+        //     timeout-ms = <50>;
+        //     // key-positions = <4 14>;
+        //     key-positions = <11 12>;
+        //     bindings = <&msc SCRL_RIGHT>;
+        // };
+        // combo_BACK {
+        //     timeout-ms = <50>;
+        //     key-positions = <10 20>;
+        //     bindings = <&kp LG(LBKT)>;
+        // };
         // combo_T {
         //     timeout-ms = <50>;
         //     key-positions = <2 3>;
