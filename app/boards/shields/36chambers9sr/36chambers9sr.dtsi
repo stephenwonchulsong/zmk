@@ -6,19 +6,6 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 
-&xiao_spi {
-    status = "okay";
-    cs-gpios = <&xiao_d 8 GPIO_ACTIVE_LOW>;
-    shifter: 595@0 {
-        compatible = "zmk,gpio-595";
-        status = "okay";
-        gpio-controller;
-        spi-max-frequency = <200000>;
-        reg = <0>;
-        #gpio-cells = <2>;
-        ngpios = <8>;
-    };
-};
 / {
 	chosen {
 		zmk,kscan = &kscan0;
