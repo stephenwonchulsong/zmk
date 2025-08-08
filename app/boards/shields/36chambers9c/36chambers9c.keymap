@@ -29,14 +29,13 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 #include <dt-bindings/zmk/pointing.h>
 
 #define qwerty 0
-#define colemak 1
+#define colemnk 1
 #define lower 2
 #define raise 3
 #define adjust 4
 #define commandllayer 5
 #define extra 6
 #define mouse 7
-#define automouse 8
 // #define cmtoqw 6
 // #define lock 7
 // #define locklow 8
@@ -254,42 +253,42 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
                 , <&macro_release &kp LGUI>
                 ;
         };
-        // leftthirds: leftthirds {
-        //     label = "leftthirds";
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     wait-ms = <10>;
-        //     tap-ms = <30>;
-        //     bindings
-        //         = <&macro_press &kp LSHFT>
-        //         , <&macro_press &kp LCTL>
-        //         , <&macro_press &kp LALT>
-        //         , <&macro_press &kp LGUI>
-        //         , <&macro_tap &kp N1 &kp M>
-        //         , <&macro_release &kp LSHFT>
-        //         , <&macro_release &kp LCTL>
-        //         , <&macro_release &kp LALT>
-        //         , <&macro_release &kp LGUI>
-        //         ;
-        // };
-        // rightthirds: rightthirds {
-        //     label = "rightthirds";
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     wait-ms = <10>;
-        //     tap-ms = <30>;
-        //     bindings
-        //         = <&macro_press &kp LSHFT>
-        //         , <&macro_press &kp LCTL>
-        //         , <&macro_press &kp LALT>
-        //         , <&macro_press &kp LGUI>
-        //         , <&macro_tap &kp N3 &kp M>
-        //         , <&macro_release &kp LSHFT>
-        //         , <&macro_release &kp LCTL>
-        //         , <&macro_release &kp LALT>
-        //         , <&macro_release &kp LGUI>
-        //         ;
-        // };
+        leftthirds: leftthirds {
+            label = "leftthirds";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_press &kp LCTL>
+                , <&macro_press &kp LALT>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp N1 &kp M>
+                , <&macro_release &kp LSHFT>
+                , <&macro_release &kp LCTL>
+                , <&macro_release &kp LALT>
+                , <&macro_release &kp LGUI>
+                ;
+        };
+        rightthirds: rightthirds {
+            label = "rightthirds";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_press &kp LCTL>
+                , <&macro_press &kp LALT>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp N3 &kp M>
+                , <&macro_release &kp LSHFT>
+                , <&macro_release &kp LCTL>
+                , <&macro_release &kp LALT>
+                , <&macro_release &kp LGUI>
+                ;
+        };
     };
     };
     behaviors {
@@ -491,7 +490,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(RET))>, <&centerthirds>;
+            bindings = <&kp LC(LA(RET))>, <&centerthirds>, <&kp LS(LC(LA(LG(F3))))>;
         };
 };
 
@@ -502,21 +501,21 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         //     key-positions = <4 14>;
         //     bindings = <&mkp MB1>;
         // };
-        combo_MB1R {
-            timeout-ms = <50>;
-            key-positions = <5 15>;
-            bindings = <&mkp MB1>;
-        };
-        combo_MB2R {
-            timeout-ms = <50>;
-            key-positions = <6 16>;
-            bindings = <&mkp MB2>;
-        };
-        combo_MB1L {
-            timeout-ms = <50>;
-            key-positions = <4 14>;
-            bindings = <&mkp MB1>;
-        };
+        // combo_MB2R {
+        //     timeout-ms = <50>;
+        //     key-positions = <5 15>;
+        //     bindings = <&mkp MB2>;
+        // };
+        // combo_MB2R {
+        //     timeout-ms = <50>;
+        //     key-positions = <6 16>;
+        //     bindings = <&mkp MB2>;
+        // };
+        // combo_MB1L {
+        //     timeout-ms = <50>;
+        //     key-positions = <4 14>;
+        //     bindings = <&mkp MB1>;
+        // };
         combo_MB1L_1 {
             timeout-ms = <50>;
             key-positions = <3 13>;
@@ -524,60 +523,60 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         combo_SCROLLDN {
             timeout-ms = <50>;
-            key-positions = <11 21>;
+            key-positions = <20 30>;
             bindings = <&msc SCRL_DOWN>;
         };
         combo_SCROLLUP {
             timeout-ms = <50>;
-            key-positions = <1 11>;
+            key-positions = <10 20>;
             bindings = <&msc SCRL_UP>;
         };
-        combo_SCROLLLEFT {
-            timeout-ms = <50>;
-            key-positions = <10 11>;
-            bindings = <&msc SCRL_LEFT>;
-        };
-        combo_SCROLLRIGHT {
-            timeout-ms = <50>;
-            // key-positions = <4 14>;
-            key-positions = <11 12>;
-            bindings = <&msc SCRL_RIGHT>;
-        };
-        combo_BACK {
-            timeout-ms = <50>;
-            key-positions = <10 20>;
-            bindings = <&kp LG(LBKT)>;
-        };
-        combo_G {
-            timeout-ms = <50>;
-            key-positions = <2 3>;
-            bindings = <&kp G>;
-        };
-        combo_D {
-            timeout-ms = <50>;
-            key-positions = <12 13>;
-            bindings = <&kp D>;
-        };
-        combo_B {
-            timeout-ms = <50>;
-            key-positions = <22 23>;
-            bindings = <&kp B>;
-        };
-        combo_J {
-            timeout-ms = <50>;
-            key-positions = <6 7>;
-            bindings = <&kp J>;
-        };
-        combo_H {
-            timeout-ms = <50>;
-            key-positions = <16 17>;
-            bindings = <&kp H>;
-        };
-        combo_K {
-            timeout-ms = <50>;
-            key-positions = <26 27>;
-            bindings = <&kp K>;
-        };
+        // combo_SCROLLLEFT {
+        //     timeout-ms = <50>;
+        //     key-positions = <10 11>;
+        //     bindings = <&msc SCRL_LEFT>;
+        // };
+        // combo_SCROLLRIGHT {
+        //     timeout-ms = <50>;
+        //     // key-positions = <4 14>;
+        //     key-positions = <11 12>;
+        //     bindings = <&msc SCRL_RIGHT>;
+        // };
+        // combo_BACK {
+        //     timeout-ms = <50>;
+        //     key-positions = <10 20>;
+        //     bindings = <&kp LG(LBKT)>;
+        // };
+        // combo_T {
+        //     timeout-ms = <50>;
+        //     key-positions = <2 3>;
+        //     bindings = <&kp T>;
+        // };
+        // combo_G {
+        //     timeout-ms = <50>;
+        //     key-positions = <12 13>;
+        //     bindings = <&kp G>;
+        // };
+        // combo_B {
+        //     timeout-ms = <50>;
+        //     key-positions = <22 23>;
+        //     bindings = <&kp B>;
+        // };
+        // combo_Y {
+        //     timeout-ms = <50>;
+        //     key-positions = <6 7>;
+        //     bindings = <&kp Y>;
+        // };
+        // combo_H {
+        //     timeout-ms = <50>;
+        //     key-positions = <16 17>;
+        //     bindings = <&kp H>;
+        // };
+        // combo_N {
+        //     timeout-ms = <50>;
+        //     key-positions = <26 27>;
+        //     bindings = <&kp N>;
+        // };
         // combo_MB2R {
         //     timeout-ms = <50>;
         //     key-positions = <7 17>;fsfs
@@ -600,13 +599,13 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
 
         qwerty_layer {
             bindings = <    
-    &homef12       &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &homef12
+    &homef12       &kp W        &kp E        &kp R        &kp T       &kp Y       &kp U       &kp I       &kp O     &to 1
     &kp Q          &kp S        &dmousecombo 0 D  &mnl extra F  &kp G       &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
     &kp A          &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar    &dotrpar  &tns COLON SEMI
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
-    /* &kp N &kp C &kp W &kp S &kp E*/
+    &bhm LSHFT Z                &mkp MB1     &qlt lower BSPC &tabgui 0 RET &tns RSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    /* &kp 1N &kp 2C &kp 3W &kp 4S &kp 5E*/
     /* &kp HOME &kp ESC &kp LG(LS(SPACE)) &kp END &kp LG(RIGHT)*/
-    &to 1 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
+    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
     /*  &mmv MOVE_RIGHT &mkp MB1 &mmv MOVE_UP  &mmv MOVE_LEFT &mmv MOVE_DOWN
     /* &msc SCRL_RIGHT &kp F12 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN*/
     /*&kp LG(RIGHT) &kp F12 &mkp MB2 &kp LG(LEFT) &mkp MB1*/
@@ -616,11 +615,11 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
         };
         colemak_layer {
             bindings = <
-    &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &homef12
+    &homef12        &kp W        &kp F        &kp P       &kp G       &kp J       &kp L       &kp U       &kp Y  &to 0
     &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
     &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
-    &bhm LSHFT Z                             &qlt lower BSPC &tabgui 0 RET &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
-    &to 0 &kp ESC &kp ESC &kp END &kp LG(RIGHT)
+    &bhm LSHFT Z                &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
+    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
                  >;
             sensor-bindings = <&scroll_up_down>;
         };
@@ -629,8 +628,8 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp TILDE     &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &kp C_VOL_DN            &qlt lower BSPC &trans                         &tns RPAR N0 &lt adjust TAB &kp CAPS             &trans
-    &trans &trans &trans &trans &trans
+    &bhm LSHFT Z           &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RPAR N0   &lt adjust TAB  &kp F18 &mt RSHFT FSLH
+    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -639,8 +638,8 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp GRAVE       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &kp BSPC
     &kp F1       &kp LCTL        &kp LALT       &kp LGUI        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &kp LSHFT &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
-    &bhm LSHFT Z                &qlt adjust DEL &trans  &trans &trans &trans                     &mt RSHFT BSLH
-    &msc SCRL_RIGHT &mkp MB2 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN
+    &bhm LSHFT Z         &trans       &qlt adjust DEL &trans  &tns RSHFT SPACE &lt raise TAB &trans                     &mt RSHFT BSLH
+    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
                 >;
             sensor-bindings = <&scroll_l_r>;
         };
@@ -649,8 +648,8 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &tog 0 &none        &none        &none        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &kp UNDER
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT C_VOL_DN            &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans
+    &bhm LSHFT C_VOL_DN    &trans        &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
+    &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -659,8 +658,8 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp TILDE        &kp W        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp TILDE
     &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar &dotrpar &kp SEMI
-    &bhm LSHFT Z                 &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
-    &trans &trans &trans &trans &trans
+    &bhm LSHFT Z          &trans       &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
+    &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -669,26 +668,17 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp F18       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
-    &parencite              &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
-    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
+    &parencite       &trans       &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
+    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB) &trans &trans &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
         mouse_layer {bindings = <
     &kp ESC &kp LG(LA(LEFT)) &mkp MB4  &kp LG(LA(RIGHT))  &kp T       &msc SCRL_UP   &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT    &kp HOME
-    &kp LG(LBKT)    &mkp MB2 &mo mouse  &mkp MB1 &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
+    &kp LG(LEFT)    &mkp MB2 &mo mouse  &mkp MB1 &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
     &msc SCRL_UP   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mnl mouse SEMI      
-    &msc SCRL_DOWN                &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
-    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
-                >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
-        };
-        automouse_layer {bindings = <
-    &kp ESC &msc SCRL_LEFT &msc SCRL_UP  &msc SCRL_RIGHT  &kp T       &kp Y       &kp U       &kp I       &kp O     &homef12
-    &kp TAB   &mkp MB2 &msc SCRL_DOWN  &mkp MB1 &kp LG(RIGHT)   &bhm LGUI H       &bhm LGUI J       &bhm LALT K       &bhm LCTL L    &bhm LSHFT P
-    &kp LG(LBKT)          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
-    &bhm LSHFT Z                             &qlt lower BSPC &kp LGUI &tns LSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
-    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB)
+    &msc SCRL_DOWN       &trans         &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
+    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB) &trans &trans &trans &trans &trans &trans &trans
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
