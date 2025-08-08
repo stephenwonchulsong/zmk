@@ -11,4 +11,5 @@ config ZMK_POINTING
 # Assuming pointing device uses SPI
 config SPI
     default y
+
 endif
