@@ -33,37 +33,23 @@ RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)  RC(4,6) RC(4,7) RC(4,8) RC(4,9)
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
-
     col-gpios
         = <&xiao_d 10 GPIO_ACTIVE_HIGH>  //Col0
         , <&xiao_d 9 GPIO_ACTIVE_HIGH>   //Col1
         , <&xiao_d 8 GPIO_ACTIVE_HIGH>   //Col2
         , <&xiao_d 7 GPIO_ACTIVE_HIGH>   //Col3
-        , <&xiao_d 5 GPIO_ACTIVE_HIGH>   //Col4
-        // , <&xiao_d 6 GPIO_ACTIVE_HIGH> //Col5
-
-        // = <&gpio1 15 GPIO_ACTIVE_HIGH>    //Col0
-        // , <&gpio1 14 GPIO_ACTIVE_HIGH>       //Col1       
-        // , <&gpio1 13 GPIO_ACTIVE_HIGH>      //Col2
-        // , <&gpio1 12 GPIO_ACTIVE_HIGH>      //Col3
-        // , <&gpio0 5 GPIO_ACTIVE_HIGH>   //Col4
-        // , <&gpio1 11 GPIO_ACTIVE_HIGH>       //Col5
+        , <&xiao_d 5 GPIO_ACTIVE_HIGH> //Col4
+        , <&xiao_d 6 GPIO_ACTIVE_HIGH> //Col5
         ;
 	row-gpios
     	= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row0
         , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row1
         , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
         , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row3
-        , <&xiao_d 4(GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
-
-        // = <&gpio0 2 GPIO_ACTIVE_HIGH>  //Row0
-        // , <&gpio0 3 GPIO_ACTIVE_HIGH>     //Row1       
-        // , <&gpio0 28 GPIO_ACTIVE_HIGH>    //Row2
-        // , <&gpio0 29 GPIO_ACTIVE_HIGH>    //Row3
-        // , <&gpio0 4 GPIO_ACTIVE_HIGH>     //Row4    
-    	
+        , <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
         ;
     };
+
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&right_encoder>;
@@ -72,8 +58,8 @@ RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)  RC(4,6) RC(4,7) RC(4,8) RC(4,9)
 
     right_encoder: encoder_right {
         compatible = "alps,ec11";
-    a-gpios = <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-    b-gpios = <&gpio0 10  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+    a-gpios = <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    b-gpios = <&gpio0 10  (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <80>;
         status = "disabled";
     };
