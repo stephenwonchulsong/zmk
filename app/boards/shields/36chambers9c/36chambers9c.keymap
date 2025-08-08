@@ -13,9 +13,9 @@ west build -d build/369cLeft -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_l
 west build -d build/369cRight -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 west build -d build/369cCirque -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
-docker cp magical_haslett:/workspaces/zmk/app/build/369cLeft/zephyr/zmk.uf2 ~/Desktop/36chambers9cL.uf2
-docker cp magical_haslett:/workspaces/zmk/app/build/369cRight/zephyr/zmk.uf2 ~/Desktop/36chambers9cR.uf2
-docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 ~/Desktop/36chambers9cC.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/369cLeft/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9cL.uf2'
+docker cp magical_haslett:/workspaces/zmk/app/build/369cRight/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9cR.uf2'
+docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9cC.uf2'
 
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9Lc.uf2
 docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9Rc.uf2

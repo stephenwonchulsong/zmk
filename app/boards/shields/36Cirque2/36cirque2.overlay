@@ -3,7 +3,7 @@
 
 &xiao_spi {
     status = "okay";
-    cs-gpios = <&gpio0 28 GPIO_ACTIVE_LOW>; // this is d7
+    cs-gpios = <&gpio0 28 GPIO_ACTIVE_LOW>; // this is /d2
     glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
         reg = <0>;
@@ -65,13 +65,13 @@
             = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
         col-gpios 
-            = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+            = <&xiao_d 2 GPIO_ACTIVE_HIGH>
             ;
     };
 };
 /* 
 west build -d build/36cirque2 -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque2 -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
-docker cp magical_haslett:/workspaces/zmk/app/build/36cirque2/zephyr/zmk.uf2 ~/Desktop/36cirque2.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/36cirque2/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36cirque2.uf2"
 */
 

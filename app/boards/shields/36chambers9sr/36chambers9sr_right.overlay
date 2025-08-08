@@ -1,6 +1,6 @@
 #include "36chambers9sr.dtsi" // Notice that the main dtsi files are included in the overlay.
 &default_transform {
-	col-offset = <5>;
+	col-offset = <6>;
 }; 
 &xiao_spi {
     status = "okay";
