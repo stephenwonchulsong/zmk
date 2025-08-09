@@ -1,13 +1,7 @@
 /*
  * Copyright (c) 2020 The ZMK Contributors
- *
+ *;
  * SPDX-License-Identifier: MIT
-west build -d build/363left -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_left
-west build -d build/363right -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers3_right
-
-docker cp funny_cray:/workspaces/zmk/app/build/363left/zephyr/zmk.uf2 ~/Desktop/36chambers3L.uf2
-docker cp funny_cray:/workspaces/zmk/app/build/363Right/zephyr/zmk.uf2 ~/Desktop/36chambers3R.uf2
-
 
 west build -d build/369cLeft -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_left -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 west build -d build/369cRight -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
@@ -16,9 +10,6 @@ west build -d build/369cCirque -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9c
 docker cp magical_haslett:/workspaces/zmk/app/build/369cLeft/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9cL.uf2'
 docker cp magical_haslett:/workspaces/zmk/app/build/369cRight/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9cR.uf2'
 docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9cC.uf2'
-
-docker cp sleepy_burnell:/workspaces/zmk/app/build/369left/zephyr/zmk.uf2 ~/Desktop/36chambers9Lc.uf2
-docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Desktop/36chambers9Rc.uf2
  */
 
 #include <behaviors.dtsi>
@@ -619,7 +610,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp Q          &kp R        &dmousecombo 0 S        &mnl extra T       &kp D       &kp H       &kp N       &kp E       &kp I    &kp SEMI
     &kp A          &bhm LCTRL X        &bhm LALT C        &bhm LGUI V       &bhm LGUI B       &kp K       &kp M  &comlpar    &dotrpar  &kp O      
     &bhm LSHFT Z                &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
-    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
+    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                  >;
             sensor-bindings = <&scroll_up_down>;
         };
@@ -629,7 +620,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &bhm LSHFT Z           &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RPAR N0   &lt adjust TAB  &kp F18 &mt RSHFT FSLH
-    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
+    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -639,7 +630,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp F1       &kp LCTL        &kp LALT       &kp LGUI        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
     &kp LSHFT &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
     &bhm LSHFT Z         &trans       &qlt adjust DEL &trans  &tns RSHFT SPACE &lt raise TAB &trans                     &mt RSHFT BSLH
-    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &none &none &none &none &none &mkp MB2
+    &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
             sensor-bindings = <&scroll_l_r>;
         };
@@ -649,7 +640,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &out OUT_TOG &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
     &bhm LSHFT C_VOL_DN    &trans        &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
-    &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+    &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -669,7 +660,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp F18       &kp K           &textit    &bhm LCTL P
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
     &parencite       &trans       &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
-    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB) &trans &trans &trans &trans &trans &trans &trans
+    &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -678,7 +669,7 @@ docker cp sleepy_burnell:/workspaces/zmk/app/build/369Right/zephyr/zmk.uf2 ~/Des
     &kp LG(LEFT)    &mkp MB2 &mo mouse  &mkp MB1 &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
     &msc SCRL_UP   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mnl mouse SEMI      
     &msc SCRL_DOWN       &trans         &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
-    &kp LG(RIGHT) &trans &kp LC(LS(TAB)) &kp LG(LEFT) &kp LC(TAB) &trans &trans &trans &trans &trans &trans &trans
+    &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
