@@ -505,20 +505,20 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
         //     key-positions = <4 14>;
         //     bindings = <&mkp MB1>;
         // };
-        combo_MB1L_1 {
+        // combo_MB1L_1 {
+        //     timeout-ms = <50>;
+        //     key-positions = <3 13>;
+        //     bindings = <&mkp MB1>;
+        // };
+        combo_SCROLLUP {
             timeout-ms = <50>;
             key-positions = <3 13>;
-            bindings = <&mkp MB1>;
+            bindings = <&msc SCRL_UP>;
         };
         combo_SCROLLDN {
             timeout-ms = <50>;
-            key-positions = <20 30>;
+            key-positions = <13 23>;
             bindings = <&msc SCRL_DOWN>;
-        };
-        combo_SCROLLUP {
-            timeout-ms = <50>;
-            key-positions = <10 20>;
-            bindings = <&msc SCRL_UP>;
         };
         // combo_SCROLLLEFT {
         //     timeout-ms = <50>;
@@ -531,11 +531,11 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
         //     key-positions = <11 12>;
         //     bindings = <&msc SCRL_RIGHT>;
         // };
-        // combo_BACK {
-        //     timeout-ms = <50>;
-        //     key-positions = <10 20>;
-        //     bindings = <&kp LG(LBKT)>;
-        // };
+        combo_BACK {
+            timeout-ms = <50>;
+            key-positions = <10 20>;
+            bindings = <&kp LG(LBKT)>;
+        };
         // combo_T {
         //     timeout-ms = <50>;
         //     key-positions = <2 3>;
