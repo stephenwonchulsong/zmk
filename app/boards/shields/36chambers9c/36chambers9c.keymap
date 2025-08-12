@@ -61,25 +61,30 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 '/
                 , <&macro_tap &kp H &kp A &kp W &kp U &kp A &kp J &kp Y &kp D &kp S &kp N>
                 ;
         };
-        Grader1: GRDR1 {
-            label = "GRDR1";
+        R_2W: R_2W {
+            label = "R_2W";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings
-                = <&macro_tap &kp B &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB
-                &kp 3 &kp TAB &kp TAB &kp TAB
-                &kp SPACE
-                >
+                = <&macro_tap &kp PIPE>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp T &kp E>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Z &kp B>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp 8>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Y &kp >
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp R &kp D &kp C &kp SPACE>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp S &kp B &kp R>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp Z &kp U &kp 1>
                 ;
         };
         textit: textit {
@@ -483,6 +488,12 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 '/
             tapping-term-ms = <200>;
             bindings = <&kp LC(LA(RET))>, <&centerthirds>, <&kp LS(LC(LA(LG(F3))))>;
         };
+        R1WR2W: R1WR2W {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&R_1W>, <&R_1W>, <&R_2W>;
+        };
 };
 
     combos {
@@ -507,20 +518,20 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 '/
         //     key-positions = <4 14>;
         //     bindings = <&mkp MB1>;
         // };
-        combo_MB1L_1 {
+        // combo_MB1L_1 {
+        //     timeout-ms = <50>;
+        //     key-positions = <3 13>;
+        //     bindings = <&mkp MB1>;
+        // };
+        combo_SCROLLUP {
             timeout-ms = <50>;
             key-positions = <3 13>;
-            bindings = <&mkp MB1>;
+            bindings = <&msc SCRL_UP>;
         };
         combo_SCROLLDN {
             timeout-ms = <50>;
-            key-positions = <20 30>;
+            key-positions = <13 23>;
             bindings = <&msc SCRL_DOWN>;
-        };
-        combo_SCROLLUP {
-            timeout-ms = <50>;
-            key-positions = <10 20>;
-            bindings = <&msc SCRL_UP>;
         };
         // combo_SCROLLLEFT {
         //     timeout-ms = <50>;
@@ -533,11 +544,11 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 '/
         //     key-positions = <11 12>;
         //     bindings = <&msc SCRL_RIGHT>;
         // };
-        // combo_BACK {
-        //     timeout-ms = <50>;
-        //     key-positions = <10 20>;
-        //     bindings = <&kp LG(LBKT)>;
-        // };
+        combo_BACK {
+            timeout-ms = <50>;
+            key-positions = <10 20>;
+            bindings = <&kp LG(LBKT)>;
+        };
         // combo_T {
         //     timeout-ms = <50>;
         //     key-positions = <2 3>;
@@ -617,7 +628,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369cCirque/zephyr/zmk.uf2 '/
         lower_layer {
             bindings = <
     &kp TILDE     &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
-    &kp LG(LBKT) &leftleft &centercenter &rightright &R_1W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
+    &kp LG(LBKT) &leftleft &centercenter &rightright &R1WR2W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
     &bhm LSHFT Z           &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RPAR N0   &lt adjust TAB  &kp F18 &mt RSHFT FSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
