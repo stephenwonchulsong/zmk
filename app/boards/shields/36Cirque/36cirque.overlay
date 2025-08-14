@@ -87,7 +87,7 @@
         // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
         input-processors = <
             &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
-            &zip_xy_scaler 4 1
+            &zip_xy_scaler 5 1
         >; // swap x and y, invert x and y
         // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
         // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
@@ -127,6 +127,5 @@ west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK
 Without Acceleration (working):
 west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
-docker cp magical_haslett:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 ~/Desktop/36cirque.uf2
+docker cp magical_haslett:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36Cirque.uf2'
 */
-
