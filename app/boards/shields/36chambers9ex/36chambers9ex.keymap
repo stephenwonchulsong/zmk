@@ -194,6 +194,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
                 , <&macro_release &kp RSHFT>
                 , <&kp AMPS &kp UNDER &kp LBRC &kp A &kp G &kp Y &kp RBRC &kp DLLR>
                 ;
+        };
         topthirds: topthirds {
             label = "topthirds";
             compatible = "zmk,behavior-macro";
@@ -211,6 +212,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
                 , <&macro_release &kp LALT>
                 , <&macro_release &kp LGUI>
                 ;
+        };
         botthirds: botthirds {
             label = "botthirds";
             compatible = "zmk,behavior-macro";
@@ -283,7 +285,16 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
                 , <&macro_release &kp LGUI>
                 ;
         };
-    };
+        rightminusgt: rightminusgt {
+            label = "rightminusgt";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_tap &kp MINUS &kp GT>
+                ;
+        };
     };
     behaviors {
         gresc: grave_escape {
@@ -594,6 +605,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
         // };
     };
 };
+/{
     keymap {
         compatible = "zmk,keymap";
 
@@ -666,8 +678,8 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
         extra_layer {
             bindings = <
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
-    &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp F18       &kp K           &textit    &bhm LCTL P
-    &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &bhm LSHFT SEMI      
+    &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp F18       &kp K           &textit    &bhm LSHFT P 
+    &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &rightminusgt      
     &parencite       &trans       &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
