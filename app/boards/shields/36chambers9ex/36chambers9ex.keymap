@@ -295,6 +295,24 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
                 = <&macro_tap &kp MINUS &kp GT>
                 ;
         };
+        copypastelink: copypastelink {
+            label = "copypastelink";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp U &kp C &kp TAB>
+                , <&macro_release &kp LGUI>
+                , <&macro_press &kp LGUI>
+                , <&macro_tap &kp F>
+                , <&macro_wait_time 50>
+                , <&macro_tap &kp V>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp RET>
+                ;
+        };
     };
     behaviors {
         gresc: grave_escape {
@@ -503,35 +521,9 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
             tapping-term-ms = <200>;
             bindings = <&R_1W>, <&R_1W>, <&R_2W>;
         };
-};
-
+    };
     combos {
         compatible = "zmk,combos";
-        // combo_MB1L {
-        //     timeout-ms = <50>;
-        //     key-positions = <4 14>;
-        //     bindings = <&mkp MB1>;
-        // };
-        // combo_MB2R {
-        //     timeout-ms = <50>;
-        //     key-positions = <5 15>;
-        //     bindings = <&mkp MB2>;
-        // };
-        // combo_MB2R {
-        //     timeout-ms = <50>;
-        //     key-positions = <6 16>;
-        //     bindings = <&mkp MB2>;
-        // };
-        // combo_MB1L {
-        //     timeout-ms = <50>;
-        //     key-positions = <4 14>;
-        //     bindings = <&mkp MB1>;
-        // };
-        // combo_MB1L_1 {
-        //     timeout-ms = <50>;
-        //     key-positions = <3 13>;
-        //     bindings = <&mkp MB1>;
-        // };
         combo_SCROLLUP {
             timeout-ms = <50>;
             key-positions = <3 13>;
@@ -542,67 +534,11 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
             key-positions = <13 23>;
             bindings = <&msc SCRL_DOWN>;
         };
-        // combo_SCROLLLEFT {
-        //     timeout-ms = <50>;
-        //     key-positions = <10 11>;
-        //     bindings = <&msc SCRL_LEFT>;
-        // };
-        // combo_SCROLLRIGHT {
-        //     timeout-ms = <50>;
-        //     // key-positions = <4 14>;
-        //     key-positions = <11 12>;
-        //     bindings = <&msc SCRL_RIGHT>;
-        // };
         combo_BACK {
             timeout-ms = <50>;
             key-positions = <10 20>;
             bindings = <&kp LG(LBKT)>;
         };
-        // combo_T {
-        //     timeout-ms = <50>;
-        //     key-positions = <2 3>;
-        //     bindings = <&kp T>;
-        // };
-        // combo_G {
-        //     timeout-ms = <50>;
-        //     key-positions = <12 13>;
-        //     bindings = <&kp G>;
-        // };
-        // combo_B {
-        //     timeout-ms = <50>;
-        //     key-positions = <22 23>;
-        //     bindings = <&kp B>;
-        // };
-        // combo_Y {
-        //     timeout-ms = <50>;
-        //     key-positions = <6 7>;
-        //     bindings = <&kp Y>;
-        // };
-        // combo_H {
-        //     timeout-ms = <50>;
-        //     key-positions = <16 17>;
-        //     bindings = <&kp H>;
-        // };
-        // combo_N {
-        //     timeout-ms = <50>;
-        //     key-positions = <26 27>;
-        //     bindings = <&kp N>;
-        // };
-        // combo_MB2R {
-        //     timeout-ms = <50>;
-        //     key-positions = <7 17>;fsfs
-        //     bindings = <&mkp MB2>;
-        // };
-        // combo_LGLSSPACEL {
-        //     timeout-ms = <50>;
-        //     key-positions = <13 14>;
-        //     bindings = <&kp LG(LS(SPACE))>;
-        // };
-        // combo_LGLSSPACER {
-        //     timeout-ms = <50>;
-        //     key-positions = <15 16>;
-        //     bindings = <&kp LG(LS(SPACE))>;
-        // };
     };
 };
 /{
@@ -640,7 +576,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
     &kp TILDE     &lefttop  &toptop       &righttop   &kp LG(LS(N5))   &tns AMPS N7 &tns ASTRK N8 &tns LT N9 &kp PLUS  &kp BSPC 
     &kp LG(LBKT) &leftleft &centercenter &rightright &R1WR2W            &tns DLLR N4 &tns PRCNT N5 &tns CARET N6 &kp MINUS &kp EQUAL
     &kp C_VOL_UP &leftbot  &botbot       &rightbot   &bhm LGUI B      &tns EXCL N1 &tns AT N2    &tns POUND N3 &kp DOT &kp EQUAL
-    &bhm LSHFT Z           &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RPAR N0   &lt adjust TAB  &kp F18 &mt RSHFT FSLH
+    &copypastelink           &kp BSPC     &qlt lower BSPC &tabgui 0 RET &tns RPAR N0   &lt adjust TAB  &kp F18 &mt RSHFT FSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
