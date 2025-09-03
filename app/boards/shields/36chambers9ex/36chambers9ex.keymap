@@ -313,6 +313,19 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
                 , <&macro_tap &kp RET>
                 ;
         };
+        ultimateback: ultimateback {
+            label = "ultimateback";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp LBKT>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp K_BACK>
+                ;
+        };
     };
     behaviors {
         gresc: grave_escape {
@@ -459,7 +472,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp ESC>, <&kp LG(LBRC)>, <&kp F12>;
+            bindings = <&kp ESC>, <&ultimateback>, <&kp F12>;
         };
         lefttop: lefttop {
             compatible = "zmk,behavior-tap-dance";
