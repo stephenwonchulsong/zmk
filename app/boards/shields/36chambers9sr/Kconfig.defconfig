@@ -9,6 +9,12 @@ config ZMK_SPLIT_BLE_ROLE_CENTRAL
 config SPI
     default y
 
+config I2C
+	default y
+
+config ZMK_POINTING
+    default y
+
 endif
 
 if SHIELD_36CHAMBERS9SR_LEFT || SHIELD_36CHAMBERS9SR_RIGHT
