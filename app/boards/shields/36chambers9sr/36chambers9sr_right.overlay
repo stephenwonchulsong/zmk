@@ -4,6 +4,11 @@
 	col-offset = <5>;
 }; 
 
+&right_encoder {
+    status = "okay";
+};
+
+
 // / {
 //     kscan0: kscan {
 //         compatible = "zmk,kscan-gpio-matrix";
