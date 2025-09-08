@@ -1,4 +1,10 @@
 #include "36chambers9sr.dtsi" // Notice that the main dtsi files are included in the overlay.
+
+&left_encoder {
+    status = "okay";
+};
+
+
 // / {
 //     kscan0: kscan {
 //         compatible = "zmk,kscan-gpio-matrix";
