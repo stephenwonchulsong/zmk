@@ -1,0 +1,26 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+west build -d build/trackpad43 -p -b seeeduino_xiao_ble -- -DSHIELD=trackpad43
+west build -d build/trackpad43 -p -b seeeduino_xiao_ble -- -DSHIELD=trackpad43 -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+
+ * SPDX-License-Identifier: MIT
+ */
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/pointing.h>
+
+#define default 0
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <&kp ESC>;
+        };
+    };
+};

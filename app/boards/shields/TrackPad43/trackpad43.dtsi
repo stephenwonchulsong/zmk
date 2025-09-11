@@ -1,0 +1,85 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+/ {
+	chosen {
+		zmk,kscan = &kscan0;
+		zmk,matrix_transform = &default_transform;
+	};
+
+	default_transform: keymap_transform_0 {
+		compatible = "zmk,matrix-transform";
+		columns = <1>;
+		rows = <1>;
+		map = <RC(0,0)>;
+	};
+
+	kscan0: kscan {
+		compatible = "zmk,kscan-gpio-matrix";
+		label = "KSCAN";
+		diode-direction = "col2row";
+		row-gpios
+			= <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			;
+        col-gpios
+            = <&xiao_d 7 GPIO_ACTIVE_HIGH>
+            ;
+	};
+
+    // split_inputs {
+    //     #address-cells = <1>;
+    //     #size-cells = <0>;
+    //     tps43_split: tps43_split@74 {
+    //         compatible = "zmk,input-split";
+    //         reg = <0x74>;
+    //     };
+ 
+	tps43_listener: tps43_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&tps43>;
+    };
+    &xiao_i2c {
+    status = "okay";
+    tps43: iqs5xx@74 {
+        status = "okay";
+        compatible = "azoteq,iqs5xx";
+        reg = <0x74>;
+
+        reset-gpios = <&xiao_d 0 GPIO_ACTIVE_LOW>;
+        rdy-gpios = <&xiao_d 3 GPIO_ACTIVE_HIGH>;
+
+        /*
+         * Potentially non-exhaustive list of configuration options.
+         * See: dts/bindings/input/azoteq,iqs5xx-common.yaml for a full list.
+         */
+        one-finger-tap;
+        press-and-hold;
+        press-and-hold-time = <250>;
+        two-finger-tap;
+
+        scroll;
+        natural-scroll-y;
+        natural-scroll-x;
+
+        bottom-beta = <5>;
+        stationary-threshold = <5>;
+
+        switch-xy;
+    };
+};
+// &tps43_split {
+//     device = <&tps43>;
+// };
+
+// &tps43_listener {
+//     status = "okay";
+// };
+};

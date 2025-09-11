@@ -1,6 +1,0 @@
-description: |
-  Sensor driver for the iqs5xx, using the I2C interface
-
-compatible: "azoteq,iqs5xx"
-
-include: ["i2c-device.yaml", "iqs5xx-common.yaml"]
