@@ -1,6 +1,0 @@
-description: |
-  Sensor driver for the iqs5xx, using the SPI interface
-
-compatible: "iqs5xx"
-
-include: ["spi-device.yaml", "iqs5xx-common.yaml"]

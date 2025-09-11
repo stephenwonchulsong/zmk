@@ -1,0 +1,12 @@
+if SHIELD_TRACKPAD43
+
+config ZMK_KEYBOARD_NAME
+    default "trackpad43"
+
+config ZMK_POINTING
+    default y
+
+config I2C
+	default y
+
+endif
