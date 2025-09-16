@@ -589,7 +589,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/
     &bhm LSHFT Z                &mkp MB1     &qlt lower BSPC &tabgui 0 RET &tns RSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                  >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp J K>;
         };
         lower_layer {
             bindings = <
@@ -599,7 +599,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/
     &kp C_VOL_DN &mkp MB2     &qlt lower BSPC &tabgui 0 RET &tns RPAR N0   &lt adjust TAB  &kp F18 &mt RSHFT FSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                 >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp J K>;
         };
         raise_layer {
             bindings = <
@@ -609,7 +609,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/
     &bhm LSHFT Z         &trans       &qlt adjust DEL &trans  &tns RSHFT SPACE &lt raise TAB &trans                     &mt RSHFT BSLH
     &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp J K>;
         };
         adjust_layer {
             bindings = <
@@ -619,7 +619,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/
     &bhm LSHFT C_VOL_DN    &trans        &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &mt RSHFT BSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                 >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp J K>;
         };
         commandllayer_layer {
             bindings = <
@@ -629,7 +629,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/
     &bhm LSHFT Z          &mkp MB1       &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &mt RSHFT FSLH
     &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp J K>;
         };
         extra_layer {
             bindings = <
@@ -639,7 +639,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/
     &parencite       &mkp MB2       &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS         &mt RSHFT BSLH
     &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp J K>;
         };
         mouse_layer {bindings = <
     &mkp MB1 &kp LG(LA(LEFT)) &mkp MB4  &kp LG(LA(RIGHT))  &kp T       &msc SCRL_UP   &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT    &kp HOME
@@ -648,7 +648,7 @@ docker cp magical_haslett:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/
     &msc SCRL_DOWN       &trans         &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS         &mt RSHFT BSLH
     &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp J K>;
         };
     };
 };
