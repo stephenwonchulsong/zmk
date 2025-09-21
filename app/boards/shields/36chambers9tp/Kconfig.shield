@@ -1,0 +1,7 @@
+config SHIELD_36CHAMBERS9TP_LEFT
+	def_bool $(shields_list_contains,36chambers9tp_left)
+    select SPI
+
+config SHIELD_36CHAMBERS9TP_RIGHT
+	def_bool $(shields_list_contains,36chambers9tp_right)
+    select SPI
