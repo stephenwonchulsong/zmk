@@ -1,0 +1,19 @@
+if SHIELD_36CHAMBERS9P_LEFT || SHIELD_36CHAMBERS9P_RIGHT
+
+config ZMK_SPLIT
+	default y
+config SPI
+    default y
+config ZMK_POINTING
+    default y
+endif
+
+if SHIELD_36CHAMBERS9P_RIGHT
+
+config ZMK_KEYBOARD_NAME
+	default "36chambers9p"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif

@@ -1,0 +1,42 @@
+#include "36chambers9p.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+&default_transform {
+	col-offset = <5>;
+}; 
+
+&right_encoder {
+    status = "okay";
+};
+
+
+&xiao_spi {
+    status = "okay";
+    cs-gpios = <&gpio0 31 GPIO_ACTIVE_LOW>; 
+    glidepoint: glidepoint@0 {
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        status = "okay";
+        dr-gpios = <&gpio1 19 (GPIO_ACTIVE_HIGH)>; 
+        // sensitivity = "4x";
+        // sleep;
+        // no-taps;
+    };
+};
+
+/ {
+    glidepoint_listener {
+        compatible = "zmk,input-listener";
+        device = <&glidepoint>;
+        // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
+            &zip_xy_scaler 4 1
+        >; // swap x and y, invert x and y
+        // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
+        // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
+        // input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
+    };
+};
