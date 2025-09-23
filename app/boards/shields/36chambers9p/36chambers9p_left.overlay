@@ -1,28 +1,36 @@
 #include "36chambers9p.dtsi" // Notice that the main dtsi files are included in the overlay.
 
-&left_encoder {
+&xiao_spi {
     status = "okay";
+    cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
+    shifter: 595@0 {
+        compatible = "zmk,gpio-595";
+        status = "okay";
+        gpio-controller;
+        spi-max-frequency = <200000>;
+        reg = <0>;
+        label = "4HC595";
+        #gpio-cells = <2>;
+        ngpios = <8>;
+    };
 };
-
-
-// / {
-//     kscan0: kscan {
-//         compatible = "zmk,kscan-gpio-matrix";
-//         diode-direction = "col2row";
-//     col-gpios
-//         = <&shifter 0 GPIO_ACTIVE_HIGH>  //Col0
-//         , <&shifter 1 GPIO_ACTIVE_HIGH>   //Col1
-//         , <&shifter 2 GPIO_ACTIVE_HIGH>   //Col2
-//         , <&shifter 3 GPIO_ACTIVE_HIGH>   //Col3
-//         , <&shifter 4 GPIO_ACTIVE_HIGH> //Col4
-//         ;
-// 	row-gpios
-//     	= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row0
-//         , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row1
-//         , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
-//         , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row3
-//         , <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
-//         , <&shifter 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row5
-//         ;
-//     };
-// };
+/ {
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+    col-gpios
+        = <&shifter 0 GPIO_ACTIVE_HIGH>  //Col0
+        , <&shifter 1 GPIO_ACTIVE_HIGH>   //Col1
+        , <&shifter 2 GPIO_ACTIVE_HIGH>   //Col2
+        , <&shifter 3 GPIO_ACTIVE_HIGH>   //Col3
+        , <&shifter 4 GPIO_ACTIVE_HIGH> //Col4
+        ;
+	row-gpios
+    	= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row0
+        , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row1
+        , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
+        , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row3
+        , <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
+        ;
+    };
+};
