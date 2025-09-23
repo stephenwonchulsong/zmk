@@ -5,13 +5,73 @@
 &default_transform {
 	col-offset = <5>;
 }; 
+// Encoders
+/{
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <
+        /*&left_encoder*/ 
+        &right_encoder
+        >;
+        triggers-per-rotation = <20>;
+    };
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
 
-&right_encoder {
-    status = "okay";
+};
+    &left_encoder {
+        status = "okay";
+    };
+    &right_encoder {
+        status = "okay";
+    };
+// pin control for Xiao Plus
+&pinctrl {
+    /* configuration for spi0 device, default state */
+    spi0_default: spi0_default {
+        /* node name is arbitrary */
+        group1 {
+            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
+            psels = <NRF_PSEL(SPIM_SCK,  1, 3)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 7)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 5)>;
+        };
+    };
+
+    /* configuration for spi0 device, sleep state */
+    spi0_sleep: spi0_sleep {
+        group1 {
+            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
+            psels = <NRF_PSEL(SPIM_SCK,  1, 3)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 7)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 5)>;
+            low-power-enable;
+        };
+    };
+
 };
 
+&xiao_spi {
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+};
 
 &xiao_spi {
+// &spi0 {
     status = "okay";
     cs-gpios = <&gpio0 31 GPIO_ACTIVE_LOW>; 
     glidepoint: glidepoint@0 {
@@ -19,7 +79,7 @@
         reg = <0>;
         spi-max-frequency = <1000000>;
         status = "okay";
-        dr-gpios = <&gpio1 19 (GPIO_ACTIVE_HIGH)>; 
+        dr-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH)>; 
         // sensitivity = "4x";
         // sleep;
         // no-taps;
@@ -39,4 +99,25 @@
         // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
         // input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
     };
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+        // compatible = "zmk,kscan-gpio-matrix";
+        // diode-direction = "col2row";
+    col-gpios
+    	= <&xiao_d 10 GPIO_ACTIVE_HIGH>//Col0
+        , <&xiao_d 9 GPIO_ACTIVE_HIGH>//Col1
+        , <&xiao_d 8 GPIO_ACTIVE_HIGH>//Col2
+        , <&xiao_d 7 GPIO_ACTIVE_HIGH>//Col3
+        , <&xiao_d 6 GPIO_ACTIVE_HIGH>//Col4
+        ;
+	row-gpios
+        = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  //Row0
+        , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //Row1
+        , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //Row2
+        , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //Row3
+        ;
+    };
 };
+
