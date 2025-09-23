@@ -1,6 +1,6 @@
 file_format: "1"
-id: 36chambers9sr
-name: 36CHAMBERS9sr
+id: 36chambers9p
+name: 36CHAMBERS9p
 type: shield
 url: https://github.com/
 requires: [seeeduino_xiao_ble]
@@ -8,5 +8,5 @@ features:
   - keys
   - encoder
 siblings:
-  - 36chambers9sr_left
-  - 36chambers9sr_right
+  - 36chambers9p_left
+  - 36chambers9p_right
