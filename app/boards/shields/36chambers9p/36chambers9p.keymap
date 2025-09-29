@@ -541,6 +541,12 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
             tapping-term-ms = <200>;
             bindings = <&kp LG(W)>, <&kp LS(LG(W))>;
         };
+        toggleForkLift: toggleForkLift {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(LG(1))>, <&kp LC(LG(5))>, <&kp LC(LG(6))>;//name, modified, size
+        };
     };
     combos {
         compatible = "zmk,combos";
@@ -599,7 +605,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
         raise_layer {
             bindings = <
     &mkp MB2       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &to 1
-    &kp F1       &kp LCTL        &kp LALT       &kp LGUI        &none       &none   &kp LEFT &kp UP   &kp DOWN &kp RET
+    &kp F1       &kp LCTL        &kp LALT       &kp LGUI        &none       &toggleForkLift   &kp LEFT &kp UP   &kp DOWN &kp RET
     &kp LSHFT &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
     &bhm LSHFT Z    &trans     &trans       &qlt adjust DEL &trans  &tns RSHFT SPACE &lt raise TAB &trans      &trans               &mt RSHFT BSLH
     &trans     &trans       &trans     &trans       &trans
