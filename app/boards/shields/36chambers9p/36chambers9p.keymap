@@ -327,6 +327,18 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
                 , <&macro_tap &kp K_BACK>
                 ;
         };
+        commandq: commandq {
+            label = "commandq";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp Q>
+                , <&macro_release &kp LGUI>
+                ;
+        };
     };
     behaviors {
         gresc: grave_escape {
@@ -390,12 +402,21 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
             bindings = <&kp DOT>, <&kp QMARK>;
             mods = <(MOD_RSFT)>;
         };
-        qtab: q_cmdandtab {
-            compatible = "zmk,behavior-mod-morph";
-            label = "Q_CMDANDTAB";
-            #binding-cells = <0>;
-            bindings = <&kp Q>, <&kp LG(TAB)>;
-            mods = <(MOD_LGUI)>;
+        // qtab: q_cmdandtab {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "Q_CMDANDTAB";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp Q>, <&kp LG(TAB)>;
+        //     mods = <(MOD_LGUI)>;
+        // };
+        qtab2: qtab2 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Q_CMDANDTAB2";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+            global-quick-tap;
+            bindings = <&commandq>, <&kp>;
         };
         tabgui: tabandgui {
             compatible = "zmk,behavior-hold-tap";
@@ -625,7 +646,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
         commandllayer_layer {
             bindings = <
     &kp GRAVE        &arcwindow        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp TILDE
-    &kp TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
+    &qtab2 0 TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar &dotrpar &kp SEMI
     &bhm LSHFT Z    &trans      &mkp MB1       &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &trans &mt RSHFT FSLH
     &trans     &trans       &trans     &trans       &trans
