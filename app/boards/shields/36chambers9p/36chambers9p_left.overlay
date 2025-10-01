@@ -1,19 +1,20 @@
 #include "36chambers9p.dtsi" // Notice that the main dtsi files are included in the overlay.
 
-&xiao_spi {
-    status = "okay";
-    cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
-    shifter: 595@0 {
-        compatible = "zmk,gpio-595";
-        status = "okay";
-        gpio-controller;
-        spi-max-frequency = <200000>;
-        reg = <0>;
-        label = "4HC595";
-        #gpio-cells = <2>;
-        ngpios = <8>;
-    };
-};
+// &xiao_spi {
+//     status = "okay";
+//     cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
+//     shifter: 595@0 {
+//         compatible = "zmk,gpio-595";
+//         status = "okay";
+//         gpio-controller;
+//         spi-max-frequency = <200000>;
+//         reg = <0>;
+//         label = "4HC595";
+//         #gpio-cells = <2>;
+//         ngpios = <8>;
+//     };
+// };
+
 / {
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";

@@ -29,14 +29,14 @@
         steps = <80>;
         status = "disabled";
     };
-
 };
-    &left_encoder {
-        status = "okay";
-    };
-    &right_encoder {
-        status = "okay";
-    };
+&left_encoder {
+    status = "okay";
+};
+&right_encoder {
+    status = "okay";
+};
+
 // pin control for Xiao Plus
 &pinctrl {
     /* configuration for spi0 device, default state */
@@ -49,7 +49,6 @@
                     <NRF_PSEL(SPIM_MISO, 1, 5)>;
         };
     };
-
     /* configuration for spi0 device, sleep state */
     spi0_sleep: spi0_sleep {
         group1 {
@@ -63,14 +62,14 @@
 
 };
 
-&xiao_spi {
+&spi0 {
     compatible = "nordic,nrf-spim";
     pinctrl-0 = <&spi0_default>;
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
 };
 
-&xiao_spi {
+&spi0 {
 // &spi0 {
     status = "okay";
     cs-gpios = <&gpio0 31 GPIO_ACTIVE_LOW>; 
