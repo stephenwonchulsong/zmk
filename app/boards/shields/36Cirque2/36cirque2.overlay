@@ -1,47 +1,60 @@
 
-#include <dt-bindings/zmk/matrix_transform.h>
 // // pin control for Xiao Plus
-&pinctrl {
-    /* configuration for spi0 device, default state */
-    spi0_default: spi0_default {
-        /* node name is arbitrary */
-        group1 {
-            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
-            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 15)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
-        };
-    };
-    /* configuration for spi0 device, sleep state */
-    spi0_sleep: spi0_sleep {
-        group1 {
-            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
-            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 15)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
-            low-power-enable;
-        };
-    };
-};
+// &pinctrl {
+//     /* configuration for spi0 device, default state */
+//     spi0_default: spi0_default {
+//         /* node name is arbitrary */
+//         group1 {
+//             /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
+//             psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
+//                     <NRF_PSEL(SPIM_MOSI, 1, 15)>,
+//                     <NRF_PSEL(SPIM_MISO, 1, 14)>;
+//         };
+//     };
+//     /* configuration for spi0 device, sleep state */
+//     spi0_sleep: spi0_sleep {
+//         group1 {
+//             /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
+//             psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
+//                     <NRF_PSEL(SPIM_MOSI, 1, 15)>,
+//                     <NRF_PSEL(SPIM_MISO, 1, 14)>;
+//             low-power-enable;
+//         };
+//     };
+// };
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
-
-&spi0 {
-    compatible = "nordic,nrf-spim";
+&xiao_spi {
     status = "okay";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
-    pinctrl-names = "default", "sleep";
-    cs-gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&gpio1 28 GPIO_ACTIVE_LOW>; // this is d7
     glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
         reg = <0>;
         spi-max-frequency = <1000000>;
         status = "okay";
-        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-        // sensitivity = "2x";
+        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>; // this is d3
+        // sensitivity = "4x";
+        // sleep;
+        // no-taps;
     };
 };
+
+// &spi0 {
+//     compatible = "nordic,nrf-spim";
+//     status = "okay";
+//     pinctrl-0 = <&spi0_default>;
+//     pinctrl-1 = <&spi0_sleep>;
+//     pinctrl-names = "default", "sleep";
+//     cs-gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
+//     glidepoint: glidepoint@0 {
+//         compatible = "cirque,pinnacle";
+//         reg = <0>;
+//         spi-max-frequency = <1000000>;
+//         status = "okay";
+//         dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+//         // sensitivity = "2x";
+//     };
+// };
 
 // Configure the pointer acceleration:
 //
@@ -79,6 +92,7 @@
     // };
  };
 };
+#include <dt-bindings/zmk/matrix_transform.h>
 / {
 
     chosen {
