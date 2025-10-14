@@ -1,2 +1,0 @@
-config SHIELD_TRACKPAD43
-    def_bool $(shields_list_contains,TrackPad43)
