@@ -1,7 +1,7 @@
-if SHIELD_TRACKPAD43
+if TPS43
 
 config ZMK_KEYBOARD_NAME
-    default "TrackPad43"
+    default "TPS43"
 
 config ZMK_POINTING
     default y
