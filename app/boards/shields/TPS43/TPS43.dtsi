@@ -33,28 +33,22 @@
             ;
 	};
 
-    // split_inputs {
-    //     #address-cells = <1>;
-    //     #size-cells = <0>;
-    //     tps43_split: tps43_split@74 {
-    //         compatible = "zmk,input-split";
-    //         reg = <0x74>;
-    //     };
- 
-	tps43_listener: tps43_listener {
+/ {
+    tps43_input: tps43_input {
         compatible = "zmk,input-listener";
-        status = "okay";
         device = <&tps43>;
     };
-    &xiao_i2c {
+};
+
+&xiao_i2c {
     status = "okay";
     tps43: iqs5xx@74 {
         status = "okay";
         compatible = "azoteq,iqs5xx";
         reg = <0x74>;
 
-        reset-gpios = <&xiao_d 0 GPIO_ACTIVE_LOW>;
-        rdy-gpios = <&xiao_d 3 GPIO_ACTIVE_HIGH>;
+        reset-gpios = <&xiao_d 1 GPIO_ACTIVE_LOW>;
+        rdy-gpios = <&xiao_d 2 GPIO_ACTIVE_HIGH>;
 
         /*
          * Potentially non-exhaustive list of configuration options.
@@ -75,11 +69,6 @@
         switch-xy;
     };
 };
-// &tps43_split {
-//     device = <&tps43>;
-// };
-
-// &tps43_listener {
-//     status = "okay";
-// };
 };
+
+// west build -d build/TrackPad43 -p -b seeeduino_xiao_ble -- -DSHIELD=TrackPad43 -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
