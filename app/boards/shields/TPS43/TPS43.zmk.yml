@@ -1,8 +1,0 @@
-file_format: "1"
-id: TPS43
-name: Azoteq
-type: shield
-url: 
-requires: [seeeduino_xiao_ble] # xiao??? I not sure hier for now :)
-features:
-  - pointer

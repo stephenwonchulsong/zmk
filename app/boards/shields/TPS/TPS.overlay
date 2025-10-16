@@ -32,8 +32,8 @@
             = <&xiao_d 7 GPIO_ACTIVE_HIGH>
             ;
 	};
-
-/ {
+};
+/{
     tps43_input: tps43_input {
         compatible = "zmk,input-listener";
         device = <&tps43>;
@@ -47,7 +47,7 @@
         compatible = "azoteq,iqs5xx";
         reg = <0x74>;
 
-        reset-gpios = <&xiao_d 1 GPIO_ACTIVE_LOW>;
+        reset-gpios = <&xiao_d 3 GPIO_ACTIVE_LOW>;
         rdy-gpios = <&xiao_d 2 GPIO_ACTIVE_HIGH>;
 
         /*
@@ -69,6 +69,7 @@
         switch-xy;
     };
 };
-};
-
-// west build -d build/TrackPad43 -p -b seeeduino_xiao_ble -- -DSHIELD=TrackPad43 -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+/*
+west build -d build/TPS -p -b seeeduino_xiao_ble -- -DSHIELD=TPS -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+docker cp wizardly_wiles:/workspaces/zmk/app/build/TPS/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/TPS.uf2'
+*/
