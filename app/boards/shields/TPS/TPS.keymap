@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2020 The ZMK Contributors
  *
-west build -d build/TPS43 -p -b seeeduino_xiao_ble -- -DSHIELD=TPS43
-west build -d build/TPS43 -p -b seeeduino_xiao_ble -- -DSHIELD=TPS43 -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+west build -d build/TPS -p -b seeeduino_xiao_ble -- -DSHIELD=TPS
+west build -d build/TPS -p -b seeeduino_xiao_ble -- -DSHIELD=TPS -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
 
  * SPDX-License-Identifier: MIT
  */

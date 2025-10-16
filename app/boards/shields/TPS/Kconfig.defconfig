@@ -1,7 +1,7 @@
-if TPS43
+if TPS
 
 config ZMK_KEYBOARD_NAME
-    default "TPS43"
+    default "TPS"
 
 config ZMK_POINTING
     default y
