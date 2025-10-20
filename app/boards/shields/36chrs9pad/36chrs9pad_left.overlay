@@ -1,0 +1,38 @@
+#include "36chrs9pad.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include "36chambers9p.dtsi" // Notice that the main dtsi files are included in the overlay.
+
+/ {
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+    // col-gpios //for a board with a 595 shift register controlling the columns
+    //     = <&shifter 0 GPIO_ACTIVE_HIGH>  //Col0
+    //     , <&shifter 1 GPIO_ACTIVE_HIGH>   //Col1
+    //     , <&shifter 2 GPIO_ACTIVE_HIGH>   //Col2
+    //     , <&shifter 3 GPIO_ACTIVE_HIGH>   //Col3
+    //     , <&shifter 4 GPIO_ACTIVE_HIGH> //Col4
+    //     ;
+	// row-gpios
+    // 	= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row0
+    //     , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row1
+    //     , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
+    //     , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row3
+    //     , <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
+    //     ;
+    col-gpios//without shift register, direct to pins
+        = <&xiao_d 10 GPIO_ACTIVE_HIGH>  //Col0
+        , <&xiao_d 9 GPIO_ACTIVE_HIGH>   //Col1
+        , <&xiao_d 8 GPIO_ACTIVE_HIGH>   //Col2
+        , <&xiao_d 7 GPIO_ACTIVE_HIGH>   //Col3
+        , <&xiao_d 5 GPIO_ACTIVE_HIGH> //Col4
+        , <&xiao_d 6 GPIO_ACTIVE_HIGH> //Col5
+        ;
+	row-gpios
+    	= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row0
+        , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row1
+        , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
+        , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row3
+        , <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
+        ;
+    };
+};

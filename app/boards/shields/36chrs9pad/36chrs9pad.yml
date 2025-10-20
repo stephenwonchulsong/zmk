@@ -1,6 +1,6 @@
 file_format: "1"
-id: 36Chambers9c
-name: 36CHAMBERS9c
+id: 36Chambers9pad
+name: 36CHAMBERS9pad
 type: shield
 url: https://github.com/
 requires: [seeeduino_xiao_ble]
@@ -9,6 +9,6 @@ features:
   - encoder
   - pointer
 siblings:
-  - 36Chambers9c_left
-  - 36Chambers9c_right
-  - 36Chambers9c_cirque
+  - 36Chambers9tpad_left
+  - 36Chambers9tpad_right
+  - 36Chambers9tpad_tpad

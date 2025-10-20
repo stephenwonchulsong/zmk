@@ -1,7 +1,7 @@
-if SHIELD_36CHAMBERS9C_LEFT
+if SHIELD_36CHRS9PAD_RIGHT
 
 config ZMK_KEYBOARD_NAME
-    default "36Chambers9c"
+    default "36chrs9pad"
 
 config ZMK_SPLIT
     default y
@@ -17,7 +17,7 @@ config SPI
 
 endif
 
-if SHIELD_36CHAMBERS9C_CIRQUE
+if SHIELD_36CHRS9PAD_TPAD
 
 config ZMK_POINTING
     default y
@@ -25,12 +25,13 @@ config ZMK_POINTING
 config ZMK_SPLIT
     default y
 
-config SPI
+config I2C
     default y
+
 
 endif
 
-if SHIELD_36CHAMBERS9C_RIGHT
+if SHIELD_36CHRS9PAD_LEFT
 
 config ZMK_POINTING
     default y
