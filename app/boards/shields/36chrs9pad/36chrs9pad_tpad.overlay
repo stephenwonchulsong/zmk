@@ -9,30 +9,21 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 
+&default_transform {
+	col-offset = <0>;
+}; 
+
 / {
-	chosen {
-		zmk,kscan = &kscan0;
-		zmk,matrix_transform = &default_transform;
-	};
-
-	default_transform: keymap_transform_0 {
-		compatible = "zmk,matrix-transform";
-		columns = <1>;
-		rows = <1>;
-		map = <RC(0,0)>;
-	};
-
-	kscan0: kscan {
-		compatible = "zmk,kscan-gpio-matrix";
-		label = "KSCAN";
-		diode-direction = "col2row";
-		row-gpios
-			= <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			;
-        col-gpios
-            = <&xiao_d 7 GPIO_ACTIVE_HIGH>
-            ;
-	};
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+    col-gpios//without shift register, direct to pins
+        = <&xiao_d 2 GPIO_ACTIVE_HIGH>  //Col0
+        ;
+	row-gpios
+        = <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
+        ;
+    };
 };
 /{
     tps43_input: tps43_input {

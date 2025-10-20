@@ -37,66 +37,7 @@
     status = "okay";
 };
 
-// pin control for Xiao Plus
-&pinctrl {
-    /* configuration for spi0 device, default state */
-    spi0_default: spi0_default {
-        /* node name is arbitrary */
-        group1 {
-            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
-            psels = <NRF_PSEL(SPIM_SCK,  1, 3)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 7)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 5)>;
-        };
-    };
-    /* configuration for spi0 device, sleep state */
-    spi0_sleep: spi0_sleep {
-        group1 {
-            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
-            psels = <NRF_PSEL(SPIM_SCK,  1, 3)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 7)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 5)>;
-            low-power-enable;
-        };
-    };
-};
-
-&spi0 {
-    compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
-    pinctrl-names = "default", "sleep";
-};
-
-&spi0 {
-// &spi0 {
-    status = "okay";
-    cs-gpios = <&gpio0 31 GPIO_ACTIVE_LOW>; 
-    glidepoint: glidepoint@0 {
-        compatible = "cirque,pinnacle";
-        reg = <0>;
-        spi-max-frequency = <1000000>;
-        status = "okay";
-        dr-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH)>; 
-        // sensitivity = "4x";
-        // sleep;
-        // no-taps;
-    };
-};
-
 / {
-    glidepoint_listener {
-        compatible = "zmk,input-listener";
-        device = <&glidepoint>;
-        // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
-        input-processors = <
-            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
-            &zip_xy_scaler 4 1
-        >; // swap x and y, invert x and y
-        // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
-        // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
-        // input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
-    };
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
