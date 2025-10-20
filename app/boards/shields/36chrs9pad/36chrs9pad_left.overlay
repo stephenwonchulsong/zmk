@@ -1,5 +1,4 @@
 #include "36chrs9pad.dtsi" // Notice that the main dtsi files are included in the overlay.
-#include "36chambers9p.dtsi" // Notice that the main dtsi files are included in the overlay.
 
 / {
     kscan0: kscan {

@@ -1,45 +1,26 @@
 if SHIELD_36CHRS9PAD_RIGHT
-
 config ZMK_KEYBOARD_NAME
     default "36chrs9pad"
-
 config ZMK_SPLIT
     default y
-
 config ZMK_POINTING
     default y
-
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
     default y
-
-config SPI
-    default n
-
 endif
 
 if SHIELD_36CHRS9PAD_TPAD
-
 config ZMK_POINTING
     default y
-
 config ZMK_SPLIT
     default y
-
 config I2C
     default y
-
-
 endif
 
 if SHIELD_36CHRS9PAD_LEFT
-
 config ZMK_POINTING
     default y
-
 config ZMK_SPLIT
     default y
-
-config SPI
-    default n
-
 endif
