@@ -63,7 +63,7 @@
         scroll;
         natural-scroll-y;
         natural-scroll-x;
-        flip-y;
+        flip-x;
 
         bottom-beta = <5>;
         stationary-threshold = <5>;
