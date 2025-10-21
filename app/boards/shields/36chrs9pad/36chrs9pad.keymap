@@ -6,9 +6,12 @@
 
 west build -d build/36chrs9pad_left -p -b seeeduino_xiao_ble -- -DSHIELD=36chrs9pad_left -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
 west build -d build/36chrs9pad_right -p -b seeeduino_xiao_ble -- -DSHIELD=36chrs9pad_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+west build -d build/36chrs9pad_tpad -p -b seeeduino_xiao_ble -- -DSHIELD=36chrs9pad_tpad -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+
 
 docker cp wizardly_wiles:/workspaces/zmk/app/build/36chrs9pad_left/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chrs9pad_left.uf2"
 docker cp wizardly_wiles:/workspaces/zmk/app/build/36chrs9pad_right/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chrs9pad_right.uf2"
+docker cp wizardly_wiles:/workspaces/zmk/app/build/36chrs9pad_tpad/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chrs9pad_tpad.uf2"
  */
 
 #include <behaviors.dtsi>
