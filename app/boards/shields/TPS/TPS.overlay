@@ -65,7 +65,7 @@
         natural-scroll-x;
         flip-x;
 
-        bottom-beta = <5>;
+        // bottom-beta = <5>;
         stationary-threshold = <5>;
 
         // switch-xy;
