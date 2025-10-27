@@ -20,5 +20,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cmake.sourceDirectory": "/Users/stephenwsong/Documents/GitHub/zmk/app",
-  "workbench.colorTheme": "poimandres"
+  "workbench.colorTheme": "catppuccin-mocha"
 }
