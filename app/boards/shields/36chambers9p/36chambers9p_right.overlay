@@ -1,16 +1,17 @@
-#include "36chambers9p.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include "36chambers9p.dtsi" 
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 
 &default_transform {
 	col-offset = <6>;
 }; 
+
 // Encoders
 /{
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <
-        /*&left_encoder*/ 
+        &left_encoder
         &right_encoder
         >;
         triggers-per-rotation = <20>;
