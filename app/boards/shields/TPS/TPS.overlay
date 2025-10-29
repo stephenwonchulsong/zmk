@@ -3,38 +3,48 @@
  *
  * SPDX-License-Identifier: MIT
  */
-
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
+#include <dt-bindings/zmk/pointing.h>
+
+// #include <zephyr/dt-bindings/input/input-event-codes.h>
+// #include <dt-bindings/zmk/outputs.h>
+// // #include <dt-bindings/zmk/mouse.h>
+// #include <dt-bindings/zmk/input_transform.h>
+// #include <input/processors/report_rate_limit.dtsi>
 
 / {
 	chosen {
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &default_transform;
 	};
-
 	default_transform: keymap_transform_0 {
 		compatible = "zmk,matrix-transform";
-		columns = <1>;
-		rows = <1>;
-		map = <RC(0,0)>;
+		columns = <2>;
+		rows = <2>;
+		map = <
+        RC(0,0) RC(1,0) 
+        RC(0,1) RC(1,1)
+        >;
 	};
 
+};
+
+/{
 	kscan0: kscan {
 		compatible = "zmk,kscan-gpio-matrix";
 		label = "KSCAN";
 		diode-direction = "col2row";
 		row-gpios
-			= <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			= <&xiao_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
         col-gpios
-            = <&xiao_d 7 GPIO_ACTIVE_HIGH>
+            = <&xiao_d 8 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 7 GPIO_ACTIVE_HIGH>
             ;
 	};
-};
-
-/{
     tps43_input: tps43_input {
         compatible = "zmk,input-listener";
         device = <&tps43>;
@@ -55,23 +65,26 @@
          * Potentially non-exhaustive list of configuration options.
          * See: dts/bindings/input/azoteq,iqs5xx-common.yaml for a full list.
          */
-        // one-finger-tap;
-        // press-and-hold;
-        // press-and-hold-time = <250>;
-        // two-finger-tap;
+        one-finger-tap;
+        press-and-hold;
+        press-and-hold-time = <250>;
+        two-finger-tap;
 
         scroll;
         natural-scroll-y;
         natural-scroll-x;
         flip-x;
 
-        // bottom-beta = <5>;
+        bottom-beta = <5>;
         stationary-threshold = <5>;
 
         // switch-xy;
     };
 };
+
 /*
 west build -d build/TPS -p -b seeeduino_xiao_ble -- -DSHIELD=TPS -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+west build -d build/TPS -p -b seeeduino_xiao_ble -- -DSHIELD=TPS -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main;/workspaces/zmk/app/zmk-input-processor-report-rate-limit"
+
 docker cp wizardly_wiles:/workspaces/zmk/app/build/TPS/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/TPS.uf2'
 */
