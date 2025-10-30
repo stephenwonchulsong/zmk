@@ -11,6 +11,8 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pleft/zephyr/zmk.uf2 "/Use
 docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9p_right.uf2"
  */
 
+
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -638,7 +640,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &mkp MB2       &kp F2       &kp F3      &kp F4       &kp F5      &kp F6  &kp F7   &kp F8   &kp F9   &to 1
     &kp F1       &kp LCTL        &kp LALT       &kp LGUI        &none       &toggleForkLift   &kp LEFT &kp UP   &kp DOWN &kp RET
     &kp LSHFT &bhm LCTRL X &bhm LALT C &bhm LGUI V  &bhm LGUI B  &tns LBRC LBKT &tns RBRC RBKT &kp SQT &kp DQT &kp RIGHT
-    &bhm LSHFT Z    &trans     &trans       &qlt adjust DEL &trans  &tns RSHFT SPACE &lt raise TAB &trans      &trans               &mt RSHFT BSLH
+    &bhm LSHFT Z         &trans       &qlt adjust DEL &trans  &tns RSHFT SPACE &lt raise TAB &trans      &trans               &mt RSHFT BSLH
     &trans     &trans       &trans     &trans       &trans       &trans
                 >;
             sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
@@ -648,17 +650,17 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &none &none        &none        &out OUT_TOG        &bt BT_CLR_ALL     &kp AMPS &kp ASTRK &LR_PAR  &kp EQUAL &bootloader
     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 3 &bt BT_SEL 3 &bt BT_CLR   &kp DLLR &kp PRCNT &kp CARET &kp UNDER &kp PIPE
     &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp EXCL &kp AT    &kp POUND &none &kp BSLH
-    &bhm LSHFT C_VOL_DN  &trans  &trans        &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &trans &mt RSHFT BSLH
+    &bhm LSHFT C_VOL_DN    &trans        &qlt adjust DEL &trans   &kp RPAR &lt adjust TAB &trans &trans &mt RSHFT BSLH
     &trans     &trans       &trans     &trans       &trans       &trans
                 >;
             sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
         };
-        commandllayer_layer {
+        commandllyer_layer {
             bindings = <
     &kp GRAVE        &arcwindow        &kp E        &bhm LSHFT R        &kp T       &kp Y       &kp U       &kp I    &kp O    &kp TILDE
     &qtab2 0 TAB      &kp S        &kp D        &kp F        &kp G       &kp H       &kp J       &kp K    &kp L    &kp RET
     &bhm LSHFT A   &bhm LCTRL X &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp N &bhm LALT M &comlpar &dotrpar &kp SEMI
-    &bhm LSHFT Z    &trans      &mkp MB1       &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &trans &mt RSHFT FSLH
+    &bhm LSHFT Z          &mkp MB1       &qlt lower DEL &kp RET     &kp SPACE   &lt raise TAB  &kp ESC &trans &mt RSHFT FSLH
     &trans     &trans       &trans     &trans       &trans       &trans
                 >;
             sensor-bindings = <&scroll_up_down>;
@@ -668,7 +670,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &kp ESC        &kp W        &kp E        &kp R        &kp T       &kp AMPS    &kp U       &kp I           &kp O     &kp RET
     &kp Q          &bhm LGUI S        &mt mouse LG(LS(SPACE))  &mo extra     &kp G       &kp PG_DN     &kp F18       &kp K           &textit    &bhm LSHFT P 
     &kp LC(LEFT)   &bhm LCTRL X &copypaste  &bhm LGUI V  &textbf &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &rightminusgt      
-    &parencite    &trans   &mkp MB2       &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS   &trans      &mt RSHFT BSLH
+    &parencite       &mkp MB2       &qlt lower DEL &kp LS(LC(LA(LG(RET))))     &kp LS(LC(LA(LG(SPACE))))   &kp LS(LC(LA(LG(TAB))))   &kp CAPS   &trans      &mt RSHFT BSLH
     &trans     &trans       &trans     &trans       &trans       &trans
                 >;
             sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
@@ -677,7 +679,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &mkp MB1 &kp LG(LA(LEFT)) &mkp MB4  &kp LG(LA(RIGHT))  &kp T       &msc SCRL_UP   &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT    &kp HOME
     &kp LG(LEFT)    &mkp MB2 &mo mouse  &mkp MB1 &kp LG(RIGHT)      &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &bhm LCTL P
     &msc SCRL_UP   &bhm LCTRL X     &bhm LALT C  &bhm LGUI V  &bhm LGUI B &kp LBRC &kp RBRC &kp GRAVE &kp SQT  &mnl mouse SEMI      
-    &msc SCRL_DOWN   &trans    &trans         &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS     &trans    &mt RSHFT BSLH
+    &msc SCRL_DOWN       &trans         &qlt lower BSPC &kp RET     &mkp MB1   &mkp MB2   &kp CAPS     &trans    &mt RSHFT BSLH
     &trans     &trans       &trans     &trans       &trans       &trans
                 >;
             sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
