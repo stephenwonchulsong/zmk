@@ -1,3 +1,4 @@
+
 file_format: "1"
 id: corne
 name: Corne
@@ -10,15 +11,6 @@ features:
   - display
   - underglow
   - studio
-  - pointer
 siblings:
   - corne_left
   - corne_right
-# manifest:
-#   remotes:
-#     - name: petejohanson
-#       url-base: https://github.com/petejohanson
-#   projects:
-#     - name: cirque-input-module
-#       remote: petejohanson
-#       revision: main
