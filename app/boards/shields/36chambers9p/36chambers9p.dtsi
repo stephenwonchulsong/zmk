@@ -5,10 +5,42 @@
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
-
-// &xiao_serial {
-//     status = "disabled";
-// };
+/*
+CS(SS) pin is D16 P0.31
+Encoder A and B for Right1 are D14 and D15, P0.09 and P0.10
+Encoder A and B for Right2 are D11 and D12, P0.15 and P0.19
+DR is D13, P1.01
+SDA D4
+SCL D5
+MISO D18 P1.05
+MOSI D19 P1.07
+SCK  D17 P1.03 
+*/
+// Encoders
+/{
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <
+        /* &left_encoder*/
+        &right_encoder
+        >;
+        triggers-per-rotation = <20>;
+    };
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
+};
 
 / {
 	chosen {
