@@ -1,0 +1,12 @@
+if TPSNN
+
+config ZMK_KEYBOARD_NAME
+    default "TPSNN"
+
+config ZMK_POINTING
+    default y
+
+config I2C
+	default y
+
+endif
