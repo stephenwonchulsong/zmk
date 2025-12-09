@@ -11,4 +11,10 @@ config ZMK_POINTING
 config I2C
     default y
 
+# enable PINCTRL
+CONFIG_PINCTRL=y
+
+# enable GPIO
+CONFIG_GPIO=y
+
 endif
