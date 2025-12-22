@@ -6,8 +6,8 @@
 west build -d build/369exleft -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9ex_left
 west build -d build/369exright -p -b seeeduino_xiao_ble -- -DSHIELD=36chambers9ex_right
 
-docker cp magical_haslett:/workspaces/zmk/app/build/369exleft/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9EXL.uf2"
-docker cp magical_haslett:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9EXR.uf2"
+docker cp wizardly_wiles:/workspaces/zmk/app/build/369exleft/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9EXL.uf2"
+docker cp wizardly_wiles:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9EXR.uf2"
  */
 
 #include <behaviors.dtsi>
