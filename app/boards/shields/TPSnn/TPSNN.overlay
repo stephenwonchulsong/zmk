@@ -119,11 +119,11 @@ TPS43 Pinout:
 5 SCL to 024
 6 NRST to 022
 
-NiceNano Pins Used:
-1
-
-west build -d build/TPSNN -p -b nice_nano_v2 -- -DSHIELD=TPSNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+west build -d build/TPSNN -p -b nice_nano -- -DSHIELD=TPSNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main"
+west build -d build/reset -p -b nice_nano -- -DSHIELD=settings_reset
 west build -d build/TPSNN -p -b nice_nano_v2 -- -DSHIELD=TPSNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/zmk-driver-azoteq-iqs5xx-main;/workspaces/zmk/app/zmk-input-processor-report-rate-limit"
 
 docker cp wizardly_wiles:/workspaces/zmk/app/build/TPSNN/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/TPSNN.uf2'
+docker cp wizardly_wiles:/workspaces/zmk/app/build/reset/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/settings_reset.uf2'
+
 */

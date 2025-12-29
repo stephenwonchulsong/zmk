@@ -1,0 +1,77 @@
+// This is default overlay for the Cirque Glidepoint touchpad connected via SPI.
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+&xiao_spi {
+    status = "okay";
+    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+    glidepoint: glidepoint@0 {
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        status = "okay";
+        dr-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>; 
+    };
+};
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+/ {
+    glidepoint_listener {
+        compatible = "zmk,input-listener";
+        device = <&glidepoint>;
+        // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_XY_SWAP)
+            &zip_xy_scaler 4 1
+        >; 
+    };
+};
+/ {
+
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix_transform = &default_transform;
+    };
+    
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <1>;
+        rows = <1>;
+        map = <RC(0,0)>;
+    };
+    
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+        row-gpios
+            = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+        col-gpios 
+            = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+            ;
+    };
+};
+/* 
+Nice Nano pins used:
+
+Cirque Pinout:
+1 SCK to 
+2 MISO to 
+3 SS to 
+4 DlR to 
+5 MOSI to 
+6 BTN2
+7 BTN3
+8 BTN1
+9 SCL to 
+10 SDA to 
+11 GND to 
+12 VDD to 
+
+Without Acceleration (working):
+west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+
+docker cp wizardly_wiles:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36Cirque.uf2'
+*/

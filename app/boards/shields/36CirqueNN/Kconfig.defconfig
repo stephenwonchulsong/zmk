@@ -1,0 +1,13 @@
+if 36CIRQUENN
+
+config ZMK_KEYBOARD_NAME
+    default "36cirqueNN"
+
+# Cirque Glidepoint trackpad
+config ZMK_POINTING
+    default y
+
+# Assuming pointing device uses SPI
+config SPI
+    default y
+endif

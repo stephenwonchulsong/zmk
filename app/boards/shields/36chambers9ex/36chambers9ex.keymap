@@ -571,8 +571,8 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/U
     /* &msc SCRL_RIGHT &kp F12 &msc SCRL_UP  &msc SCRL_LEFT &msc SCRL_DOWN*/
     /*&kp LG(RIGHT) &kp F12 &mkp MB2 &kp LG(LEFT) &mkp MB1*/
                 >;
-            // sensor-bindings = <&inc_dec_kp X Y>;
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp X Y>;
+            // sensor-bindings = <&scroll_up_down>;
         };
         colemak_layer {
             bindings = <
@@ -582,7 +582,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/U
     &bhm LSHFT Z                &mkp MB1     &qlt lower BSPC &tabgui 0 RET &tns RSHFT SPACE   &lt raise TAB  &kp F18 &mt RSHFT FSLH
     &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1 &mkp MB1
                  >;
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp X Y>;
         };
         lower_layer {
             bindings = <
@@ -602,7 +602,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/U
     &bhm LSHFT Z         &trans       &qlt adjust DEL &trans  &tns RSHFT SPACE &lt raise TAB &trans                     &mt RSHFT BSLH
     &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2 &mkp MB2
                 >;
-            sensor-bindings = <&scroll_l_r>;
+            sensor-bindings = <&inc_dec_kp X Y>;
         };
         adjust_layer {
             bindings = <
