@@ -154,3 +154,6 @@
     };
   };
 }; 
+/*
+west build -d build/AdeptBLE -p -b seeeduino_xiao_ble -- -DSHIELD=AdeptBLE
+*/
