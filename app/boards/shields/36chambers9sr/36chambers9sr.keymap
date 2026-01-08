@@ -751,7 +751,6 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369srright/zephyr/zmk.uf2 "/U
             key-positions = <16 17 18>;
             bindings = <&kp TAB>;
         };
-        
     };
 };
 /{
