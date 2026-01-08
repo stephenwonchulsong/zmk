@@ -16,10 +16,9 @@ SCK  D17 P1.03
 	col-offset = <6>;
 }; 
 
-
 &left_encoder {
     status = "okay";
-};
+ };
 &right_encoder {
     status = "okay";
 };
