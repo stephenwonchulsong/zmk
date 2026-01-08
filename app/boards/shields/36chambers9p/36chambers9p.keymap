@@ -21,7 +21,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
 #define colemnk 1
 #define lower 2
 #define raise 3
-#define adjust 4
+#define adjust 4 
 #define commandlayer 5
 #define extra 6
 #define mouse 7
@@ -42,7 +42,6 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     tapping-term-ms = <200>;
     flavor = "hold-preferred";
 };
-
 
 /{ // <---[[root node]]    
     macros {
@@ -595,8 +594,165 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
             key-positions = <10 20>;
             bindings = <&kp LG(LBKT)>;
         };
+        combo_D {
+            timeout-ms = <15>;
+            key-positions = <20 12 34>;
+            bindings = <&kp D>;
+        };
+        combo_Z {
+            timeout-ms = <15>;
+            key-positions = <20 34>;
+            bindings = <&kp Z>;
+        };
+        combo_X {
+            timeout-ms = <15>;
+            key-positions = <11 34>;
+            bindings = <&kp X>;
+        };
+        combo_C {
+            timeout-ms = <15>;
+            key-positions = <12 34>;
+            bindings = <&kp C>;
+        };
+        combo_V {
+            timeout-ms = <15>;
+            key-positions = <13 34>;
+            bindings = <&kp V>;
+        };
+        combo_B {
+            timeout-ms = <15>;
+            key-positions = <20 13 34>;
+            bindings = <&kp B>;
+        };
+        combo_Q {
+            timeout-ms = <15>;
+            key-positions = <20 13>;
+            bindings = <&kp Q>;
+        };
+        combo_W {
+            timeout-ms = <15>;
+            key-positions = <20 11>;
+            bindings = <&kp W>;
+        };
+        combo_F {
+            timeout-ms = <15>;
+            key-positions = <11 12>;
+            bindings = <&kp F>;
+        };
+        combo_P {
+            timeout-ms = <15>;
+            key-positions = <12 13>;
+            bindings = <&kp P>;
+        };
+        combo_G {
+            timeout-ms = <15>;
+            key-positions = <20 11 34>;
+            bindings = <&kp G>;
+        };
+        combo_LENTER {
+            timeout-ms = <15>;
+            key-positions = <11 12 13 34>;
+            bindings = <&kp RET>;
+        };
+        combo_LSPACE {
+            timeout-ms = <15>;
+            key-positions = <20 11 12 13>;
+            bindings = <&kp SPACE>;
+        };
+        combo_LBSPC {
+            timeout-ms = <15>;
+            key-positions = <11 12 13>;
+            bindings = <&kp BSPC>;
+        };
+        combo_LESC {
+            timeout-ms = <15>;
+            key-positions = <20 11 13>;
+            bindings = <&kp ESC>;
+        };
+        // righthand 35 16 17 18 29
+        combo_J {
+            timeout-ms = <15>;
+            key-positions = <35 18 29>;
+            bindings = <&kp J>;
+        };
+        combo_L {
+            timeout-ms = <15>;
+            key-positions = <16 17>;
+            bindings = <&kp L>;
+        };
+        combo_U {
+            timeout-ms = <15>;
+            key-positions = <17 18>;
+            bindings = <&kp U>;
+        };
+        combo_Y {
+            timeout-ms = <15>;
+            key-positions = <18 29>;
+            bindings = <&kp Y>;
+        };
+        combo_SEMI {
+            timeout-ms = <15>;
+            key-positions = <16 29>;
+            bindings = <&kp SEMI>;
+        };
+        combo_H {
+            timeout-ms = <15>;
+            key-positions = <35 17 29>;
+            bindings = <&kp H>;
+        };
+        combo_K {
+            timeout-ms = <15>;
+            key-positions = <16 29>;
+            bindings = <&kp K>;
+        };
+        combo_M {
+            timeout-ms = <15>;
+            key-positions = <16 17 18>;
+            bindings = <&kp M>;
+        };
+        combo_COMMA{
+            timeout-ms = <15>;
+            key-positions = <17 18 29>;
+            bindings = <&kp N>;
+        };
+        combo_PERIOD {
+            timeout-ms = <15>;
+            key-positions = <16 29>;
+            bindings = <&kp PERIOD>;
+        };
+        combo_QUESTION {
+            timeout-ms = <15>;
+            key-positions = <35 29>;
+            bindings = <&kp QMARK>;
+        };
+        combo_RENTER {
+            timeout-ms = <15>;
+            key-positions = <35 17 18 29>;
+            bindings = <&kp RET>;
+        };
+        combo_RSPACE {
+            timeout-ms = <15>;
+            key-positions = <35 16 17 18 29>;
+            bindings = <&kp SPACE>;
+        };
+        combo_RBSPC {
+            timeout-ms = <15>;
+            key-positions = <16 17 18 29>;
+            bindings = <&kp BSPC>;
+        };
+        combo_RESC {
+            timeout-ms = <15>;
+            key-positions = <17 29>;
+            bindings = <&kp ESC>;
+        };
+        combo_RTAB {
+            timeout-ms = <15>;
+            key-positions = <16 17 18>;
+            bindings = <&kp TAB>;
+        };
     };
 };
+
 /{
     keymap {
         compatible = "zmk,keymap";
@@ -609,8 +765,8 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &bhm LSHFT Z                    &dmousecombo2 0 MB1 &qlt lower BSPC     &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18         &mkp MB2            &mt RSHFT FSLH
     &mkp MB1        &mkp MB1        &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1
                 >;
-            sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
-            // sensor-bindings = <&inc_dec_kp J K>;
+            // sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
         colemak_layer {
             bindings = <
@@ -620,7 +776,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &bhm LSHFT Z                    &dmousecombo2 0 MB1 &qlt lower BSPC     &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18         &mkp MB2            &mt RSHFT FSLH
     &mkp MB1        &mkp MB1        &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1
                  >;
-            sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
         lower_layer {
             bindings = <
@@ -630,7 +786,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &kp C_VOL_DN                    &mkp MB2            &qlt lower BSPC     &tabgui 0 RET   &tns RPAR N0        &lt adjust TAB      &kp F18         &mkp MB2            &mt RSHFT FSLH
     &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
         raise_layer {
             bindings = <
@@ -640,7 +796,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &bhm LSHFT Z                    &trans              &qlt adjust DEL     &trans          &tns RSHFT SPACE    &lt raise TAB       &trans          &trans              &mt RSHFT BSLH
     &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
         adjust_layer {
             bindings = <
@@ -650,7 +806,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &bhm LSHFT C_VOL_DN             &trans              &qlt adjust DEL     &trans          &kp RPAR            &lt adjust TAB      &trans          &trans              &mt RSHFT BSLH
     &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
         commandlayer_layer {
             bindings = <
@@ -660,7 +816,9 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &bhm LSHFT Z                    &mkp MB1            &qlt lower DEL      &kp RET         &kp SPACE           &lt raise TAB       &kp ESC         &trans              &mt RSHFT FSLH
     &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            sensor-bindings = <&scroll_up_down>;
+            // sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&inc_dec_kp J K>;
+
         };
         extra_layer {
             bindings = <
@@ -670,7 +828,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &parencite                      &mkp MB2            &qlt lower DEL      &kp LS(LC(LA(LG(RET)))) &kp LS(LC(LA(LG(SPACE)))) &kp LS(LC(LA(LG(TAB)))) &kp CAPS  &trans              &mt RSHFT BSLH
     &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
         mouse_layer {
             bindings = <
@@ -680,7 +838,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &msc SCRL_DOWN                  &trans              &qlt lower BSPC     &kp RET         &mkp MB1            &mkp MB2            &kp CAPS        &trans              &mt RSHFT BSLH
     &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp J K>;
         };
     };
 };
