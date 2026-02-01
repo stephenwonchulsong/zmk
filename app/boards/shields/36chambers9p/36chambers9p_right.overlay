@@ -24,17 +24,17 @@ SCK  D17 P1.03
 };
 
 // Cirque I2C
-&xiao_i2c {
-    status = "okay";
-    glidepoint: glidepoint@0 {
-        compatible = "cirque,pinnacle";
-        reg = <0>;
-        status = "okay";
-        dr-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH)>;
-        // sensitivity = "4x";
-        // sleep;
-        no-taps;
-    };
+// &xiao_i2c {
+//     status = "okay";
+//     glidepoint: glidepoint@0 {
+//         compatible = "cirque,pinnacle";
+//         reg = <0>;
+//         status = "okay";
+//         dr-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH)>;
+//         // sensitivity = "4x";
+//         // sleep;
+//         no-taps;
+//     };
         // Rotation config, from Pete
     // This will change in the future
     // https://discord.com/channels/719497620560543766/845285481888743434/1206407883777114182
@@ -48,7 +48,7 @@ SCK  D17 P1.03
     //         x-invert;
     //     };
     // };
-};
+// };
 
 // Cirque SPI
 // // pin control for Xiao Plus
@@ -95,20 +95,20 @@ SCK  D17 P1.03
 //         // no-taps;
 //     };
 // };
-/{
-    glidepoint_listener {
-        compatible = "zmk,input-listener";
-        device = <&glidepoint>;
-        // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
-        input-processors = <
-            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
-            &zip_xy_scaler 4 1
-        >; // swap x and y, invert x and y
-        // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
-        // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
-        // input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
-    };
-};
+// /{
+//     glidepoint_listener {
+//         compatible = "zmk,input-listener";
+//         device = <&glidepoint>;
+//         // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
+//         input-processors = <
+//             &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
+//             &zip_xy_scaler 4 1
+//         >; // swap x and y, invert x and y
+//         // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
+//         // input-processors = <&zip_xy_scaler 3 1>; // 3x faster cursor
+//         // input-processors = <&zip_xy_scaler 4 1>; // 4x faster cursor
+//     };
+// };
 
 /{
     kscan0: kscan {
