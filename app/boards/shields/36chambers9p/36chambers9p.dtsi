@@ -21,7 +21,7 @@ SCK  D17 P1.03
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <
-        /* &left_encoder*/
+        &left_encoder
         &right_encoder
         >;
         triggers-per-rotation = <20>;
@@ -30,6 +30,8 @@ SCK  D17 P1.03
         compatible = "alps,ec11";
         a-gpios = <&gpio0 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        // a-gpios = <&xiao_d 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        // b-gpios = <&xiao_d 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <80>;
         status = "disabled";
     };
@@ -37,6 +39,8 @@ SCK  D17 P1.03
         compatible = "alps,ec11";
         a-gpios = <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        // a-gpios = <&xiao_d 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        // b-gpios = <&xiao_d 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <80>;
         status = "disabled";
     };
