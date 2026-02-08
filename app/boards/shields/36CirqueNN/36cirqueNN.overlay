@@ -2,7 +2,7 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 
-&xiao_spi {
+&pro_micro_spi {
     status = "okay";
     cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
     glidepoint: glidepoint@0 {
@@ -46,10 +46,10 @@
         label = "KSCAN";
         diode-direction = "col2row";
         row-gpios
-            = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
         col-gpios 
-            = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+            = <&pro_micro 3 GPIO_ACTIVE_HIGH>
             ;
     };
 };
@@ -71,7 +71,8 @@ Cirque Pinout:
 12 VDD to 
 
 Without Acceleration (working):
-west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/36cirqueNN -p -b nice_nano -- -DSHIELD=36cirqueNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/36cirqueNN -p -b nice_nano -- -DSHIELD=36cirqueNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
-docker cp wizardly_wiles:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36Cirque.uf2'
+docker cp wizardly_wiles:/workspaces/zmk/app/build/36CirqueNN/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36CirqueNN.uf2'
 */
