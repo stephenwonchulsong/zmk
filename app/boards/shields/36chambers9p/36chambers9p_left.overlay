@@ -20,10 +20,10 @@
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
     col-gpios //for a board with a 595 shift register controlling the columns
-        = <&shifter 0 GPIO_ACTIVE_HIGH>  //Col0
-        , <&shifter 1 GPIO_ACTIVE_HIGH>   //Col1
-        , <&shifter 2 GPIO_ACTIVE_HIGH>   //Col2
-        , <&shifter 3 GPIO_ACTIVE_HIGH>   //Col3
+        = <&shifter 0 GPIO_ACTIVE_HIGH> //Col0
+        , <&shifter 1 GPIO_ACTIVE_HIGH> //Col1
+        , <&shifter 2 GPIO_ACTIVE_HIGH> //Col2
+        , <&shifter 3 GPIO_ACTIVE_HIGH> //Col3
         , <&shifter 4 GPIO_ACTIVE_HIGH> //Col4
         ;
 	row-gpios

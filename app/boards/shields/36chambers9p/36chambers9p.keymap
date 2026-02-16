@@ -34,7 +34,7 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
 // #define unlock 9
 // #define lockhigh 10
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 30
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 140
 
 &mt {
     tapping-term-ms = <200>;
@@ -753,6 +753,11 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
             key-positions = <16 17 18>;
             bindings = <&kp TAB>;
         };
+        combo_LANG {
+            timeout-ms = <15>;
+            key-positions = <13 16>;
+            bindings = <&kp F18>;
+        };
     };
 };
 
@@ -766,10 +771,9 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &kp Q           &kp S           &dmousecombo 0 D        &mnl extra F        &kp G           &bhm LGUI H         &bhm LGUI J         &bhm LALT K     &bhm LCTL L         &bhm LSHFT P
     &kp A           &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &tns COLON SEMI
     &bhm LSHFT Z                    &mkp MB1 &qlt lower BSPC     &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18         &mkp MB1            &mt RSHFT FSLH
-    &mkp MB1        &mkp MB1       &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1
+    &mkp MB1        &mkp MB1       &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1 &mkp MB1        &mkp MB1       &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1
                 >;
-            // sensor-bindings = <&inc_dec_kp X Y &inc_dec_kp J K>;
-            sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
+            sensor-bindings = <&inc_dec_kp X Y &scroll_up_down>;
         };
         colemak_layer {
             bindings = <
@@ -777,9 +781,9 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369pright/zephyr/zmk.uf2 "/Us
     &kp Q           &kp R           &dmousecombo 0 D        &mnl extra T        &kp D           &kp H               &kp N               &kp E           &kp I               &kp SEMI
     &kp A           &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &kp K               &kp M               &comlpar        &dotrpar            &kp O      
     &bhm LSHFT Z                    &dmousecombo2 0 MB1 &qlt lower BSPC     &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18         &mkp MB1            &mt RSHFT FSLH
-    &mkp MB1        &mkp MB1        &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1
+    &mkp MB1        &mkp MB1        &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1 &mkp MB1        &mkp MB1       &mkp MB1            &mkp MB1            &mkp MB1        &mkp MB1
                  >;
-sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
+sensor-bindings = <&inc_dec_kp X Y &scroll_up_down>;
         };
         lower_layer {
             bindings = <
@@ -787,8 +791,9 @@ sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
     &kp LG(LBKT)    &leftleft       &centercenter       &rightright         &R1WR2W         &tns DLLR N4        &tns PRCNT N5       &tns CARET N6   &kp MINUS           &kp EQUAL
     &kp C_VOL_UP    &leftbot        &botbot             &rightbot           &bhm LGUI B     &tns EXCL N1        &tns AT N2          &tns POUND N3   &kp DOT             &kp EQUAL
     &kp C_VOL_DN                    &mkp MB2            &qlt lower BSPC     &tabgui 0 RET   &tns RPAR N0        &lt adjust TAB      &kp F18         &mkp MB2            &mt RSHFT FSLH
-    &mkp MB2        &mkp MB2       &mkp MB2            &mkp MB2            &mkp MB2        &mkp MB2                >;
-sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
+    &mkp MB2        &mkp MB2       &mkp MB2            &mkp MB2            &mkp MB2        &mkp MB2 &mkp MB2        &mkp MB2       &mkp MB2            &mkp MB2            &mkp MB2       &mkp MB2               
+    >;
+sensor-bindings = <&inc_dec_kp X Y &scroll_l_r>;
         };
         raise_layer {
             bindings = <
@@ -796,9 +801,9 @@ sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
     &kp F1          &kp LCTL        &kp LALT            &kp LGUI            &none           &toggleForkLift     &kp LEFT            &kp UP          &kp DOWN            &kp RET
     &kp LSHFT       &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns LBRC LBKT      &tns RBRC RBKT      &kp SQT         &kp DQT             &kp RIGHT
     &bhm LSHFT Z                    &trans              &qlt adjust DEL     &trans          &tns RSHFT SPACE    &lt raise TAB       &trans          &trans              &mt RSHFT BSLH
-    &trans          &trans          &trans              &trans              &trans          &trans
+    &trans          &trans          &trans              &trans              &trans          &trans &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
+sensor-bindings = <&inc_dec_kp X Y &scroll_l_r>;
         };
         adjust_layer {
             bindings = <
@@ -806,9 +811,9 @@ sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
     &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 3        &bt BT_SEL 3        &bt BT_CLR      &kp DLLR            &kp PRCNT           &kp CARET       &kp UNDER           &kp PIPE
     &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C        &bhm LGUI V         &bhm LGUI B     &kp EXCL            &kp AT              &kp POUND       &none               &kp BSLH
     &bhm LSHFT C_VOL_DN             &trans              &qlt adjust DEL     &trans          &kp RPAR            &lt adjust TAB      &trans          &trans              &mt RSHFT BSLH
-    &trans          &trans          &trans              &trans              &trans          &trans
+    &trans          &trans          &trans              &trans              &trans          &trans &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            sensor-bindings = <&inc_dec_kp J K>;
+            sensor-bindings = <&inc_dec_kp X Y &scroll_l_r>;    
         };
         commandlayer_layer {
             bindings = <
@@ -816,10 +821,9 @@ sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
     &qtab2 0 TAB    &kp S           &kp D               &kp F               &kp G           &kp H               &kp J               &kp K           &kp L               &kp RET
     &bhm LSHFT A    &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &kp SEMI
     &bhm LSHFT Z                    &mkp MB1            &qlt lower DEL      &kp RET         &kp SPACE           &lt raise TAB       &kp ESC         &trans              &mt RSHFT FSLH
-    &trans          &trans          &trans              &trans              &trans          &trans
+    &trans          &trans          &trans              &trans              &trans          &trans &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-            // sensor-bindings = <&scroll_up_down>;
-sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
+sensor-bindings = <&inc_dec_kp X Y &scroll_up_down>;
         };
         extra_layer {
             bindings = <
@@ -827,9 +831,9 @@ sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
     &kp Q           &bhm LGUI S     &mt mouse LG(LS(SPACE)) &mo extra       &kp G           &kp PG_DN           &kp F18             &kp K           &textit             &bhm LSHFT P 
     &kp LC(LEFT)    &bhm LCTRL X    &copypaste          &bhm LGUI V         &textbf         &kp LBRC            &kp RBRC            &kp GRAVE       &kp SQT             &rightminusgt      
     &parencite                      &mkp MB2            &qlt lower DEL      &kp LS(LC(LA(LG(RET)))) &kp LS(LC(LA(LG(SPACE)))) &kp LS(LC(LA(LG(TAB)))) &kp CAPS  &trans              &mt RSHFT BSLH
-    &trans          &trans          &trans              &trans              &trans          &trans
+    &trans          &trans          &trans              &trans              &trans          &trans &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
+sensor-bindings = <&inc_dec_kp X Y &scroll_up_down>;
         };
         mouse_layer {
             bindings = <
@@ -837,9 +841,9 @@ sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
     &kp LG(LEFT)    &mkp MB2        &mo mouse           &mkp MB1            &kp LG(RIGHT)   &msc SCRL_DOWN      &mmv MOVE_LEFT      &mmv MOVE_DOWN  &mmv MOVE_RIGHT     &bhm LCTL P
     &msc SCRL_UP    &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &kp LBRC            &kp RBRC            &kp GRAVE       &kp SQT             &mnl mouse SEMI      
     &msc SCRL_DOWN                  &mkp MB1              &qlt lower BSPC     &kp RET         &mkp MB1            &mkp MB2            &kp CAPS        &trans              &mt RSHFT BSLH
-    &trans          &trans          &trans              &trans              &trans          &trans
+    &trans          &trans          &trans              &trans              &trans          &trans &trans          &trans          &trans              &trans              &trans          &trans
                 >;
-sensor-bindings = <&inc_dec_kp J K &inc_dec_kp X Y>;
+sensor-bindings = <&inc_dec_kp X Y &scroll_up_down>;
         };
     };
 };
