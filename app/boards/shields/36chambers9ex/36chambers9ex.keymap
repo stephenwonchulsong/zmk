@@ -43,7 +43,6 @@ docker cp wizardly_wiles:/workspaces/zmk/app/build/369exright/zephyr/zmk.uf2 "/U
     flavor = "hold-preferred";
 };
 
-
 /{ // <---[[root node]]    
     macros {
         R_1W: R_1W {
