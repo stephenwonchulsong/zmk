@@ -12,7 +12,7 @@
                            For Xiao NRF, default pins are: P1.13 as SPI Clock, P1.15 as SPI MOSI, P1.14 as SPI MISO
             */
             psels = <NRF_PSEL(SPIM_SCK,  1, 00)>, // D6
-                    <NRF_PSEL(SPIM_MOSI, 0, 20)>, // D3
+                    <NRF_PSEL(SPIM_MOSI, 0, 22)>, // D3
                     <NRF_PSEL(SPIM_MISO, 0, 11)>; // D7
             };
         };
@@ -21,7 +21,7 @@
         group1 {
             /* main role: configure P0.11 as SPI clock, P0.22 as SPI MOSI, P0.08 as SPI MISO */
             psels = <NRF_PSEL(SPIM_SCK,  1, 00)>, // D6
-                    <NRF_PSEL(SPIM_MOSI, 0, 20)>, // D3
+                    <NRF_PSEL(SPIM_MOSI, 0, 22)>, // D3
                     <NRF_PSEL(SPIM_MISO, 0, 11)>; // D7
             low-power-enable;
             };
@@ -33,6 +33,7 @@
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
 };
+
 &spi0 {
     status = "okay";
     cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
@@ -102,7 +103,7 @@ Cirque Pinout:
 2 MISO to P0.11(D7)
 3 SS to P0.24(D5)
 4 DR to P0.08 (D0) 
-5 MOSI to P0.20(D3)
+5 MOSI to P0.22(D3)
 6 BTN2
 7 BTN3
 8 BTN1
@@ -112,8 +113,9 @@ Cirque Pinout:
 12 VDD to 3.3v 
 
 Without Acceleration (working):
-west build -d build/36cirqueNN -p -b nice_nano -- -DSHIELD=36cirqueNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/36cirqueNN -p -b nice_nano_v2 -- -DSHIELD=36cirqueNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 west build -d build/36cirqueNN -p -b nice_nano -- -DSHIELD=36cirqueNN -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
 docker cp wizardly_wiles:/workspaces/zmk/app/build/36CirqueNN/zephyr/zmk.uf2 '/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36CirqueNN.uf2'
 */
+

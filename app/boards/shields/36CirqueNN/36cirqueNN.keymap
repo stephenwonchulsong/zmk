@@ -2,10 +2,7 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
-west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque
-west build -d build/36cirque -p -b seeeduino_xiao_ble -- -DSHIELD=36cirque -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
-docker cp magical_haslett:/workspaces/zmk/app/build/36cirque/zephyr/zmk.uf2 ~/Desktop/36cirque.uf2
 
  */
 
