@@ -86,7 +86,10 @@
         device = <&glidepoint>;
         // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
         input-processors = <
-            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_XY_SWAP)
+            &zip_xy_transform (
+                /* INPUT_TRANSFORM_X_INVERT | 
+              */INPUT_TRANSFORM_Y_INVERT | 
+                INPUT_TRANSFORM_XY_SWAP)
             &zip_xy_scaler 4 1
         >; // swap x and y, invert x and y
         // input-processors = <&zip_xy_scaler 5 2>; //2.5 faster cursor
