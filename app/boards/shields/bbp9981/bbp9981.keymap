@@ -14,7 +14,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 #define DEFAULT 0
-#define SYM 1
+#define LOWER 1
 #define UPPER 2
 #define MEDIA 3
 
@@ -74,11 +74,28 @@
     sl_mo: behavior_sl_mo {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
-        flavor = "hold-preferred";      /* 单击优先 */
-        tapping-term-ms = <450>;       /* 长按阈值 */
+        flavor = "hold-preferred";      /*  */
+        tapping-term-ms = <450>;       /*  */
         bindings = <&mo &sl>;          /* hold=MO, tap=SL */
         };
-    };
+    };        
+    behaviors {
+        qlt: quick_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&mo>, <&kp>;
+        };        
+        qmt: quick_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&kp>, <&kp>;
+                }; 
 
     behaviors {
     sk_kp: behavior_sk_kp {
@@ -88,6 +105,7 @@
         tapping-term-ms = <450>;
         bindings = <&kp &sk>;          /* hold=kp, tap=sticky key */
         };
+    };
     };
 
     keymap {
@@ -105,17 +123,17 @@
 //        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
 //        -----------------------------------------------------------------------------------------------------------------
 
-                 &mkp LCLK                                                                                          &mkp RCLK
-    &kp CLCK                &kp LGUI                            &mkp LCLK                          &mt ESC K_BACK                    &mt F4 TAB
+                 &mkp LCLK                                                                                           &mkp RCLK
+    &kp LEFT                &kp UP                           &kp CAPS                          &kp DOWN                    &kp RIGHT
     &kp Q        &kp W      &kp E       &kp R     &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
-    &kp A        &kp S      &kp D       &kp F     &kp G         &kp H             &kp J            &kp K            &kp L            &kp BSPC
-    &kp LSHFT    &kp Z      &kp X       &kp C     &kp V         &kp B             &kp N            &kp M            &tdc_to_SYM      &kp ENTER
-    &sk_kp LCTRL  LCTRL     &kp LALT                            &kp SPACE                          &sl_mo 1 1                        &sl_mo 2 2
+    &kp A        &kp S      &kp D       &kp F     &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
+    &kp Z        &kp X      &kp C       &kp V     &kp B         &kp N             &kp M            &kp COMMA        &kp QMARK        &kp ENTER
+    &kp BSPC     &kp LALT                           &qmt LSHFT SPACE                          &kp  UPPER UPPER                        &sl_mo 2 2
             >;
         };
 
 
-        sym_layer {
+        lower_layer {
 
             bindings = <
                  &kp C_VOL_UP                                                                                       &kp C_VOL_DN
