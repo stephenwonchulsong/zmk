@@ -312,5 +312,5 @@ macros {
     };
 };
 /*
-west build -d build/bbp9981 -p -b nice_nano -- -DSHIELD=bbp9981
+west build -d build/bbp9981 -p -b nice_nano -- -DSHIELD=BOARD_BBP9981
 */
