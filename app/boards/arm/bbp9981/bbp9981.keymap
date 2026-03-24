@@ -19,6 +19,11 @@
 #define ADJUST 3
 
 #define SL_MO(layer) &sl_mo layer layer //tap -> sticky layer, hold -> momentary layer
+&sl {
+    release-after-ms = <3000>;
+    };
+
+/{
 macros {
         R_1W: R_1W {
             label = "R_1W";
@@ -104,35 +109,7 @@ macros {
                 , <&macro_release &kp LSHFT>
                 , <&macro_tap &kp LEFT>
                 ;
-        };
-        lmrgui: lmrgui {
-            label = "lmrgui";
-            compatible = "zmk,behavior-macro";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &mo commandlayer &kp RGUI>
-                , <&macro_pause_for_release>
-                , <&macro_release &mo commandlayer &kp RGUI>
-                ;
-        };
-        mousecombo: mousecombo {
-            label = "mousecombo";
-            compatible = "zmk,behavior-macro";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI &kp LSHFT> 
-                , <&macro_tap &kp SPACE>
-                , <&macro_release &kp LGUI &kp LSHFT>
-                , <&macro_press &mo mouse>
-                , <&macro_pause_for_release>
-                , <&macro_release &mo mouse>
-                ;
-        };
-        };     
+        };   
         parencite: parencite {
             label = "parencite";
             compatible = "zmk,behavior-macro";
@@ -144,12 +121,7 @@ macros {
                 , <&macro_tap &kp LBKT &kp RBKT  &kp LBRC &kp RBRC &kp LEFT &kp LEFT &kp LBKT &kp RBKT &kp RIGHT &kp RIGHT>
                 ;
         };
-
-&sl {
-    release-after-ms = <3000>;
     };
-
-/ {
     behaviors {
         td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
@@ -157,54 +129,25 @@ macros {
             tapping-term-ms = <400>;
             bindings = <&mkp LCLK>, <&bt BT_CLR>;
         };
-    };
-
-    behaviors {
         td_boot_out: td_boot_out {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <400>;
             bindings = <&bootloader>, <&out OUT_TOG>;
         };
-    };
-
-    behaviors {
-        tdc_to_SYM: td_comma_to_layer {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&kp SEMI>, <&to SYM>;
-        };
-    };
-
-    behaviors {
-        tdc_to_MEDIA: td_mute_to_layer {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&kp C_MUTE>, <&to MEDIA>;
-        };
-    };
-
-    behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <400>;
             bindings = <&kp &kp>;
         };
-    };
-
-    behaviors {
-    sl_mo: behavior_sl_mo {
-        compatible = "zmk,behavior-hold-tap";
-        #binding-cells = <2>;
-        flavor = "hold-preferred";      /*  */
-        tapping-term-ms = <450>;       /*  */
-        bindings = <&mo &sl>;          /* hold=MO, tap=SL */
+        sl_mo: behavior_sl_mo {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";      /*  */
+            tapping-term-ms = <450>;       /*  */
+            bindings = <&mo &sl>;          /* hold=MO, tap=SL */
         };
-    };        
-    behaviors {
         qlt: quick_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -220,7 +163,7 @@ macros {
             quick-tap-ms = <200>;
             flavor = "hold-preferred";
             bindings = <&kp>, <&kp>;
-                }; 
+        }; 
         bhm: balanced_homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
@@ -239,7 +182,6 @@ macros {
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-    behaviors {
     sk_kp: behavior_sk_kp {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
@@ -247,7 +189,6 @@ macros {
         tapping-term-ms = <450>;
         bindings = <&kp &sk>;          /* hold=kp, tap=sticky key */
         };
-    };
     };
 
     keymap {
@@ -263,14 +204,14 @@ macros {
 // |     A      |     S    |     D    |     F    |      G      |       H        |       J        |        K        |       L      |      ←        |
 // |     alt    |     Z    |     X    |     C    |      V      |       B        |       N        |        M        |       $      |    Enter      |
 //        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
-*/        -----------------------------------------------------------------------------------------------------------------
-
+//        -----------------------------------------------------------------------------------------------------------------
+*/
                  &kp CAPS                                                                                           &mkp RCLK
     &kp LEFT                  &kp UP                           &mkp LCLK                          &kp DOWN                    &kp RIGHT
     &kp Q           &kp W        &kp E       &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
     &kp A           &kp S        &kp D       &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
     &bhm LSHFT Z    &bhm LCTRL X &bhm LALT C &bhm LGUI V &bhm LGUI B   &kp N             &kp M            &kp COMMA        &kp QMARK        &bhm ENTER RSHFT
-    &qlt lower BSPC     &kp LALT                           &bhm LSHFT SPACE                          &kp  LGUI                        &qlt upper TAB
+    &qlt LOWER BSPC     &kp LALT                           &bhm LSHFT SPACE                          &kp  LGUI                        &qlt UPPER TAB
             >;
         };
 
@@ -282,7 +223,7 @@ macros {
     &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &trans     &tns AMPS N7        &tns ASTRK N8       &tns LT N9    &kp PLUS         &kp EQUAL
     &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &trans     &tns DLLR N4        &tns PRCNT N5       &tns CARET N6 &kp MINUS          &kp DEL
     &trans    &tns AMPS N7        &tns ASTRK N8       &tns LT N9       &trans     &tns EXCL N1        &tns AT N2          &tns POUND N3 &kp FSLH    &kp ENTER
-    &qlt lower BSPC               &tns RPAR N0                              &trans           &tns RPAR N0                       &sl_mo adjust adjust
+    &qlt LOWER BSPC               &tns RPAR N0                              &trans           &tns RPAR N0                       &sl_mo ADJUST ADJUST
             >;
         };
 
@@ -294,7 +235,7 @@ macros {
     &none        &kp F1   &kp F2 &kp F3      &ext_power EP_TOG &none            &kp LT           &kp GT          &kp PIPE         &kp KP_EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &kp AMPS         &kp LBRC         &kp RBRC        &kp CARET        &kp BSPC
     &kp LSHFT    &kp F7   &kp F8 &kp F7  &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH     &kp ENTER
-    &sl_mo lower lower               &kp LALT                                      &kp  SPACE                        &to DEFAULT                      &to DEFAULT
+    &sl_mo LOWER LOWER               &kp LALT                                      &kp  SPACE                        &to DEFAULT                      &to DEFAULT
             >;
         };
 
@@ -302,7 +243,7 @@ macros {
 
             bindings = <
                  &none                                                                                        &bt BT_CLR
-    &bt BT_SEL 0    &bt BT_SEL 1                                      &bt bootloader                         &bt BT_SEL 3        &bt BT_SEL 3
+    &bt BT_SEL 0    &bt BT_SEL 1                                      &bootloader                         &bt BT_SEL 3        &bt BT_SEL 4
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &none        &none         &none           &none           &to DEFAULT      &none
@@ -311,6 +252,7 @@ macros {
         };
     };
 };
+
 /*
 west build -d build/bbp9981 -p -b nice_nano -- -DSHIELD=BOARD_BBP9981
 */
