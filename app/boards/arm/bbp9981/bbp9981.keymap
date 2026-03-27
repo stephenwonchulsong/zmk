@@ -255,4 +255,5 @@ macros {
 
 /*
 west build -d build/bbp9981 -p -b nice_nano -- -DSHIELD=BOARD_BBP9981
+west build -p -b bbp9981
 */
