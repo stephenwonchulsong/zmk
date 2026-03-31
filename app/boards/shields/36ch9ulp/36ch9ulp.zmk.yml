@@ -1,0 +1,12 @@
+file_format: "1"
+id: 36ch9ulp
+name: 36ch9ulp
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+siblings:
+  - 36ch9ulp_left
+  - 36ch9ulp_right
