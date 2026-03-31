@@ -1,41 +1,57 @@
-#include "36chambers9ex.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include <dt-bindings/zmk/matrix_transform.h>
 
-&default_transform {
-	col-offset = <6>;
-}; 
+// &pinctrl {/* configuration for spi1 device, default state */
+//     spi1_default: spi1_default {/* node name is arbitrary */
+//         group1 {
+//             /* 
+//                 main role: For nice!nano, configure P0.11 as SPI clock, P0.22 as SPI MOSI, P0.08 as SPI MISO 
+//                            For Xiao NRF, default pins are: P1.13 as SPI Clock, P1.15 as SPI MOSI, P1.14 as SPI MISO
+//             */
+//             psels = <NRF_PSEL(SPIM_SCK,  1, 13)>, // D8 (SPIM_SCK,  0, 15) between D4 & D5 would be a high speed alternate pin for the xiao plus
+//                     <NRF_PSEL(SPIM_MOSI, 0, 04)>, // D4
+//                     <NRF_PSEL(SPIM_MISO, 0, 05)>; // D5
+//             };
+//         };
 
-&right_encoder {
-    status = "okay";
+//     /* configuration for spi1 device, sleep state */
+//     spi1_sleep: spi1_sleep {
+//         group1 {
+//             /* main role: configure P0.11 as SPI clock, P0.22 as SPI MOSI, P0.08 as SPI MISO */
+//             psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
+//                     <NRF_PSEL(SPIM_MOSI, 0, 04)>,
+//                     <NRF_PSEL(SPIM_MISO, 0, 05)>;
+//             low-power-enable;
+//             };
+//         };
+//     };
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+/ {
+
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix_transform = &default_transform;
+    };
+    
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <1>;
+        rows = <1>;
+        map = <RC(0,0)>;
+    };
+    
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+        row-gpios
+            = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+        col-gpios 
+            = <&xiao_d 3 GPIO_ACTIVE_HIGH>
+            ;
+    };
 };
-
-
-/*
- * Copyright (c) 2020 Pete Johanson
- *
- * SPDX-License-Identifier: MIT
- */
-
-#include "corne_tp.dtsi"
-
-&default_transform {
-    col-offset = <6>;
-};
-
-&five_column_transform {
-    col-offset = <6>;
-};
-
-&kscan0 {
-    col-gpios
-        = <&pro_micro 14 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 20 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 21 GPIO_ACTIVE_HIGH>
-        ;
-};
-
 
 /*
  * PS/2 Mouse / Trackpoint - User Configuration
@@ -91,8 +107,11 @@
 // But on the corne keyboard, these pins are used for the backlight. So, this
 // example config uses the pins D16 and D10 for clock and data and
 // D9 for the reset circuit.
-#define MOUSE_PS2_PIN_SCL_PRO_MICRO <&pro_micro 16 GPIO_ACTIVE_HIGH>
-#define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 10 GPIO_ACTIVE_HIGH>
+
+// #define MOUSE_PS2_PIN_SCL_PRO_MICRO <&pro_micro 16 GPIO_ACTIVE_HIGH>
+// #define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 10 GPIO_ACTIVE_HIGH>
+#define MOUSE_PS2_PIN_SCL_PRO_MICRO <&xiao_d 5 GPIO_ACTIVE_HIGH>
+#define MOUSE_PS2_PIN_SDA_PRO_MICRO <&xiao_d 4 GPIO_ACTIVE_HIGH>
 
 // Configure the Power-On-Reset pin
 //
@@ -104,7 +123,8 @@
 // trackpoint reset circuit.
 //
 // It's ok to use a low-frequency pin for this.
-#define MOUSE_PS2_PIN_RST_PRO_MICRO <&pro_micro 9 GPIO_ACTIVE_HIGH>
+// #define MOUSE_PS2_PIN_RST_PRO_MICRO <&pro_micro 9 GPIO_ACTIVE_HIGH>
+#define MOUSE_PS2_PIN_RST_PRO_MICRO <&xiao_d 2 GPIO_ACTIVE_HIGH>
 
 
 // Configure SDA pin using the pinctrl notation
@@ -126,7 +146,7 @@
 //
 // We don't define the SCL pin, because UART uses a baud rate instead of
 // a clock pin.
-#define MOUSE_PS2_PIN_SDA_PINCTRL <NRF_PSEL(UART_RX, 0, 9)>
+#define MOUSE_PS2_PIN_SDA_PINCTRL <NRF_PSEL(UART_RX, 0, 4)>
 
 // Configure UART BAUD Rate
 //
@@ -200,7 +220,7 @@
 //
 // Do NOT change these if you are using a nice!nano (or a clone of it)
 #define MOUSE_PS2_PIN_UNEXPOSED_TX <NRF_PSEL(UART_TX, 0, 27)>
-#define MOUSE_PS2_PIN_UNEXPOSED_RX <NRF_PSEL(UART_RX, 0, 28)>
+#define MOUSE_PS2_PIN_UNEXPOSED_RX <NRF_PSEL(UART_RX, 0, 9)>
 
 
 // Adjust GPIO interrupt priority to the highest level.
@@ -441,15 +461,15 @@
 // You can leave it or remove in your own zmk config. If you remove it, you
 // should also remove the entry in `zmk-config-example/build.yaml` that uses
 // it.
-#ifdef MOUSE_PS2_ALT_PINS
-    #undef MOUSE_PS2_PIN_SCL_PRO_MICRO
-    #undef MOUSE_PS2_PIN_SDA_PRO_MICRO
-    #undef MOUSE_PS2_PIN_SDA_PINCTRL
+// #ifdef MOUSE_PS2_ALT_PINS
+//     #undef MOUSE_PS2_PIN_SCL_PRO_MICRO
+//     #undef MOUSE_PS2_PIN_SDA_PRO_MICRO
+//     #undef MOUSE_PS2_PIN_SDA_PINCTRL
 
-    #define MOUSE_PS2_PIN_SCL_PRO_MICRO <&pro_micro 1 GPIO_ACTIVE_HIGH>
-    #define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 0 GPIO_ACTIVE_HIGH>
-    #define MOUSE_PS2_PIN_SDA_PINCTRL <NRF_PSEL(UART_RX, 0, 8)>
-#endif
+//     #define MOUSE_PS2_PIN_SCL_PRO_MICRO <&pro_micro 1 GPIO_ACTIVE_HIGH>
+//     #define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 0 GPIO_ACTIVE_HIGH>
+//     #define MOUSE_PS2_PIN_SDA_PINCTRL <NRF_PSEL(UART_RX, 0, 8)>
+// #endif
 
 // This define can be used in the keymap file to check whether the device tree
 // configs in this file are present to void build errors on the side that does
@@ -555,3 +575,6 @@
 		// zmk-config/config/includes/mouse_tp.dtsi
     };
 };
+
+// west build -d build/36tp -p -b xiao_ble -- -DZMK_EXTRA_MODULES="/workspaces/zmk/app/kb_zmk_ps2_mouse_trackpoint_driver-main" -DSHIELD="36tp"
+// docker cp zealous_pasteur:/workspaces/zmk/app/build/36tp/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36tp.uf2"
