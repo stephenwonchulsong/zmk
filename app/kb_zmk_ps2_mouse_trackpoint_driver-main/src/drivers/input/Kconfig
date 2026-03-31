@@ -1,0 +1,64 @@
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+DT_COMPAT_ZMK_INPUT_PS2_MOUSE := zmk,input-mouse-ps2
+
+config ZMK_INPUT_MOUSE_PS2
+	bool
+	default $(dt_compat_enabled,$(DT_COMPAT_ZMK_INPUT_PS2_MOUSE))
+    # depends on (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)
+	select ZMK_MOUSE
+    select PS2
+
+config ZMK_INPUT_MOUSE_PS2_ENABLE_PS2_RESEND_CALLBACK
+	bool "Get notifications from the underluing PS2 protocol driver when the received data is invalid and when a resend is requested from the peripheral. This helps the mouse driver to re-align its command buffer and prevent unexpected clicks and jerky movements. With the ps2-uart driver this option is not really necessary, but is very useful for the ps2-gpio driver where mis-transmissions are frequent."
+	default n
+
+if ZMK_INPUT_MOUSE_PS2
+
+config ZMK_INPUT_MOUSE_PS2_POWER_ON_RESET_TIME
+    int "The POR shall be timed to occur 600 ms ± 20 % from the time power is applied to the TrackPoint controller."
+    default 600
+    help
+      Refer to IBM TrackPoint System Version 4.0 Engineering Specification - Section 2.1
+
+config ZMK_INPUT_MOUSE_PS2_ENABLE_UROB_COMPAT
+    bool "Makes the driver compatible with urob's zmk fork. His fork has commits that change the default zmk function definitions. This option adopts the code to make it compatible with his changes. Only enable it if you are using his fork or it will fail to compile."
+	default n
+
+config ZMK_INPUT_MOUSE_PS2_ENABLE_ERROR_MITIGATION
+    bool "Tries to mitigate transmission errors. Only useful when using a PS2 driver that is prone to miscommunication like the GPIO bitbanging driver."
+	default n
+
+config ZMK_INPUT_MOUSE_PS2_REPORT_INTERVAL_MIN
+    int "Minimum report rate. Use to avoid bluetooth queue overflow."
+    default 0
+    help
+      Default minimum report interval in milliseconds.
+      Slow down input reporting for hid queue over the air.
+
+config ZMK_INPUT_MOUSE_PS2_ENABLE_CRASH_RECOVERY
+    bool "Enable automatic crash recovery using the reset pin"
+    default n
+    help
+      When enabled, the driver will monitor for consecutive errors during
+      active use and automatically toggle the reset pin to recover from
+      crashes. Requires rst-gpios to be configured in devicetree.
+
+config ZMK_INPUT_MOUSE_PS2_CRASH_RECOVERY_ERROR_THRESHOLD
+    int "Number of consecutive errors before triggering crash recovery"
+    default 15
+    depends on ZMK_INPUT_MOUSE_PS2_ENABLE_CRASH_RECOVERY
+    help
+      How many consecutive framing errors or packet failures must occur
+      before the driver attempts to recover by resetting the trackpoint.
+
+config ZMK_INPUT_MOUSE_PS2_CRASH_RECOVERY_COOLDOWN_MS
+    int "Minimum time between crash recovery attempts in milliseconds"
+    default 30000
+    depends on ZMK_INPUT_MOUSE_PS2_ENABLE_CRASH_RECOVERY
+    help
+      Prevents recovery loops by enforcing a minimum time between
+      consecutive recovery attempts.
+
+endif # ZMK_INPUT_MOUSE_PS2
