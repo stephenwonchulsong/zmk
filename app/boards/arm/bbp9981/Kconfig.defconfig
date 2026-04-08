@@ -24,6 +24,6 @@ config LED_PWM
 endif # ZMK_BACKLIGHT
 
 config BT_CTLR
-    default y
+    default BT
 
 endif # BOARD_BBP9981
