@@ -206,7 +206,7 @@ macros {
 //        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
 //        -----------------------------------------------------------------------------------------------------------------
 */
-                 &kp CAPS                                                                                           &mkp RCLK
+                 &kp CAPS                                                                                           &sk_kp LSHFT
     &kp LEFT                  &kp UP                           &mkp LCLK                          &kp DOWN                    &kp RIGHT
     &kp Q           &kp W        &kp E       &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
     &kp A           &kp S        &kp D       &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
@@ -242,7 +242,7 @@ macros {
         adjust_layer {
 
             bindings = <
-                 &none                                                                                        &bt BT_CLR
+                 &bt BT_CLR                                                                                        &bt BT_CLR
     &bt BT_SEL 0    &bt BT_SEL 1                                      &bootloader                         &bt BT_SEL 3        &bt BT_SEL 4
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
