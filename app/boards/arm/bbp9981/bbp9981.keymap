@@ -211,7 +211,7 @@ macros {
     &kp Q           &kp W        &kp E       &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
     &kp A           &kp S        &kp D       &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
     &bhm LSHFT Z    &bhm LCTRL X &bhm LALT C &bhm LGUI V &bhm LGUI B   &kp N             &kp M            &kp COMMA        &kp QMARK        &bhm ENTER RSHFT
-    &qlt LOWER BSPC     &kp LALT                           &bhm LSHFT SPACE                          &kp  LGUI                        &qlt UPPER TAB
+    &qlt LOWER BSPC     &kp ESC                           &bhm LSHFT SPACE                          &kp  LGUI                        &qlt UPPER TAB
             >;
         };
 
@@ -235,7 +235,7 @@ macros {
     &none        &kp F1   &kp F2 &kp F3      &ext_power EP_TOG &none            &kp LT           &kp GT          &kp PIPE         &kp KP_EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &kp AMPS         &kp LBRC         &kp RBRC        &kp CARET        &kp BSPC
     &kp LSHFT    &kp F7   &kp F8 &kp F7  &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH     &kp ENTER
-    &sl_mo LOWER LOWER               &kp LALT                                      &kp  SPACE                        &to DEFAULT                      &to DEFAULT
+    &sl_mo LOWER LOWER               &kp ESC                                      &kp  SPACE                        &to DEFAULT                      &to DEFAULT
             >;
         };
 
@@ -257,5 +257,5 @@ macros {
 west build -d build/bbp9981 -p -b  bbp9981
 west build -p -b bbp9981
 
-docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9p_left.uf2"
+docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
 */
