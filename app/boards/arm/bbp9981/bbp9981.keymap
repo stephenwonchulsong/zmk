@@ -254,6 +254,8 @@ macros {
 };
 
 /*
-swest build -d build/bbp9981 -p -b  bbp9981 
+west build -d build/bbp9981 -p -b  bbp9981
 west build -p -b bbp9981
+
+docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9p_left.uf2"
 */
