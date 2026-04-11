@@ -10,7 +10,7 @@ config ZMK_POINTING
     default y
 endif
 
-if SHIELD_36CHAMBERS9P_RIGHT
+if SHIELD_36CHAMBERS9P_LEFT
 
 config ZMK_KEYBOARD_NAME
 	default "36chambers9p"
