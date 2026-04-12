@@ -129,6 +129,12 @@ macros {
             tapping-term-ms = <400>;
             bindings = <&mkp LCLK>, <&bt BT_CLR>;
         };
+        commaq: commaq {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <400>;
+            bindings = <&kp COMMA>, <&kp QMARK>;
+        };
         td_boot_out: td_boot_out {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -206,36 +212,36 @@ macros {
 //        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
 //        -----------------------------------------------------------------------------------------------------------------
 */
-                 &kp CAPS                                                                                           &sk_kp LSHFT
+                 &sl_mo LOWER LOWER                                                                                           &sl_mo UPPER UPPER
     &kp LEFT                  &kp UP                           &mkp LCLK                          &kp DOWN                    &kp RIGHT
-    &kp Q           &kp W        &kp E       &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
-    &kp A           &kp S        &kp D       &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
-    &bhm LSHFT Z    &bhm LCTRL X &bhm LALT C &bhm LGUI V &bhm LGUI B   &kp N             &kp M            &kp COMMA        &kp QMARK        &bhm ENTER RSHFT
-    &qlt LOWER BSPC     &kp ESC                           &bhm LSHFT SPACE                          &kp  LGUI                        &qlt UPPER TAB
+    &kp Q               &kp W        &kp E        &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
+    &kp A               &kp S        &kp D        &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
+    &sk_kp LSHFT LSHFT  &kp Z        &bhm LCTRL X &bhm LALT C &bhm LGUI V   &bhm LGUI B       &kp N            &kp M            &commaq        &kp RET
+    &kp BSPC     &kp ESC                           &bhm LGUI SPACE                          &kp  TAB                        &kp CAPS
             >;
         };
 
         lower_layer {
 
             bindings = <
-                 &kp C_VOL_DN                                                                                       &kp C_VOL_UP
+                 &sl_mo LOWER LOWER                                                                                       &sl_mo ADJUST ADJUST
     &kp HOME               &msc SCRL_UP                     &mkp LCLK                          &msc SCRL_DOWN                           &kp END
-    &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &trans     &tns AMPS N7        &tns ASTRK N8       &tns LT N9    &kp PLUS         &kp EQUAL
-    &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &trans     &tns DLLR N4        &tns PRCNT N5       &tns CARET N6 &kp MINUS          &kp DEL
-    &trans    &tns AMPS N7        &tns ASTRK N8       &tns LT N9       &trans     &tns EXCL N1        &tns AT N2          &tns POUND N3 &kp FSLH    &kp ENTER
-    &qlt LOWER BSPC               &tns RPAR N0                              &trans           &tns RPAR N0                       &sl_mo ADJUST ADJUST
+    &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &trans     &tns AMPS N7      &tns ASTRK N8       &tns LT N9    &kp PLUS         &kp EQUAL
+    &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &trans     &tns DLLR N4      &tns PRCNT N5       &tns CARET N6 &kp MINUS        &kp DEL
+    &trans    &tns AMPS N7        &tns ASTRK N8       &tns LPAR N9     &trans     &tns EXCL N1      &tns AT N2          &tns POUND N3 &kp FSLH    &kp ENTER
+    &trans            &tns RPAR N0                         &trans                       &tns GT N0                       &trans
             >;
         };
 
         upper_layer {
 
             bindings = <
-                 &trans                                                                               &trans
+                 &sl_mo ADJUST ADJUST                                                                               &sl_mo UPPER UPPER
     &trans          &trans                                  &trans                          &trans                     &trans
     &none        &kp F1   &kp F2 &kp F3      &ext_power EP_TOG &none            &kp LT           &kp GT          &kp PIPE         &kp KP_EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &kp AMPS         &kp LBRC         &kp RBRC        &kp CARET        &kp BSPC
-    &kp LSHFT    &kp F7   &kp F8 &kp F7  &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH     &kp ENTER
-    &sl_mo LOWER LOWER               &kp ESC                                      &kp  SPACE                        &to DEFAULT                      &to DEFAULT
+    &trans      &kp F7   &kp F8 &kp F7  &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH     &kp ENTER
+    &trans               &kp ESC                                      &kp  SPACE                        &to DEFAULT                      &to DEFAULT
             >;
         };
 
@@ -255,7 +261,8 @@ macros {
 
 /*
 west build -d build/bbp9981 -p -b  bbp9981
-west build -p -b bbp9981
+west build -d build/bbp9981_reset -p -b bbp9981 -- -DSHIELD=settings_reset
 
 docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
+docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981_reset.uf2"
 */
