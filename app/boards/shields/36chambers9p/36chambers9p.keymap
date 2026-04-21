@@ -863,8 +863,8 @@ sensor-bindings = <&inc_dec_kp X Y &scroll_l_r>;
         };
         raise_layer {
             bindings = <
-    &mkp MB2        &kp F2          &kp F3              &kp F4              &kp F5          &kp F6              &kp F7              &kp F8          &kp F9              &to 1
-    &kp F1          &kp LCTL        &kp LALT            &kp LGUI            &none           &toggleForkLift     &kp LEFT            &kp UP          &kp DOWN            &kp RET
+    &mkp MB2        &kp F2          &kp F3              &kp F4              &kp F5          &kp F6              &kp F7              &kp UP          &kp F8              &kp F9
+    &kp F1          &kp LCTL        &kp LALT            &kp LGUI            &none           &toggleForkLift     &kp LEFT            &kp DOWN         &kp RIGHT            &kp RET
     &kp LSHFT       &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns LBRC LBKT      &tns RBRC RBKT      &kp SQT         &kp DQT             &kp RIGHT
     &bhm LSHFT Z                    &qlt adjust DEL &trans                  &trans          &tns RSHFT SPACE    &lt raise TAB       &trans          &trans              &mt RSHFT BSLH
     &trans          &trans          &trans              &trans              &trans          &trans 
