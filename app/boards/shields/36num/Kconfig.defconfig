@@ -1,11 +1,6 @@
-if SHIELD_36num
+if SHIELD_36NUM
 
 config ZMK_KEYBOARD_NAME
-	default "36num"
-
-config SPI
-    default n
+	default "Numpad36"
 
 endif
-
-
