@@ -4,11 +4,9 @@
  * SPDX-License-Identifier: MIT
 
 
-west build -d build/36ch9ulp_l -p -b xiao_ble -- -DSHIELD=36ch9ulp_left
-west build -d build/36ch9ulp_r -p -b xiao_ble -- -DSHIELD=36ch9ulp_right
+west build -d build/36ch9ulp_l -p -b xiao_ble//zmk -- -DSHIELD=36ch9ulp_left
+west build -d build/36ch9ulp_r -p -b xiao_ble//zmk -- -DSHIELD=36ch9ulp_right
 
-west build -d build/36ch9ulp -p -b seeeduino_xiao_ble -- -DSHIELD=36ch9ulp_left
-west build -d build/36ch9ulp -p -b seeeduino_xiao_ble -- -DSHIELD=36ch9ulp_right
 
 docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_l/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36ch9ulp_left.uf2"
 docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36ch9ulp_right.uf2"
@@ -21,13 +19,12 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
 #include <dt-bindings/zmk/pointing.h>
 
 #define qwerty 0
-#define colemnk 1
-#define lower 2
-#define raise 3
-#define adjust 4 
-#define commandlayer 5
-#define extra 6
-#define mouse 7
+#define lower 1
+#define raise 2
+#define adjust 3 
+#define commandlayer 4
+#define extra 5
+#define mouse 6
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 140
 
