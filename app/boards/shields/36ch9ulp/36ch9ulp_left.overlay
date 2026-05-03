@@ -1,4 +1,6 @@
 #include "36ch9ulp.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
 
 / {
     kscan0: kscan {
