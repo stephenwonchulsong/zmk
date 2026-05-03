@@ -248,8 +248,9 @@ macros {
         adjust_layer {
 
             bindings = <
-                 &bt BT_CLR                                                                                        &bt BT_CLR
-    &bt BT_SEL 0    &bt BT_SEL 1                                      &bootloader                         &bt BT_SEL 3        &bt BT_SEL 4
+                 &mo ADJUST                                                                                         &mo ADJUST
+
+    &bt BT_SEL 0    &bt BT_SEL 1                                      &bootloader                         &bt BT_SEL 3        &bt BT_CLR
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &none        &none         &none           &none           &to DEFAULT      &none

@@ -3,7 +3,7 @@
 #include <input/processors.dtsi>
 
 &default_transform {
-	col-offset = <6>;
+	col-offset = <5>;
 }; 
 
 /{
@@ -11,8 +11,6 @@
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
         diode-direction = "col2row";
-        // compatible = "zmk,kscan-gpio-matrix";
-        // diode-direction = "col2row";
     col-gpios
     	= <&gpio1 15 GPIO_ACTIVE_HIGH>//Col0
         , <&gpio1 14 GPIO_ACTIVE_HIGH>//Col1
