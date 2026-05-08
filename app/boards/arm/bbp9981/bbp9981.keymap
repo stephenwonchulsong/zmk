@@ -2,7 +2,14 @@
  * Copyright (c) 2025 ZitaoTech
  *
  * SPDX-License-Identifier: MIT
+ 
+ west build -d build/bbp9981 -p -b  bbp9981
+ west build -d build/bbp9981_reset -p -b bbp9981 -- -DSHIELD=settings_reset
+ 
+ docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
  */
+
+
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -212,49 +219,49 @@ macros {
 //        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
 //        -----------------------------------------------------------------------------------------------------------------
 */
-                 &sl_mo LOWER LOWER                                                                                           &sl_mo UPPER UPPER
+                 &kp BSPC                                                                                           &sl_mo UPPER UPPER
     &kp LEFT                  &kp UP                           &mkp LCLK                          &kp DOWN                    &kp RIGHT
     &kp Q               &kp W        &kp E        &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
     &kp A               &kp S        &kp D        &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
     &sk_kp LSHFT LSHFT  &kp Z        &bhm LCTRL X &bhm LALT C &bhm LGUI V   &bhm LGUI B       &kp N            &kp M            &commaq        &kp RET
-    &kp BSPC     &kp ESC                           &bhm LGUI SPACE                          &kp  TAB                        &kp CAPS
+    &sl_mo LOWER LOWER     &kp ESC                           &bhm LGUI SPACE                          &kp  TAB                  &sl_mo UPPER UPPER
             >;
         };
 
         lower_layer {
 
             bindings = <
-                 &sl_mo LOWER LOWER                                                                                       &sl_mo ADJUST ADJUST
+                 &kp DEL                                                                                       &sl_mo ADJUST ADJUST
     &kp HOME               &msc SCRL_UP                     &mkp LCLK                          &msc SCRL_DOWN                           &kp END
     &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &trans     &tns AMPS N7      &tns ASTRK N8       &tns LT N9    &kp PLUS         &kp EQUAL
     &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &trans     &tns DLLR N4      &tns PRCNT N5       &tns CARET N6 &kp MINUS        &kp DEL
     &trans    &tns AMPS N7        &tns ASTRK N8       &tns LPAR N9     &trans     &tns EXCL N1      &tns AT N2          &tns POUND N3 &kp FSLH    &kp ENTER
-    &trans            &tns RPAR N0                         &trans                       &tns GT N0                       &trans
+    &trans            &tns RPAR N0                         &kp CAPS                       &tns GT N0                       &sl_mo ADJUST ADJUST
             >;
         };
 
         upper_layer {
 
             bindings = <
-                 &sl_mo ADJUST ADJUST                                                                               &sl_mo UPPER UPPER
+                 &kp DEL                                                                               &sl_mo UPPER UPPER
     &trans          &trans                                  &trans                          &trans                     &trans
     &none        &kp F1   &kp F2 &kp F3      &ext_power EP_TOG &none            &kp LT           &kp GT          &kp PIPE         &kp KP_EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &kp AMPS         &kp LBRC         &kp RBRC        &kp CARET        &kp BSPC
     &trans      &kp F7   &kp F8 &kp F7  &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH     &kp ENTER
-    &trans               &kp ESC                                      &kp  SPACE                        &to DEFAULT                      &to DEFAULT
+    &sl_mo ADJUST ADJUST               &kp ESC                                      &kp  SPACE                        &trans                      &sl_mo UPPER UPPER
             >;
         };
 
         adjust_layer {
 
             bindings = <
-                 &mo ADJUST                                                                                         &mo ADJUST
+                 &kp DEL                                                                                         &mo ADJUST
 
     &bt BT_SEL 0    &bt BT_SEL 1                                      &bootloader                         &bt BT_SEL 3        &bt BT_CLR
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &none        &none         &none           &none           &to DEFAULT      &none
-    &none                  &none                               &none                         &to DEFAULT                      &to DEFAULT
+    &sl_mo ADJUST ADJUST                  &none                               &none                         &to DEFAULT                      &sl_mo ADJUST ADJUST
             >;
         };
     };
