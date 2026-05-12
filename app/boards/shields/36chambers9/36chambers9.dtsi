@@ -46,7 +46,7 @@ RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4)  RC(4,5) RC(4,6) RC(4,7) RC(4,8) RC(4,9)
         , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row1
         , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row2
         , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row3
-        , <&xiao_d 4(GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4
+        , <&xiao_d 4(GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row4v
         ;
     };
     sensors: sensors {

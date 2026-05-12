@@ -23,7 +23,7 @@ SCK  D17 P1.03
     status = "okay";
 };
 
-/{
+/{  
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";

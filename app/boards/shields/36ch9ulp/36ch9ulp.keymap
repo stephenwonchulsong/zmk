@@ -447,6 +447,12 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
             tapping-term-ms = <200>;
             bindings = <&kp LG(C)>, <&kp LG(V)>, <&kp LG(V)>;
         };
+        td_paste: td_paste {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LG(V)>, <&kp LG(LA(LS(V)))>;
+        };
         // td_mt_bspc: tap_dance_layer_tap {
         //     compatible = "zmk,behavior-tap-dance";
         //     #binding-cells = <0>;
@@ -793,7 +799,7 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
             bindings = <
                     &arcwindow      &kp E               &bhm LSHFT R        &kp T           &kp Y               &kp U               &kp I           &kp O               
     &qtab2 0 TAB    &kp S           &kp D               &kp F               &kp G           &kp H               &kp J               &kp K           &kp L               &kp RET
-    &bhm LSHFT A    &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &kp SEMI
+    &bhm LSHFT A    &bhm LCTRL X    &bhm LALT C         &td_paste         &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &kp SEMI
     &bhm LSHFT Z                    &mkp MB1            &qlt lower DEL      &kp RET         &kp SPACE           &lt raise TAB       &kp ESC                       &mt RSHFT FSLH
     >;
         };
