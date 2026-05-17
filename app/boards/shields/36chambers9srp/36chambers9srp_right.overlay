@@ -1,0 +1,48 @@
+#include "36chambers9srp.dtsi" 
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+/*
+CS(SS) pin is D16 P0.31
+Encoder A and B for Right1 are D14 and D15, P0.09 and P0.10
+Encoder A and B for Right2 are D11 and D12, P0.15 and P0.19
+DR is D13, P1.01
+SDA D4
+SCL D5
+MISO D18 P1.05
+MOSI D19 P1.07
+SCK  D17 P1.03 
+*/
+&default_transform {
+	col-offset = <5>;
+}; 
+
+&left_encoder {
+    status = "okay";
+ };
+&right_encoder {
+    status = "okay";
+};
+
+/{  
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+        // compatible = "zmk,kscan-gpio-matrix";
+        // diode-direction = "col2row";
+    col-gpios
+    	= <&gpio1 15 GPIO_ACTIVE_HIGH>//Col0
+        , <&gpio1 14 GPIO_ACTIVE_HIGH>//Col1
+        , <&gpio1 13 GPIO_ACTIVE_HIGH>//Col2
+        , <&gpio1 12 GPIO_ACTIVE_HIGH>//Col3
+        , <&gpio1 11 GPIO_ACTIVE_HIGH>//Col4
+        ;
+	row-gpios
+        = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //Row2
+        , <&gpio0 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //Row3
+        , <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  //Row0
+        , <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //Row1
+        ;
+    };
+};
+
