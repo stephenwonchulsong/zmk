@@ -37,14 +37,6 @@ RC(3,0)         RC(3,2) RC(3,3) RC(3,4)
         , <&xiao_d 8 GPIO_ACTIVE_HIGH>      //Col2
         , <&xiao_d 7 GPIO_ACTIVE_HIGH>      //Col3
         , <&xiao_d 5 GPIO_ACTIVE_HIGH>   //Col4
-        // , <&xiao_d 6 GPIO_ACTIVE_HIGH>       //Col5
-
-        // = <&gpio1 15 GPIO_ACTIVE_HIGH>    //Col0
-        // , <&gpio1 14 GPIO_ACTIVE_HIGH>       //Col1       
-        // , <&gpio1 13 GPIO_ACTIVE_HIGH>      //Col2
-        // , <&gpio1 12 GPIO_ACTIVE_HIGH>      //Col3
-        // , <&gpio0 5 GPIO_ACTIVE_HIGH>   //Col4
-        // , <&gpio1 11 GPIO_ACTIVE_HIGH>       //Col5
         ;
 	row-gpios
     	= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>//Row0
