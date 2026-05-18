@@ -199,8 +199,14 @@ macros {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
         flavor = "hold-preferred";
-        tapping-term-ms = <450>;
+        tapping-term-ms = <300>;
         bindings = <&kp &sk>;          /* hold=kp, tap=sticky key */
+        };
+    shift_td: shift_td {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <300>;
+        bindings = <&sk_kp LSHFT LSHFT>, <&caps_word>;
         };
     };
 
@@ -219,50 +225,49 @@ macros {
 //        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
 //        -----------------------------------------------------------------------------------------------------------------
 */
-                 &kp BSPC                                                                                           &sl_mo UPPER UPPER
+                 &sl_mo LOWER LOWER                                                                                           &sl_mo UPPER UPPER
     &kp LEFT                  &kp UP                           &mkp LCLK                          &kp DOWN                    &kp RIGHT
     &kp Q               &kp W        &kp E        &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
-    &kp A               &kp S        &kp D        &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp SEMI
-    &sk_kp LSHFT LSHFT  &kp Z        &bhm LCTRL X &bhm LALT C &bhm LGUI V   &bhm LGUI B       &kp N            &kp M            &commaq        &kp RET
-    &sl_mo LOWER LOWER     &kp ESC                           &bhm LGUI SPACE                          &kp  TAB                  &sl_mo UPPER UPPER
+    &kp A               &kp S        &kp D        &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp BSPC
+    &shift_td            &kp Z        &bhm LCTRL X &bhm LALT C &bhm LGUI V   &bhm LGUI B       &kp N            &kp M            &commaq        &kp RET
+    &kp ESC            &sk_kp LALT LALT               &bhm LGUI SPACE                          &kp  TAB                  &kp GLOBE
             >;
         };
 
         lower_layer {
 
             bindings = <
-                 &kp DEL                                                                                       &sl_mo ADJUST ADJUST
+                 &sl_mo LOWER LOWER                                                                                       &sl_mo ADJUST ADJUST
     &kp HOME               &msc SCRL_UP                     &mkp LCLK                          &msc SCRL_DOWN                           &kp END
-    &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &kc LPAR   &kc RPAR      &kc UNDER       &kc MINUS    &kp PLUS         &kp EQUAL
-    &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &kc BSLH   &kc COLON     &kc SEMI        &kc SQT &kp DQT        &kp DEL
-    &trans    &tns AMPS N7        &tns ASTRK N8       &tns LPAR N9     &trans     &kc QMARK     &kc EXCL        &kc COMMA &kp DOT    &kp ENTER
-    &trans            &tns RPAR N0                         &kp CAPS                       &tns GT N0                       &sl_mo ADJUST ADJUST
+    &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &kp LPAR   &kp RPAR      &kp UNDER       &kp MINUS    &kp PLUS         &kp EQUAL
+    &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &kp BSLH   &kp COLON     &kp SEMI        &tns GRAVE SQT &kp DQT        &kp DEL
+    &trans    &tns AMPS N7        &tns ASTRK N8       &tns LPAR N9     &trans     &kp QMARK     &kp EXCL        &kp COMMA &kp DOT    &kp ENTER
+    &trans            &tns RPAR N0                         &kp CAPS                       &trans                       &trans
             >;
         };
-
         upper_layer {
 
             bindings = <
-                 &kp DEL                                                                               &sl_mo UPPER UPPER
+                 &sl_mo ADJUST ADJUST                                                                               &sl_mo UPPER UPPER
     &trans          &trans                                  &trans                          &trans                     &trans
-    &none        &kp F1   &kp F2 &kp F3      &ext_power EP_TOG &none            &kp LT           &kp GT          &kp PIPE         &kp KP_EQUAL
-    &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &kp AMPS         &kp LBRC         &kp RBRC        &kp CARET        &kp BSPC
-    &trans      &kp F7   &kp F8 &kp F7  &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH     &kp ENTER
-    &sl_mo ADJUST ADJUST               &kp ESC                                      &kp  SPACE                        &trans                      &sl_mo UPPER UPPER
-            >;
+    &none        &kp F1   &kp F2 &kp F3      &tns LBRC LBKT &tns RBRC RBKT            &trans           &trans          &trans         &kp EQUAL
+    &kp LEFT     &kp F4   &kp F5 &kp F6           &kp FSLH          &trans         &trans         &trans        &trans        &trans
+    &trans      &kp F7   &kp F8 &kp F7  &trans        &trans  &trans       &trans &trans     &kp ENTER
+    &trans               &trans                                      &kp  SPACE                        &trans                      &trans
+        >;
         };
 
         adjust_layer {
 
             bindings = <
-                 &kp DEL                                                                                         &mo ADJUST
+                 &sl_mo ADJUST ADJUST                                                                                         &sl_mo ADJUST ADJUST
 
     &bt BT_SEL 0    &bt BT_SEL 1                                      &bootloader                         &bt BT_SEL 3        &bt BT_CLR
-    &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
-    &none        &none     &none       &none      &none        &none         &none           &none           &none            &none
-    &none        &none     &none       &none      &none        &none         &none           &none           &to DEFAULT      &none
-    &sl_mo ADJUST ADJUST                  &none                               &none                         &to DEFAULT                      &sl_mo ADJUST ADJUST
-            >;
+    &ext_power EP_TOG        &none     &none       &none      &kp LT        &kp GT         &none           &none           &none            &none
+    &none        &none     &none       &none      &kp PIPE        &none         &none           &none           &none            &none
+    &none        &none     &none       &none      &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH      &none
+    &trans                  &none                               &trans                         &to DEFAULT                      &none
+        >;
         };
     };
 };
