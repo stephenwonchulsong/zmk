@@ -15,16 +15,21 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/mouse.h>        
+// #include <dt-bindings/zmk/mouse.h>        
 #include <dt-bindings/zmk/pointing.h>
 
 #define qwerty 0
 #define lower 1
 #define raise 2
-#define adjust 3 
+#define adjust 3
 #define commandlayer 4
 #define extra 5
 #define mouse 6
+// #define cmtoqw 5
+// #define lock 6
+// #define locklow 7
+// #define unlock 8
+// #define lockhigh 9/
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 140
 
@@ -34,12 +39,70 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
 };
 
 &lt {
-    tapping-term-ms = <200>;
-    flavor = "hold-preferred";
+   flavor = "hold-preferred";
 };
 
 /{ // <---[[root node]]    
     macros {
+        // |XteZB8Yrdc SBRzu1UX
+        P_1W: P_1W {
+            label = "P_1W";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings
+                = <&macro_tap &kp PIPE>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp T &kp E>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Z &kp B>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp N8>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Y>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp R &kp D &kp C &kp SPACE>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp S &kp B &kp R>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Z &kp U &kp 1>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp U &kp X>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+        P_2W: P_2W {
+            label = "P_2W";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings
+                = <&macro_tap &kp PIPE>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp G &kp F>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Z &kp B>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp N8>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp J>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp P &kp S &kp C &kp SPACE>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp R &kp B &kp P>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Z &kp L &kp 1>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp L &kp X>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
         R_1W: R_1W {
             label = "R_1W";
             compatible = "zmk,behavior-macro";
@@ -447,7 +510,7 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
             tapping-term-ms = <200>;
             bindings = <&kp LG(C)>, <&kp LG(V)>, <&kp LG(V)>;
         };
-        td_paste: td_paste {
+        tappaste: tappaste {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
@@ -499,11 +562,11 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
             bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
             tap-ms = <20>;
         };
-        homef12: homef12 {
+        homef17: homef17 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp ESC>, <&ultimateback>, <&kp F12>;
+            bindings = <&kp ESC>, <&kp HOME>, <&kp F17>;
         };
         lefttop: lefttop {
             compatible = "zmk,behavior-tap-dance";
@@ -758,7 +821,6 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
         };
     };
 };
-
 /{
     keymap {
         compatible = "zmk,keymap";
@@ -768,7 +830,7 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
                     &kp W           &kp E               &kp R               &kp T           &kp Y               &kp U               &kp I           &kp O               
     &kp Q           &kp S           &dmousecombo 0 D        &mnl extra F        &kp G           &bhm LGUI H         &bhm LGUI J         &bhm LALT K     &bhm LCTL L         &bhm LSHFT P
     &kp A           &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &tns COLON SEMI
-    &bhm LSHFT Z                    &kp ESC &qlt lower BSPC     &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18                    &mt RSHFT FSLH
+    &bhm LSHFT Z                    &homef17 &qlt lower BSPC     &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18                    &mt RSHFT FSLH
                 >;
         };
         lower_layer {
@@ -799,7 +861,7 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
             bindings = <
                     &arcwindow      &kp E               &bhm LSHFT R        &kp T           &kp Y               &kp U               &kp I           &kp O               
     &qtab2 0 TAB    &kp S           &kp D               &kp F               &kp G           &kp H               &kp J               &kp K           &kp L               &kp RET
-    &bhm LSHFT A    &bhm LCTRL X    &bhm LALT C         &td_paste         &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &kp SEMI
+    &bhm LSHFT A    &bhm LCTRL X    &bhm LALT C         &tappaste         &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &kp SEMI
     &bhm LSHFT Z                    &mkp MB1            &qlt lower DEL      &kp RET         &kp SPACE           &lt raise TAB       &kp ESC                       &mt RSHFT FSLH
     >;
         };
