@@ -596,13 +596,13 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(UP))>, <&kp LS(LC(LA(LG(PG_UP))))>, <&kp LS(LC(LA(LG(N8))))>;
+            bindings = <&kp LC(LA(UP))>, <&kp LS(LC(LA(LG(UP))))>, <&kp LS(LC(LA(LG(N8))))>;
         };
         botbot: botbot {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(DOWN))>, <&kp LS(LC(LA(LG(PG_DN))))>, <&kp LS(LC(LA(LG(N2))))>;
+            bindings = <&kp LC(LA(DOWN))>, <&kp LS(LC(LA(LG(DOWN))))>, <&kp LS(LC(LA(LG(N2))))>;
         };
         leftleft: leftleft {
             compatible = "zmk,behavior-tap-dance";
