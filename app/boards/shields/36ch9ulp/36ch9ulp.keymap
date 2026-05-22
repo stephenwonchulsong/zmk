@@ -572,55 +572,55 @@ docker cp zealous_pasteur:/workspaces/zmk/app/build/36ch9ulp_r/zephyr/zmk.uf2 "/
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(LG(PG_UP)))>, <&kp LS(LC(LA(LG(N7))))>;
+            bindings = <&kp LC(LA(LG(PG_UP)))>, <&kp LS(LC(LA(LG(PIPE))))>, <&kp LS(LC(LA(LG(N7))))>;
         };
         righttop: righttop {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(LG(HOME)))>, <&kp LS(LC(LA(LG(N9))))>;
+            bindings = <&kp LC(LA(LG(HOME)))>, <&kp LS(LC(LA(LG(GRAVE))))>, <&kp LS(LC(LA(LG(N9))))>;
         };
         leftbot: leftbot {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(LG(PG_DN)))>, <&kp LS(LC(LA(LG(N4))))>;
+            bindings = <&kp LC(LA(LG(PG_DN)))>, <&kp LS(LC(LA(LG(LEFT))))>, <&kp LS(LC(LA(LG(N4))))>;
         };
         rightbot: rightbot {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(LG(END)))>, <&kp LS(LC(LA(LG(N6))))>;
+            bindings = <&kp LC(LA(LG(END)))>, <&kp LS(LC(LA(LG(RIGHT))))>, <&kp LS(LC(LA(LG(N6))))>;
         };
         toptop: toptop {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(UP))>, <&topthirds>, <&kp LS(LC(LA(LG(F7))))>;
+            bindings = <&kp LC(LA(UP))>, <&kp LS(LC(LA(LG(PG_UP))))>, <&kp LS(LC(LA(LG(N8))))>;
         };
         botbot: botbot {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(DOWN))>, <&botthirds>, <&kp LS(LC(LA(LG(F9))))>;
+            bindings = <&kp LC(LA(DOWN))>, <&kp LS(LC(LA(LG(PG_DN))))>, <&kp LS(LC(LA(LG(N2))))>;
         };
         leftleft: leftleft {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(LEFT))>, <&kp LS(LC(LA(LG(N1))))>,  <&kp LS(LC(LA(LG(F1))))>;
+            bindings = <&kp LC(LA(LEFT))>, <&kp LS(LC(LA(LG(LBRC))))>, <&kp LS(LC(LA(LG(N1))))>;
         };
         rightright: rightright {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(RIGHT))>, <&kp LS(LC(LA(LG(N3))))>, <&kp LS(LC(LA(LG(F2))))>;
+            bindings = <&kp LC(LA(RIGHT))>, <&kp LS(LC(LA(LG(RBRC))))>, <&kp LS(LC(LA(LG(N3))))>;
         };
         centercenter: centercenter {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp LC(LA(RET))>, <&centerthirds>, <&kp LS(LC(LA(LG(F3))))>;
+            bindings = <&kp LC(LA(RET))>, <&kp LS(LC(LA(LG(SQT))))>, <&kp LS(LC(LA(LG(N5))))>;
         };
         R1WR2W: R1WR2W {
             compatible = "zmk,behavior-tap-dance";
