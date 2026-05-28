@@ -10,11 +10,11 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/led/led.h>
 #include <dt-bindings/zmk/matrix_transform.h>
-#include "zitaotech_q10-layouts.dtsi"
+#include "bbq10-layouts.dtsi"
 
 / {
-    model = "zitaotech_q10";
-    compatible = "ZitaoTech,zitaotech_q10";
+    model = "bbq10";
+    compatible = "bbq10,bbq10";
 
     chosen {
         zephyr,code-partition = &code_partition;
@@ -23,7 +23,7 @@
         zephyr,console = &cdc_acm_uart;
         zmk,battery = &vbatt;
         zmk,kscan = &kscan0;
-        zmk,physical-layouts = &zitaotech_q10_layout;
+        zmk,physical-layouts = &bbq10_layout;
         zmk,keyboard_backlight = &keyboard_backlight;
         zmk,trackpad_led = &trackpad_led;
         zmk,backlight = &backlight;
@@ -220,7 +220,7 @@ RC(6,1)          RC(6,0)             RC(5,0)             RC(2,0)          RC(3,2
     };
 };
 
-&zitaotech_q10_layout{
+&bbq10_layout{
 	transform = <&default_transform>;
 	kscan = <&kscan0>;
 }; 

@@ -1,11 +1,11 @@
 # Copyright (c) 2025 ZitaoTech
 # SPDX-License-Identifier: MIT
 
-if BOARD_ZITAOTECH_Q10
+if BOARD_BBQ10
 
 
 config ZMK_KEYBOARD_NAME
-    default "ZitaoTech_q10"
+    default "bbq10"
 
 if USB_DEVICE_STACK
 
@@ -24,7 +24,4 @@ config LED_PWM
 
 endif # ZMK_BACKLIGHT
 
-config BT_CTLR
-    default BT
-
-endif # BOARD_ZITAOTECH_Q10
+endif # BOARD_BBQ10

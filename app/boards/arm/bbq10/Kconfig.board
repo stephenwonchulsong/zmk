@@ -1,9 +1,9 @@
 # Copyright (c) 2023 ZitaoTech
 # SPDX-License-Identifier: MIT
 
-config BOARD_ZITAOTECH_Q10
-    bool "ZitaoTech_q10"
-    depends on SOC_NRF52840_QIAA
+config BOARD_BBQ10
+    bool "bbq10"
+  select SOC_NRF52840_QIAA
 
 menu "Backlight and LED options"
 

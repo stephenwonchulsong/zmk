@@ -1,6 +1,6 @@
 file_format: "1"
-id: zitaotech_q10
-name: zitaotech_q10
+id: bbq10
+name: bbq10
 type: board
 arch: arm
 features:

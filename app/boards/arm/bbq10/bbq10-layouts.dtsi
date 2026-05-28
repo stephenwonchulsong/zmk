@@ -2,9 +2,9 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
 / {
-    zitaotech_q10_layout: zitaotech_q10_layout {
+    bbq10_layout: bbq10_layout {
         compatible = "zmk,physical-layout";
-        display-name = "ZitaoTech_q10";
+        display-name = "bbq10";
 
         kscan = <&kscan0>;
         transform = <&matrix_transform0>;

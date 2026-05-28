@@ -1,5 +1,5 @@
-identifier: zitaotech_q10
-name: zitaotech_q10
+identifier: bbq10
+name: bbq10
 type: mcu
 arch: arm
 toolchain:
