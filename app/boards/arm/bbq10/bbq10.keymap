@@ -37,6 +37,7 @@
     release-after-ms = <3000>;
     };
 
+// refer to the keymap below instead of editing this file 
 #include "bb_common.keymap.dtsi"
 
 /*
