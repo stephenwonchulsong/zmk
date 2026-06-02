@@ -392,6 +392,11 @@
                 , <&macro_release &kp LGUI>
                 ;
         };
+        single_tap: single_tap {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+        };
     };
     behaviors {
         gresc: grave_escape {
@@ -425,7 +430,7 @@
             tapping-term-ms = <250>;    // <---[[moderate duration]]
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+            bindings = <&single_tap>, <&kp>;
         };//the following two go together
         comlpar: comma_parenthesis {
             compatible = "zmk,behavior-mod-morph";

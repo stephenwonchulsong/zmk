@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: MIT
  *
  * Build commands:
- *   west build -d build/369p_left -p -b xiao_ble//zmk -- -DSHIELD=369p_left
- *   west build -d build/369p_right -p -b xiao_ble//zmk -- -DSHIELD=369p_right
+ west build -d build/369p_left -p -b xiao_ble//zmk -- -DSHIELD=369p_left
+ west build -d build/369p_right -p -b xiao_ble//zmk -- -DSHIELD=369p_right
  *
- *   docker cp zealous_pasteur:/workspaces/zmk/app/build/369p_left/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369p_left.uf2"
- *   docker cp zealous_pasteur:/workspaces/zmk/app/build/369p_right/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369p_right.uf2"
+ docker cp zealous_pasteur:/workspaces/zmk/app/build/369p_left/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369p_left.uf2"
+ docker cp zealous_pasteur:/workspaces/zmk/app/build/369p_right/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369p_right.uf2"
  *
- *   west build -d build/xiao_ble_reset -p -b xiao_ble//zmk -- -DSHIELD=settings_reset
- *   docker cp zealous_pasteur:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/xiao_ble_reset.uf2"
+ west build -d build/xiao_ble_reset -p -b xiao_ble//zmk -- -DSHIELD=settings_reset
+ docker cp zealous_pasteur:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/xiao_ble_reset.uf2"
  */
 
 // Macros, behaviors, combos, and global settings are in:

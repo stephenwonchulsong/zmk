@@ -96,6 +96,11 @@ macros {
                 , <&macro_tap &kp LBKT &kp RBKT  &kp LBRC &kp RBRC &kp LEFT &kp LEFT &kp LBKT &kp RBKT &kp RIGHT &kp RIGHT>
                 ;
         };
+        single_tap: single_tap {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+        };
     };
     behaviors {
         td0: tap_dance_0 {
@@ -168,7 +173,7 @@ macros {
             tapping-term-ms = <250>;    // <---[[moderate duration]]
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+            bindings = <&single_tap>, <&kp>;
         };
     sk_kp: behavior_sk_kp {
         compatible = "zmk,behavior-hold-tap";
@@ -202,10 +207,10 @@ macros {
 */
                  &none                                                                                           &none
     &qlt LOWER LEFT                  &qlt UPPER UP                           &tog MOUSE                          &qlt LOWER DOWN                    &qlt UPPER RIGHT
-    &kp Q               &kp W        &kp E        &kp R       &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
-    &kp A               &kp S        &kp D        &kp F       &kp G         &kp H             &kp J            &kp K            &kp L            &kp BSPC
-    &shift_td            &kp Z        &bhm LCTRL X &bhm LALT C &bhm LGUI V   &bhm LGUI B       &kp N            &kp M            &commaq QMARK 0  &kp RET
-    &kp ESC            &sk_kp LALT LALT               &bhm LGUI SPACE                          &kp  TAB                  &kp GLOBE
+    &tns LS(Q) Q        &tns LS(W) W &tns LS(E) E &tns LS(R) R &tns LS(T) T  &tns LS(Y) Y      &tns LS(U) U     &tns LS(I) I     &tns LS(O) O     &tns LS(P) P
+    &tns LS(A) A        &tns LS(S) S &tns LS(D) D &tns LS(F) F &tns LS(G) G  &tns LS(H) H      &tns LS(J) J     &tns LS(K) K     &tns LS(L) L     &kp BSPC
+    &shift_td            &tns LS(Z) Z &tns LS(X) X &tns LS(C) C &tns LS(V) V  &tns LS(B) B      &tns LS(N) N     &tns LS(M) M     &commaq QMARK 0  &kp RET
+    &kp ESC            &sk_kp LALT LALT               &bhm LGUI SPACE                          &bhm  LCTRL TAB                  &kp GLOBE
             >;
         };
 
