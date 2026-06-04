@@ -6,7 +6,7 @@
 
 west build -d build/36num -p -b xiao_ble//zmk -- -DSHIELD=36num
 
-docker cp zealous_pasteur:/workspaces/zmk/app/build/36num/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36num.uf2"
+docker cp gracious_gates:/workspaces/zmk/app/build/36num/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36num.uf2"
 
 
  */

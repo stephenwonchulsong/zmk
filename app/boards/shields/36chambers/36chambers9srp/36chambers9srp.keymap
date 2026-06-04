@@ -6,8 +6,8 @@
 west build -d build/369srpleft -p -b xiao_ble//zmk -- -DSHIELD=36chambers9srp_left
 west build -d build/369srpright -p -b xiao_ble//zmk -- -DSHIELD=36chambers9srp_right
 
-docker cp zealous_pasteur:/workspaces/zmk/app/build/369srpleft/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9srp_left.uf2"
-docker cp zealous_pasteur:/workspaces/zmk/app/build/369srpright/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9srp_right.uf2"
+docker cp gracious_gates:/workspaces/zmk/app/build/369srpleft/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9srp_left.uf2"
+docker cp gracious_gates:/workspaces/zmk/app/build/369srpright/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9srp_right.uf2"
  */
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>

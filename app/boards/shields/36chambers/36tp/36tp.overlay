@@ -577,4 +577,4 @@
 };
 
 // west build -d build/36tp -p -b xiao_ble -- -DZMK_EXTRA_MODULES="/workspaces/zmk/app/kb_zmk_ps2_mouse_trackpoint_driver-main" -DSHIELD="36tp"
-// docker cp zealous_pasteur:/workspaces/zmk/app/build/36tp/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36tp.uf2"
+// docker cp gracious_gates:/workspaces/zmk/app/build/36tp/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36tp.uf2"

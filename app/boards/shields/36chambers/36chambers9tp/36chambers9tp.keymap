@@ -9,10 +9,10 @@ west build -d build/369tpleft -p -b xiao_ble//zmk -- -DSHIELD=36chambers9tp_left
 
 west build -d build/xiao_ble_reset -p -b xiao_ble//zmk -- -DSHIELD=settings_reset
 
-docker cp zealous_pasteur:/workspaces/zmk/app/build/369tpleft/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9tp_left.uf2"
-docker cp zealous_pasteur:/workspaces/zmk/app/build/369tpright/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9tp_right.uf2"
+docker cp gracious_gates:/workspaces/zmk/app/build/369tpleft/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9tp_left.uf2"
+docker cp gracious_gates:/workspaces/zmk/app/build/369tpright/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/36chambers9tp_right.uf2"
 
-docker cp zealous_pasteur:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/xiao_ble_reset.uf2"
+docker cp gracious_gates:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/xiao_ble_reset.uf2"
  */
 #include <behaviors.dtsi>w
 #include <dt-bindings/zmk/keys.h>

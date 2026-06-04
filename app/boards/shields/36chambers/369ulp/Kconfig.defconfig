@@ -11,7 +11,7 @@ config ZMK_POINTING
 
 endif
 
-if SHIELD_369ULP_RIGHT
+if SHIELD_369ULP_LEFT
 
 config ZMK_KEYBOARD_NAME
 	default "36Chambers-ULP"
