@@ -1,4 +1,4 @@
-if SHIELD_369ULP_LEFT || SHIELD_369ULP_RIGHT
+if SHIELD_369ULPTP_LEFT || SHIELD_369ULPTP_RIGHT || SHIELD_369ULPTP_TP
 
 config ZMK_SPLIT
 	default y
@@ -11,13 +11,19 @@ config ZMK_POINTING
 
 endif
 
-if SHIELD_369ULP_RIGHT
+if SHIELD_369ULPTP_RIGHT
 
 config ZMK_KEYBOARD_NAME
-	default "36Chambers-ULP"
+	default "36Chambers-ULPTP"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
 
 endif
 
+if SHIELD_369ULPTP_TP
+
+config INPUT_PINNACLE
+	default y
+
+endif

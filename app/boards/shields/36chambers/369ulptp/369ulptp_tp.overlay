@@ -1,4 +1,4 @@
-// 369ulp touchpad peripheral — Cirque Glidepoint via SPI, split slave
+// 369ulptp touchpad peripheral — Cirque Glidepoint via SPI, split slave
 // Same hardware as 36cirque; configured here as a BLE peripheral.
 
 &xiao_spi {
