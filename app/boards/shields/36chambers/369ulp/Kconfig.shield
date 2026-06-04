@@ -1,0 +1,8 @@
+config SHIELD_369ULP_LEFT
+	def_bool $(shields_list_contains,369ulp_left)
+
+config SHIELD_369ULP_RIGHT
+	def_bool $(shields_list_contains,369ulp_right)
+
+config SHIELD_369ULP_TP
+	def_bool $(shields_list_contains,369ulp_tp)

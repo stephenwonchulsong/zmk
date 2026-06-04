@@ -25,13 +25,9 @@
 #define LOWER 1
 #define UPPER 2
 #define ADJUST 3
-#define MOUSE 4
+// #define MOUSE 4
 
 #define SL_MO(layer) &sl_mo layer layer //tap -> sticky layer, hold -> momentary layer
-
-&trackpad_listener {
-    input-processors = <&zip_temp_layer MOUSE 1000>;
-};
 
 &sl {
     release-after-ms = <3000>;

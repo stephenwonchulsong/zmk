@@ -12,7 +12,8 @@
     "type=volume,source=zmk-modules,target=/workspaces/zmk-modules",
     "type=volume,source=zmk-zephyr,target=${containerWorkspaceFolder}/zephyr",
     "type=volume,source=zmk-zephyr-modules,target=${containerWorkspaceFolder}/modules",
-    "type=volume,source=zmk-zephyr-tools,target=${containerWorkspaceFolder}/tools"
+    "type=volume,source=zmk-zephyr-tools,target=${containerWorkspaceFolder}/tools",
+    "type=bind,source=/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware,target=/output"
   ],
   "customizations": {
     "vscode": {

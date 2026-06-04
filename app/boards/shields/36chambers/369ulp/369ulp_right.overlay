@@ -1,4 +1,4 @@
-#include "36ch9ulp.dtsi" 
+#include "369ulp.dtsi"
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 

@@ -1,12 +1,14 @@
 file_format: "1"
-id: 36ch9ulp
-name: 36ch9ulp
+id: 369ulp
+name: 369ulp
 type: shield
 url: https://github.com/
 requires: [seeeduino_xiao_ble]
 features:
   - keys
   - encoder
+  - pointer
 siblings:
-  - 36ch9ulp_left
-  - 36ch9ulp_right
+  - 369ulp_left
+  - 369ulp_right
+  - 369ulp_tp

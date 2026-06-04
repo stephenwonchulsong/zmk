@@ -103,12 +103,6 @@ macros {
         };
     };
     behaviors {
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&mkp LCLK>, <&bt BT_CLR>;
-        };
         commaperiod: commaperiod {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -175,17 +169,27 @@ macros {
             flavor = "tap-preferred";
             bindings = <&single_tap>, <&kp>;
         };
+        tms: tap_mouse_symbols {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOUSE_SYMBOLS";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;    // <---[[moderate duration]]
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&mkp>, <&kp>;
+        };
+        
     sk_kp: behavior_sk_kp {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
         flavor = "hold-preferred";
-        tapping-term-ms = <300>;
+        tapping-term-ms = <200>;
         bindings = <&kp &sk>;          /* hold=kp, tap=sticky key */
         };
     shift_td: shift_td {
         compatible = "zmk,behavior-tap-dance";
         #binding-cells = <0>;
-        tapping-term-ms = <300>;
+        tapping-term-ms = <200>;
         bindings = <&sk_kp LSHFT LSHFT>, <&caps_word>;
         };
     };
@@ -205,24 +209,24 @@ macros {
 //        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
 //        -----------------------------------------------------------------------------------------------------------------
 */
-                 &none                                                                                           &none
-    &qlt LOWER LEFT                  &qlt UPPER UP                           &tog MOUSE                          &qlt LOWER DOWN                    &qlt UPPER RIGHT
+                 &none                                                                                           &sl_mo LOWER LOWER
+    &kp LEFT                         &kp UP                                  &mkp LCLK                               &kp RIGHT                          &kp DOWN
     &tns LS(Q) Q        &tns LS(W) W &tns LS(E) E &tns LS(R) R &tns LS(T) T  &tns LS(Y) Y      &tns LS(U) U     &tns LS(I) I     &tns LS(O) O     &tns LS(P) P
     &tns LS(A) A        &tns LS(S) S &tns LS(D) D &tns LS(F) F &tns LS(G) G  &tns LS(H) H      &tns LS(J) J     &tns LS(K) K     &tns LS(L) L     &kp BSPC
     &shift_td            &tns LS(Z) Z &tns LS(X) X &tns LS(C) C &tns LS(V) V  &tns LS(B) B      &tns LS(N) N     &tns LS(M) M     &commaq QMARK 0  &kp RET
-    &kp ESC            &sk_kp LALT LALT               &bhm LGUI SPACE                          &bhm  LCTRL TAB                  &kp GLOBE
+    &qlt UPPER ESC            &sk_kp LALT LALT               &bhm LGUI SPACE                          &bhm  LCTRL TAB                  &tms RCLK GLOBE
             >;
         };
 
         lower_layer {
 
             bindings = <
-                 &none                                                                                       &none
+                 &none                                                                                       &trans
     &kp HOME               &msc SCRL_UP                     &trans                          &msc SCRL_DOWN                           &kp END
     &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &tns LT LPAR   &tns GT RPAR      &kp UNDER       &kp MINUS    &kp PLUS         &kp EQUAL
     &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &kp FSLH   &kp COLON     &kp SEMI        &tns GRAVE SQT &kp DQT        &kp DEL
     &trans    &tns AMPS N7        &tns ASTRK N8       &tns LPAR N9          &kp QMARK     &kp EXCL        &kp COMMA &kp DOT    &trans &kp ENTER
-    &trans            &tns RPAR N0                         &kp CAPS                       &trans                       &trans
+    &tog ADJUST            &tns RPAR N0                         &kp CAPS                       &trans                       &trans
             >;
         };
         upper_layer {
@@ -233,7 +237,7 @@ macros {
     &none        &kp F1   &kp F2 &kp F3      &tns LBRC LBKT &tns RBRC RBKT            &trans           &trans          &trans         &kp EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &trans         &trans         &trans        &trans        &trans
     &trans      &kp F7   &kp F8 &kp F7  &trans        &trans  &trans       &trans &trans     &kp ENTER
-    &trans               &trans                                      &kp  SPACE                        &trans                      &trans
+    &qlt UPPER ESC              &trans                                      &kp  SPACE                        &trans                      &trans
         >;
         };
 
@@ -243,31 +247,11 @@ macros {
                  &none                                                                                         &none
 
     &bt BT_SEL 0    &bt BT_SEL 1                                      &trans                         &bt BT_SEL 3        &bt BT_CLR
-    &ext_power EP_TOG        &none     &none       &none      &kp LT        &kp GT         &none           &none           &none            &tog MOUSE
+    &ext_power EP_TOG        &none     &none       &none      &kp LT        &kp GT         &none           &none           &none            &trans
     &none        &none     &none       &none      &kp PIPE        &none         &none           &none           &none            &none
     &none        &none     &none       &none      &bl BL_DEC        &rgb_ug RGB_TOG  &bl BL_INC       &rgb_ug RGB_BRI &kp BSLH      &none
-    &trans                  &none                               &bootloader                         &to DEFAULT                      &none
+    &tog ADJUST                  &none                               &bootloader                         &to DEFAULT                      &none
         >;
-        };
-
-        mouse_layer {
-            bindings = <
-/*        --------------------------------------------------------------------------------------------------------------------------
-//         |    Shoulder Key1    |                                                                             |    Shoulder Key2    |
-// |         MB4           |      Scroll Up             |    Left Click  |         Scroll Down         |             MB5                  |
-// |    MB1    |    MB2   |    MB3   |          |             |              |              |             |             |             |
-// |           |          |          |          |             |   Scrl Left  |   Scrl Down  |   Scrl Up   |  Scrl Right |             |
-// |           |          |          |          |             |              |              |             |             |  Tog Mouse  |
-//        |               |                     |                           |              |  Tog Mouse       |
-//        -----------------------------------------------------------------------------------------------------------------
-*/
-                 &none                                                                                           &none
-    &msc SCRL_UP    &msc SCRL_DOWN                &mkp LCLK &msc SCRL_LEFT &msc SCRL_RIGHT
-    &none &none &none    &trans      &trans        &trans            &trans           &trans           &trans           &trans
-    &trans      &trans      &trans      &trans      &trans        &msc SCRL_LEFT    &msc SCRL_DOWN   &msc SCRL_UP     &msc SCRL_RIGHT  &trans
-    &trans      &trans      &trans      &trans      &trans        &trans            &trans           &trans           &trans           &tog MOUSE
-    &trans               &mkp RCLK                                      &mkp LCLK                        &trans                  &tog MOUSE
-            >;
         };
     };
 };
