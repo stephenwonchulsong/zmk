@@ -3,10 +3,10 @@
  *;
  * SPDX-License-Identifier: MIT
 
-west build -d build/369ulptp_l -p -b xiao_ble//zmk -- -DSHIELD=369ulptp_left
-west build -d build/369ulptp_r -p -b xiao_ble//zmk -- -DSHIELD=369ulptp_right
-west build -d build/369ulptp_tp -p -b xiao_ble//zmk -- -DSHIELD=369ulptp_tp
-west build -d build/xiao_ble_reset -p -b xiao_ble//zmk -- -DSHIELD=settings_reset
+west build -d build/369ulptp_l -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_left
+west build -d build/369ulptp_r -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_right
+west build -d build/369ulptp_tp -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_tp -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/xiao_ble_reset -p -b seeeduino_xiao_ble -- -DSHIELD=settings_reset
 
 
 docker cp gracious_gates:/workspaces/zmk/app/build/369ulptp_l/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369ulptp_left.uf2"

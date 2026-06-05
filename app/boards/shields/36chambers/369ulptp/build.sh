@@ -17,14 +17,14 @@ run() {
 cd "$APP_DIR"
 
 echo "=== Building 369ulptp firmware ==="
-run "build: 369ulptp_left"       west build -d build/369ulptp_l       -p -b xiao_ble//zmk -- -DSHIELD=369ulptp_left
-run "build: 369ulptp_right"      west build -d build/369ulptp_r       -p -b xiao_ble//zmk -- -DSHIELD=369ulptp_right
-run "build: 369ulptp_tp"         west build -d build/369ulptp_tp      -p -b xiao_ble//zmk -- -DSHIELD=369ulptp_tp
+run "build: 369ulptp_left"       west build -d build/369ulptp_l       -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_left
+run "build: 369ulptp_right"      west build -d build/369ulptp_r       -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_right
+run "build: 369ulptp_tp"         west build -d build/369ulptp_tp      -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_tp -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
 echo "=== Building settings_reset firmware ==="
-run "build: 369ulptp_left_reset"  west build -d build/369ulptp_l_reset  -p -b xiao_ble//zmk -- -DSHIELD=settings_reset
-run "build: 369ulptp_right_reset" west build -d build/369ulptp_r_reset  -p -b xiao_ble//zmk -- -DSHIELD=settings_reset
-run "build: 369ulptp_tp_reset"    west build -d build/369ulptp_tp_reset -p -b xiao_ble//zmk -- -DSHIELD=settings_reset
+run "build: 369ulptp_left_reset"  west build -d build/369ulptp_l_reset  -p -b seeeduino_xiao_ble -- -DSHIELD=settings_reset
+run "build: 369ulptp_right_reset" west build -d build/369ulptp_r_reset  -p -b seeeduino_xiao_ble -- -DSHIELD=settings_reset
+run "build: 369ulptp_tp_reset"    west build -d build/369ulptp_tp_reset -p -b seeeduino_xiao_ble -- -DSHIELD=settings_reset
 
 echo "=== Copying firmware to output ==="
 run "copy: 369ulptp_left.uf2"       cp build/369ulptp_l/zephyr/zmk.uf2        "$OUT_DIR/369ulptp_left.uf2"
