@@ -14,7 +14,7 @@ endif
 if SHIELD_369ULPTP_RIGHT
 
 config ZMK_KEYBOARD_NAME
-	default "36Chambers-ULPTP"
+	default "36ULPTP"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
