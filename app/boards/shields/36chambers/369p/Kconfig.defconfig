@@ -1,0 +1,21 @@
+if SHIELD_369P_LEFT || SHIELD_369P_RIGHT
+
+config ZMK_SPLIT
+	default y
+config SPI
+    default y
+config I2C
+	default y
+config ZMK_POINTING
+    default y
+endif
+
+if SHIELD_369P_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "369p"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif

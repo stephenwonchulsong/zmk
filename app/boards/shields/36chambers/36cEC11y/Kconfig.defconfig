@@ -1,0 +1,17 @@
+if SHIELD_36cEC11y_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "36cEC11y"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif
+
+if SHIELD_36CEC11Y_LEFT || SHIELD_36CEC11Y_RIGHT
+
+config ZMK_SPLIT
+	default y
+
+endif
+

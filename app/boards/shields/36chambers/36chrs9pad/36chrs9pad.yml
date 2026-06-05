@@ -1,0 +1,14 @@
+file_format: "1"
+id: 36chrs9pad
+name: 36chrs9pad
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+  - pointer
+siblings:
+  - 36chrs9pad_left
+  - 36chrs9pad_right
+  - 36chrs9pad_tpad

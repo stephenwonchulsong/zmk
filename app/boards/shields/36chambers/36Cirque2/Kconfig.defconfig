@@ -1,0 +1,20 @@
+if 36CIRQUE2
+
+config ZMK_KEYBOARD_NAME
+    default "36cirque2"
+
+# Cirque Glidepoint trackpad
+config ZMK_POINTING
+    default y
+
+# Assuming pointing device uses I2C
+config I2C
+    default y
+
+# enable PINCTRL
+CONFIG_PINCTRL=y
+
+# enable GPIO
+CONFIG_GPIO=y
+
+endif

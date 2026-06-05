@@ -1,0 +1,12 @@
+file_format: "1"
+id: 369ulp
+name: 369ulp
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+siblings:
+  - 369ulp_left
+  - 369ulp_right

@@ -1,0 +1,6 @@
+if SHIELD_36NUM
+
+config ZMK_KEYBOARD_NAME
+	default "Numpad36"
+
+endif

@@ -1,0 +1,23 @@
+if SHIELD_369ULP_LEFT || SHIELD_369ULP_RIGHT
+
+config ZMK_SPLIT
+	default y
+config SPI
+	default y
+config I2C
+	default y
+config ZMK_POINTING
+	default y
+
+endif
+
+if SHIELD_369ULP_RIGHT
+
+config ZMK_KEYBOARD_NAME
+	default "36Chambers-ULP"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif
+

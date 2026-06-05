@@ -1,0 +1,12 @@
+if TPS
+
+config ZMK_KEYBOARD_NAME
+    default "TPS"
+
+config ZMK_POINTING
+    default y
+
+config I2C
+	default y
+
+endif

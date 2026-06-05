@@ -1,0 +1,14 @@
+file_format: "1"
+id: 369ulptp
+name: 369ulptp
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+  - pointer
+siblings:
+  - 369ulptp_left
+  - 369ulptp_right
+  - 369ulptp_tp

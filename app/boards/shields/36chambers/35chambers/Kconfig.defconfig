@@ -1,0 +1,17 @@
+if SHIELD_35CHAMBERS_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "35chambers"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif
+
+if SHIELD_35CHAMBERS_LEFT || SHIELD_35CHAMBERS_RIGHT
+
+config ZMK_SPLIT
+	default y
+
+endif
+

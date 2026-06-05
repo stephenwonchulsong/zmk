@@ -1,0 +1,12 @@
+file_format: "1"
+id: 35chambers
+name: 35CHAMBERS
+type: shield
+url: https://github.com/germain-gadel
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+siblings:
+  - 35chambers_left
+  - 35chambers_right
