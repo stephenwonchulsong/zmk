@@ -3,8 +3,8 @@
  *;
  * SPDX-License-Identifier: MIT
 
-west build -d build/369ulptp_l -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_left
-west build -d build/369ulptp_r -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_right
+west build -d build/369ulptp_l -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_left -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+west build -d build/369ulptp_r -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 west build -d build/369ulptp_tp -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_tp -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 west build -d build/xiao_ble_reset -p -b seeeduino_xiao_ble -- -DSHIELD=settings_reset
 
