@@ -1,0 +1,46 @@
+/*
+ * Copyright (c) 2025 ZitaoTech
+ *
+ * SPDX-License-Identifier: MIT
+ 
+ 
+ */
+
+
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/backlight.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/rgb.h>
+#include <input/processors.dtsi>
+
+#define DEFAULT 0
+#define LOWER 1
+#define UPPER 2
+#define ADJUST 3
+
+#define SL_MO(layer) &sl_mo layer layer //tap -> sticky layer, hold -> momentary layer
+
+
+&sl {
+    release-after-ms = <3000>;
+    };
+
+// refer to the keymap below instead of editing this file 
+#include "bb_common.keymap.dtsi"
+
+/*
+west build -d build/bbp9981 -p -b  bbp9981
+west build -d build/bbq10 -p -b  bbq10
+west build -d build/bbp9981_reset -p -b bbp9981 -- -DSHIELD=settings_reset
+west build -d build/bbq10_reset -p -b bbq10 -- -DSHIELD=settings_reset
+
+docker cp zealous_pasteur:/workspaces/zmk/app/build/bbq10/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbq10.uf2"
+docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
+docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981_reset.uf2"
+docker cp zealous_pasteur:/workspaces/zmk/app/build/bbq10_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbq10_reset.uf2"
+*/
