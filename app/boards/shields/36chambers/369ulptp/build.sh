@@ -17,8 +17,8 @@ run() {
 cd "$APP_DIR"
 
 echo "=== Building 369ulptp firmware ==="
-run "build: 369ulptp_left"       west build -d build/369ulptp_l       -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_left
-run "build: 369ulptp_right"      west build -d build/369ulptp_r       -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_right
+run "build: 369ulptp_left"       west build -d build/369ulptp_l       -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_left -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
+run "build: 369ulptp_right"      west build -d build/369ulptp_r       -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_right -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 run "build: 369ulptp_tp"         west build -d build/369ulptp_tp      -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_tp -DZMK_EXTRA_MODULES="/workspaces/zmk/app/cirque-input-module-main"
 
 echo "=== Building settings_reset firmware ==="
