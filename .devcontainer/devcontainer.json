@@ -1,6 +1,8 @@
 {
-  "name": "ZMK Development",
-  "dockerFile": "Dockerfile",
+  "name": "ZMK Development (Zephyr 3.5)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "runArgs": ["--security-opt", "label=disable"],
   "containerEnv": {
     "WORKSPACE_DIR": "${containerWorkspaceFolder}",
@@ -19,7 +21,7 @@
     "vscode": {
       "extensions": ["ms-vscode.cpptools"],
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
+        "terminal.integrated.defaultProfile.linux": "bash"
       }
     }
   },
