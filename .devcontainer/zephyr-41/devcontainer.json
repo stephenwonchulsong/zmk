@@ -1,0 +1,29 @@
+{
+  "name": "ZMK Development (Zephyr 4.1)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "runArgs": ["--security-opt", "label=disable"],
+  "containerEnv": {
+    "WORKSPACE_DIR": "${containerWorkspaceFolder}",
+    "PROMPT_COMMAND": "history -a"
+  },
+  "mounts": [
+    "type=volume,source=zmk-root-user-41,target=/root",
+    "type=volume,source=zmk-config-41,target=/workspaces/zmk-config",
+    "type=volume,source=zmk-modules-41,target=/workspaces/zmk-modules",
+    "type=volume,source=zmk-zephyr-41,target=${containerWorkspaceFolder}/zephyr",
+    "type=volume,source=zmk-zephyr-modules-41,target=${containerWorkspaceFolder}/modules",
+    "type=volume,source=zmk-zephyr-tools-41,target=${containerWorkspaceFolder}/tools"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.cpptools"],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      }
+    }
+  },
+  "forwardPorts": [3000]
+}
