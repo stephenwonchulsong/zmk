@@ -94,4 +94,8 @@
   };
 };
 
-//west build -d build/adeptble -p -b seeeduino_xiao_ble -- -DSHIELD=AdeptBLE
+/*
+west build -d build/adeptble -p -b seeeduino_xiao_ble -- -DSHIELD=AdeptBLE
+west build -d build/adeptble -p -b xiao_ble//zmk -- -DSHIELD=AdeptBLE
+*/
+
