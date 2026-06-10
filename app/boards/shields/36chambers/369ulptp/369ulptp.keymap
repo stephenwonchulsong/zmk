@@ -9,9 +9,13 @@ west build -d build/369ulptp_tp -p -b seeeduino_xiao_ble -- -DSHIELD=369ulptp_tp
 west build -d build/xiao_ble_reset -p -b seeeduino_xiao_ble -- -DSHIELD=settings_reset
 
 
-docker cp gracious_gates:/workspaces/zmk/app/build/369ulptp_l/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369ulptp_left.uf2"
-docker cp gracious_gates:/workspaces/zmk/app/build/369ulptp_r/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369ulptp_right.uf2"
-docker cp gracious_gates:/workspaces/zmk/app/build/369ulptp_tp/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369ulptp_tp.uf2"
+docker cp eager_goldwasser:/workspaces/zmk/app/build/369ulptp_l/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369ulptp_left.uf2"
+docker cp eager_goldwasser:/workspaces/zmk/app/build/369ulptp_r/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369ulptp_right.uf2"
+docker cp eager_goldwasser:/workspaces/zmk/app/build/369ulptp_tp/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/369ulptp_tp.uf2"
+docker cp eager_goldwasser:/workspaces/zmk/app/build/settings_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/settings_reset.uf2"
+
+
+/workspaces/zmk/app/boards/shields/36chambers/369ulptp/build.sh
 
  */
 

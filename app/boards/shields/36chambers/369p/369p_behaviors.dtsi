@@ -22,13 +22,7 @@
 #define commandlayer 5
 #define extra 6
 #define mouse 7
-// #define cmtoqw 6
-// #define lock 7
-// #define locklow 8
-// #define unlock 9
-// #define lockhigh 10/
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 3500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 140
+
 
 &mt {
     tapping-term-ms = <200>;
