@@ -47,27 +47,29 @@
       bindings = <&mo>, <&to>;
     };
   };
+
+
   keymap {
     compatible = "zmk,keymap";
     default_layer {
       display-name = "Default";
       bindings = <
-        &ltm BLTH MB4 &ltm DEVICE MB5 &mkp MCLK &lth SCRLM RCLK
-        &mkp LCLK                               &mto SCRLM SNIPE
+      &ltm BLTH MB4 &ltm DEVICE MB5 &mkp MCLK &mkp RCLK
+      &lth SCRLM LCLK                               &mto SCRLM SNIPE
       >;
     };
     scroll_tap_layer {
       display-name = "Scroll-Momentary";
       bindings = <
-        &trans &trans &to SCRLH &trans
-        &to SCRLH               &trans
+        &trans &trans &trans &trans
+        &trans               &trans
       >;
     };
     scroll_hold_layer {
       display-name = "Scroll-Keep";
       bindings = <
-        &trans &trans &trans &to DEFAULT
-        &trans               &to DEFAULT
+        &to DEFAULT &trans &trans &to DEFAULT
+        &trans               &trans
       >;
     };
     device_layer {
