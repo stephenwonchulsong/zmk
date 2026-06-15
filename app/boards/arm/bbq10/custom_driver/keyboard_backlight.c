@@ -10,7 +10,6 @@
 #include <zephyr/drivers/led.h>
 #include <zephyr/logging/log.h>
 
-#include <zmk/rgb_underglow.h>
 #include <zmk/event_manager.h>
 #include <zmk/activity.h>
 #include <zmk/keymap.h>
@@ -27,20 +26,32 @@ static const struct device *const indiled_dev = DEVICE_DT_GET(DT_CHOSEN(zmk_keyb
 #define DT_NUM_CHILD(node_id) (DT_FOREACH_CHILD(node_id, CHILD_COUNT))
 #define INDICATOR_LED_NUM_LEDS (DT_NUM_CHILD(DT_CHOSEN(zmk_keyboard_backlight)))
 
-#define BRT_MAX 90
-#define BRT_BLINK_HIGH 100
-#define BRT_BLINK_LOW 10
-#define BLINK_INTERVAL_MS 500
+/* Layer indices — must match #defines in bbq10.keymap */
+#define LAYER_DEFAULT 0
+#define LAYER_LOWER   1
+#define LAYER_GAME    2
+#define LAYER_UPPER   3
+#define LAYER_ADJUST  4
 
-#define CYCLE_BRT_MIN 10
-#define CYCLE_BRT_MAX 100
+#define BRT_STATIC 90
+
+#define BRT_BLINK_HIGH 100
+#define BRT_BLINK_LOW  0
+
+/* LOWER blink: 2 Hz → 250 ms half-period */
+#define BLINK_INTERVAL_LOWER_MS  250
+/* ADJUST blink: 4 Hz → 125 ms half-period */
+#define BLINK_INTERVAL_ADJUST_MS 125
+
+#define CYCLE_BRT_MIN  10
+#define CYCLE_BRT_MAX  100
 #define CYCLE_BRT_STEP 5
-#define CYCLE_INTERVAL_MS 20
+/* UPPER breathe: 1 Hz → 36 steps per full cycle → 28 ms per step */
+#define CYCLE_INTERVAL_UPPER_MS 28
 
 static bool prev_active = false;
 static int prev_layer = -1;
 static bool blink_on = false;
-static bool blink_start_high = true;
 static uint8_t cycle_brightness = CYCLE_BRT_MIN;
 static bool cycle_direction_up = true;
 
@@ -61,23 +72,23 @@ static void set_led_brightness(uint8_t level) {
     }
 }
 
-/* 层1/层3闪烁 */
+/* LOWER (2 Hz) and ADJUST (4 Hz): blink */
 static void blink_work_handler(struct k_work *work) {
-    if (prev_layer != 1 && prev_layer != 3) {
+    if (prev_layer != LAYER_LOWER && prev_layer != LAYER_ADJUST) {
         set_led_brightness(0);
         return;
     }
 
     blink_on = !blink_on;
     set_led_brightness(blink_on ? BRT_BLINK_HIGH : BRT_BLINK_LOW);
-
-    uint32_t interval = (prev_layer == 3) ? (BLINK_INTERVAL_MS / 2) : BLINK_INTERVAL_MS;
+    uint32_t interval = (prev_layer == LAYER_LOWER) ? BLINK_INTERVAL_LOWER_MS
+                                                    : BLINK_INTERVAL_ADJUST_MS;
     k_work_reschedule(&blink_work, K_MSEC(interval));
 }
 
-/* 层2呼吸 */
+/* UPPER (1 Hz): breathe */
 static void cycle_work_handler(struct k_work *work) {
-    if (prev_layer != 2) {
+    if (prev_layer != LAYER_UPPER) {
         set_led_brightness(0);
         return;
     }
@@ -98,20 +109,12 @@ static void cycle_work_handler(struct k_work *work) {
             cycle_brightness -= CYCLE_BRT_STEP;
         }
     }
-    k_work_reschedule(&cycle_work, K_MSEC(CYCLE_INTERVAL_MS));
+    k_work_reschedule(&cycle_work, K_MSEC(CYCLE_INTERVAL_UPPER_MS));
 }
 
 static void polling_work_handler(struct k_work *work) {
     bool active = (zmk_activity_get_state() == ZMK_ACTIVITY_ACTIVE);
     int current_layer = zmk_keymap_highest_layer_active();
-    struct zmk_led_hsb ug = zmk_rgb_underglow_calc_brt(0);
-    uint8_t ug_brt = ug.b;
-    bool rgb_on = true;
-#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW)
-    if (zmk_rgb_underglow_get_state(&rgb_on) < 0) {
-        rgb_on = true;
-    }
-#endif
 
     if (current_layer != prev_layer || active != prev_active) {
         prev_layer = current_layer;
@@ -124,35 +127,26 @@ static void polling_work_handler(struct k_work *work) {
         cycle_direction_up = true;
 
         switch (current_layer) {
-        case 0:
-            /* 层0：跟随 RGB 和活动状态 */
-            uint8_t brt = (rgb_on && active) ? ug_brt : 0;
-            set_led_brightness(brt);
+        case LAYER_DEFAULT:
+            set_led_brightness(BRT_STATIC);
             break;
 
-        case 1:
-            /*
-             * 层1：闪烁
-             * RGB 关闭 → 先高亮再低亮
-             * RGB 开启 → 先低亮再高亮
-             */
-            blink_start_high = !rgb_on ? true : false;
-            blink_on = blink_start_high;
-            set_led_brightness(blink_on ? BRT_BLINK_HIGH : BRT_BLINK_LOW);
-            /* 使用半周期，避免首次到第二次闪烁间隔过长 */
-            k_work_reschedule(&blink_work, K_MSEC(BLINK_INTERVAL_MS / 2));
+        case LAYER_LOWER:
+            set_led_brightness(BRT_BLINK_LOW);
+            k_work_reschedule(&blink_work, K_MSEC(BLINK_INTERVAL_LOWER_MS));
             break;
 
-        case 2:
-            /* 层2：始终呼吸 */
+        case LAYER_GAME:
+            set_led_brightness(0);
+            break;
+
+        case LAYER_UPPER:
             k_work_reschedule(&cycle_work, K_MSEC(100));
             break;
 
-        case 3:
-            /* 层3：更快的闪烁 */
-            blink_on = false;
+        case LAYER_ADJUST:
             set_led_brightness(BRT_BLINK_LOW);
-            k_work_reschedule(&blink_work, K_MSEC(BLINK_INTERVAL_MS / 2));
+            k_work_reschedule(&blink_work, K_MSEC(BLINK_INTERVAL_ADJUST_MS));
             break;
 
         default:

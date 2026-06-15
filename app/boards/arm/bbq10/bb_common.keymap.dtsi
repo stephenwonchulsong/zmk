@@ -226,18 +226,38 @@ macros {
     &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &tns LT LPAR   &tns GT RPAR      &kp UNDER       &kp MINUS    &kp PLUS         &kp EQUAL
     &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &kp FSLH   &kp COLON     &kp SEMI        &tns GRAVE SQT &kp DQT        &kp DEL
     &trans    &tns AMPS N7        &tns ASTRK N8       &tns LPAR N9          &kp QMARK     &kp EXCL        &kp COMMA &kp DOT    &trans &kp ENTER
-    &tog ADJUST            &tns RPAR N0                         &kp CAPS                       &trans                       &trans
+    &trans            &tns RPAR N0                         &kp CAPS                       &trans                       &trans
+            >;
+        };
+        game_layer {
+
+            bindings = <
+/*        --------------------------------------------------------------------------------------------------------------------------
+//         |    Shoulder Key1    |                                                                             |    Shoulder Key2    |
+// |         Call key      |      Blackberry Key        |    Trackpad    |             Back Key                |             Endcall Key          |
+// |     Q      |     W    |     E    |     R    |      T      |       Y        |       U        |        I        |       O      |      P        |
+// |     A      |     S    |     D    |     F    |      G      |       H        |       J        |        K        |       L      |      ←        |
+// |     alt    |     Z    |     X    |     C    |      V      |       B        |       N        |        M        |       $      |    Enter      |
+//        |         aA     |         0           |           SPACE              |         SYM         |        aA          |
+//        -----------------------------------------------------------------------------------------------------------------
+*/
+                 &trans                                                                                           &trans
+    &kp LEFT                    &kp UP                        &tog DEFAULT                   &kp DOWN              &kp RIGHT
+    &kp Q        &kp W &kp E &kp R &kp T  &kp Y      &kp U     &kp I     &kp O     &kp P
+    &kp A        &kp S &kp D &kp F &kp G  &kp H      &kp J     &kp K     &kp L     &kp BSPC
+    &shift_td            &kp Z &bhm LCTL X &bhm LALT C &kp V  &kp B      &kp N     &kp M     &commaq QMARK 0  &kp RET
+    &trans            &sk_kp LALT LALT               &kp SPACE                          &bhm  LCTRL TAB                  &qlt LOWER GLOBE
             >;
         };
         upper_layer {
 
             bindings = <
                  &none                                                                                           &none
-    &trans          &trans                                  &trans                          &trans                     &trans
+    &kp LEFT                    &qlt UPPER UP                        &mkp LCLK                   &qlt LOWER DOWN              &kp RIGHT
     &none        &kp F1   &kp F2 &kp F3      &tns LBRC LBKT &tns RBRC RBKT            &trans           &trans          &trans         &kp EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &trans         &trans         &trans        &trans        &trans
     &trans      &kp F7   &kp F8 &kp F7  &trans        &trans  &trans       &trans &trans     &kp ENTER
-    &qlt UPPER ESC              &trans                                      &kp  SPACE                        &trans                      &trans
+    &trans              &trans                                      &kp  SPACE                        &trans                      &trans
         >;
         };
 
