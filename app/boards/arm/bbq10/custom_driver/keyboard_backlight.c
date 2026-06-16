@@ -29,34 +29,26 @@ static const struct device *const indiled_dev = DEVICE_DT_GET(DT_CHOSEN(zmk_keyb
 /* Layer indices — must match #defines in bbq10.keymap */
 #define LAYER_DEFAULT 0
 #define LAYER_LOWER   1
-#define LAYER_GAME    2
-#define LAYER_UPPER   3
-#define LAYER_ADJUST  4
+#define LAYER_UPPER   2
+#define LAYER_ADJUST  3
 
-#define BRT_STATIC 90
-
-#define BRT_BLINK_HIGH 100
-#define BRT_BLINK_LOW  0
-
-/* LOWER blink: 2 Hz → 250 ms half-period */
-#define BLINK_INTERVAL_LOWER_MS  250
-/* ADJUST blink: 4 Hz → 125 ms half-period */
-#define BLINK_INTERVAL_ADJUST_MS 125
+#define BRT_STATIC 80
 
 #define CYCLE_BRT_MIN  10
 #define CYCLE_BRT_MAX  100
 #define CYCLE_BRT_STEP 5
-/* UPPER breathe: 1 Hz → 36 steps per full cycle → 28 ms per step */
-#define CYCLE_INTERVAL_UPPER_MS 28
+/* A full breathe cycle is (MAX-MIN)/STEP steps up + the same down = 36 steps.
+ * Per-step interval = 1000 / (freq_hz * 36). */
+#define CYCLE_INTERVAL_LOWER_MS  28 /* LOWER breathe:  1 Hz */
+#define CYCLE_INTERVAL_UPPER_MS  14 /* UPPER breathe:  2 Hz */
+#define CYCLE_INTERVAL_ADJUST_MS 7  /* ADJUST breathe: 4 Hz */
 
 static bool prev_active = false;
 static int prev_layer = -1;
-static bool blink_on = false;
 static uint8_t cycle_brightness = CYCLE_BRT_MIN;
 static bool cycle_direction_up = true;
 
 static struct k_work_delayable polling_work;
-static struct k_work_delayable blink_work;
 static struct k_work_delayable cycle_work;
 
 static void set_led_brightness(uint8_t level) {
@@ -72,23 +64,20 @@ static void set_led_brightness(uint8_t level) {
     }
 }
 
-/* LOWER (2 Hz) and ADJUST (4 Hz): blink */
-static void blink_work_handler(struct k_work *work) {
-    if (prev_layer != LAYER_LOWER && prev_layer != LAYER_ADJUST) {
-        set_led_brightness(0);
-        return;
+/* Breathe interval for the layers that use it, 0 if the layer doesn't breathe. */
+static uint32_t cycle_interval_for_layer(int layer) {
+    switch (layer) {
+    case LAYER_LOWER:  return CYCLE_INTERVAL_LOWER_MS;
+    case LAYER_UPPER:  return CYCLE_INTERVAL_UPPER_MS;
+    case LAYER_ADJUST: return CYCLE_INTERVAL_ADJUST_MS;
+    default:           return 0;
     }
-
-    blink_on = !blink_on;
-    set_led_brightness(blink_on ? BRT_BLINK_HIGH : BRT_BLINK_LOW);
-    uint32_t interval = (prev_layer == LAYER_LOWER) ? BLINK_INTERVAL_LOWER_MS
-                                                    : BLINK_INTERVAL_ADJUST_MS;
-    k_work_reschedule(&blink_work, K_MSEC(interval));
 }
 
-/* UPPER (1 Hz): breathe */
+/* LOWER (1 Hz), UPPER (2 Hz), ADJUST (4 Hz): breathe */
 static void cycle_work_handler(struct k_work *work) {
-    if (prev_layer != LAYER_UPPER) {
+    uint32_t interval = cycle_interval_for_layer(prev_layer);
+    if (!prev_active || interval == 0) {
         set_led_brightness(0);
         return;
     }
@@ -109,7 +98,7 @@ static void cycle_work_handler(struct k_work *work) {
             cycle_brightness -= CYCLE_BRT_STEP;
         }
     }
-    k_work_reschedule(&cycle_work, K_MSEC(CYCLE_INTERVAL_UPPER_MS));
+    k_work_reschedule(&cycle_work, K_MSEC(interval));
 }
 
 static void polling_work_handler(struct k_work *work) {
@@ -120,38 +109,29 @@ static void polling_work_handler(struct k_work *work) {
         prev_layer = current_layer;
         prev_active = active;
 
-        k_work_cancel_delayable(&blink_work);
         k_work_cancel_delayable(&cycle_work);
-        blink_on = false;
         cycle_brightness = CYCLE_BRT_MIN;
         cycle_direction_up = true;
 
-        switch (current_layer) {
-        case LAYER_DEFAULT:
-            set_led_brightness(BRT_STATIC);
-            break;
-
-        case LAYER_LOWER:
-            set_led_brightness(BRT_BLINK_LOW);
-            k_work_reschedule(&blink_work, K_MSEC(BLINK_INTERVAL_LOWER_MS));
-            break;
-
-        case LAYER_GAME:
+        if (!active) {
+            /* Idle: turn the backlight off regardless of layer. */
             set_led_brightness(0);
-            break;
+        } else {
+            switch (current_layer) {
+            case LAYER_DEFAULT:
+                set_led_brightness(BRT_STATIC);
+                break;
 
-        case LAYER_UPPER:
-            k_work_reschedule(&cycle_work, K_MSEC(100));
-            break;
+            case LAYER_LOWER:
+            case LAYER_UPPER:
+            case LAYER_ADJUST:
+                k_work_reschedule(&cycle_work, K_MSEC(100));
+                break;
 
-        case LAYER_ADJUST:
-            set_led_brightness(BRT_BLINK_LOW);
-            k_work_reschedule(&blink_work, K_MSEC(BLINK_INTERVAL_ADJUST_MS));
-            break;
-
-        default:
-            set_led_brightness(0);
-            break;
+            default:
+                set_led_brightness(0);
+                break;
+            }
         }
     }
 
@@ -168,7 +148,6 @@ static int keyboardbacklight_init(void) {
     prev_layer = -1;
 
     k_work_init_delayable(&polling_work, polling_work_handler);
-    k_work_init_delayable(&blink_work, blink_work_handler);
     k_work_init_delayable(&cycle_work, cycle_work_handler);
 
     k_work_reschedule(&polling_work, K_MSEC(100));

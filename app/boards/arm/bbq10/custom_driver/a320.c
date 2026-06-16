@@ -144,12 +144,10 @@ static int a320_read_motion_3b(const struct device *dev, int16_t *dx, int16_t *d
     uint8_t buf[3];
     uint8_t reg = 0x82;
 
-    /* Write 0x82 to arm the motion latch, then read without re-sending the register
-     * address — a second write would clear the armed state on this chip variant. */
     if (i2c_write_dt(&cfg->i2c, &reg, 1) < 0)
         return -EIO;
 
-    if (i2c_read_dt(&cfg->i2c, buf, sizeof(buf)) < 0)
+    if (i2c_burst_read_dt(&cfg->i2c, 0x82, buf, sizeof(buf)) < 0)
         return -EIO;
 
     *dx = -(int8_t)buf[2];

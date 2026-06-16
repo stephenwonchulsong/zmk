@@ -39,6 +39,22 @@
    flavor = "hold-preferred";
 };
 
+/* Mouse movement: start slow with fine control, then accelerate gradually.
+ * acceleration-exponent = 2 → quadratic ramp (slow, granular start that speeds up);
+ * larger time-to-max-speed-ms → takes longer to reach full speed (slower acceleration).
+ * (defaults were 300 ms / exponent 1.) */
+&mmv {
+    time-to-max-speed-ms = <1000>;
+    acceleration-exponent = <2>;
+};
+
+/* Mouse scroll up/down/left/right: same feel — fine, slow scrolling at first that
+ * accelerates. (defaults were 300 ms / exponent 0, i.e. no acceleration at all.) */
+&msc {
+    time-to-max-speed-ms = <1000>;
+    acceleration-exponent = <2>;
+};
+
 /{ // <---[[root node]]    
     macros {
         // |XteZB8Yrdc SBRzu1UX

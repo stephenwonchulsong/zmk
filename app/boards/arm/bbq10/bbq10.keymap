@@ -20,9 +20,8 @@
 
 #define DEFAULT 0
 #define LOWER 1
-#define GAME 2
-#define UPPER 3
-#define ADJUST 4
+#define UPPER 2
+#define ADJUST 3
 
 #define SL_MO(layer) &sl_mo layer layer //tap -> sticky layer, hold -> momentary layer
 
