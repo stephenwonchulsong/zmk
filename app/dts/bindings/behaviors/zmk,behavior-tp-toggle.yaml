@@ -1,0 +1,8 @@
+# Copyright (c) 2025 ZitaoTech
+# SPDX-License-Identifier: MIT
+
+description: Trackpad enable/disable toggle behavior
+
+compatible: "zmk,behavior-tp-toggle"
+
+include: zero_param.yaml

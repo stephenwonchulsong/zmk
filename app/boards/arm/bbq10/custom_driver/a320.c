@@ -56,6 +56,7 @@ static const struct device *motion_gpio_dev;
  * ========================= */
 
 static bool touched = false;
+static bool tp_enabled = true; /* runtime trackpad on/off toggle (&tp_toggle) */
 static bool ctrl_pressed = false;
 static bool shift_pressed = false;
 
@@ -181,6 +182,13 @@ static void a320_poll_work_handler(struct k_work *work) {
     struct k_work_delayable *dwork = CONTAINER_OF(work, struct k_work_delayable, work);
     struct a320_data *data = CONTAINER_OF(dwork, struct a320_data, poll_work);
 
+    /* Trackpad disabled via &tp_toggle: stop reporting but keep polling alive. */
+    if (!tp_enabled) {
+        touched = false;
+        k_work_reschedule(&data->poll_work, K_MSEC(CONFIG_A320_POLL_INTERVAL_MS));
+        return;
+    }
+
     int pin_state = gpio_pin_get(motion_gpio_dev, MOTION_GPIO_PIN);
 
     if (pin_state == 0) {
@@ -251,6 +259,22 @@ reschedule:
 }
 
 bool tp_is_touched(void) { return touched; }
+
+/* =========================
+ * Enable / disable toggle
+ * ========================= */
+
+void a320_set_enabled(bool enabled) {
+    tp_enabled = enabled;
+    if (!enabled) {
+        touched = false;
+    }
+    LOG_INF("A320 trackpad %s", enabled ? "ENABLED" : "DISABLED");
+}
+
+bool a320_is_enabled(void) { return tp_enabled; }
+
+void a320_toggle_enabled(void) { a320_set_enabled(!tp_enabled); }
 
 /* =========================
  * Init

@@ -192,6 +192,10 @@ macros {
         tapping-term-ms = <200>;
         bindings = <&sk_kp LSHFT LSHFT>, <&caps_word>;
         };
+    tp_toggle: tp_toggle {
+        compatible = "zmk,behavior-tp-toggle";
+        #binding-cells = <0>;
+        };
     };
 
     keymap {
@@ -232,7 +236,7 @@ macros {
 
             bindings = <
                  &trans                                                                                          &trans
-    &kp LEFT                    &qlt UPPER UP                        &mkp LCLK                   &sl_mo ADJUST ADJUST              &kp RIGHT
+    &kp LEFT                    &qlt UPPER UP                        &tp_toggle                  &sl_mo ADJUST ADJUST              &kp RIGHT
     &none        &kp F1   &kp F2 &kp F3      &tns LBRC LBKT &tns RBRC RBKT            &trans           &trans          &trans         &kp EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &trans         &trans         &trans        &trans        &trans
     &trans      &kp F7   &kp F8 &kp F7  &trans        &trans  &trans       &trans &trans     &kp ENTER

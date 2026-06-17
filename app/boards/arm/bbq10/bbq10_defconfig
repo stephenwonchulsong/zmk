@@ -76,7 +76,8 @@ CONFIG_ZMK_STUDIO_LOCKING=n
 CONFIG_ZMK_STUDIO_LOCK_ON_DISCONNECT=n
 
 # Log via USB or Segger RTT
-CONFIG_ZMK_USB_LOGGING=n
+# Temporarily enabled to diagnose the A320 trackpad (init/I2C/addr). Revert to =n when done.
+CONFIG_ZMK_USB_LOGGING=y
 # CONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=4000
 
 # RGB backlight setting for Backlight turn on/off of keyboard
