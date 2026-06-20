@@ -144,12 +144,15 @@ static int a320_read_motion_3b(const struct device *dev, int16_t *dx, int16_t *d
     const struct a320_dev_config *cfg = dev->config;
     uint8_t buf[3];
     uint8_t reg = 0x82;
+    int ret;
 
-    if (i2c_write_dt(&cfg->i2c, &reg, 1) < 0)
-        return -EIO;
+    ret = i2c_write_dt(&cfg->i2c, &reg, 1);
+    if (ret < 0)
+        return ret;
 
-    if (i2c_burst_read_dt(&cfg->i2c, 0x82, buf, sizeof(buf)) < 0)
-        return -EIO;
+    ret = i2c_burst_read_dt(&cfg->i2c, 0x82, buf, sizeof(buf));
+    if (ret < 0)
+        return ret;
 
     *dx = -(int8_t)buf[2];
     *dy = -(int8_t)buf[1];
@@ -161,12 +164,15 @@ static int a320_read_motion_37(const struct device *dev, int16_t *dx, int16_t *d
     const struct a320_dev_config *cfg = dev->config;
     uint8_t buf[7];
     uint8_t reg = 0x0A;
+    int ret;
 
-    if (i2c_write_dt(&cfg->i2c, &reg, 1) < 0)
-        return -EIO;
+    ret = i2c_write_dt(&cfg->i2c, &reg, 1);
+    if (ret < 0)
+        return ret;
 
-    if (i2c_burst_read_dt(&cfg->i2c, 0x0A, buf, sizeof(buf)) < 0)
-        return -EIO;
+    ret = i2c_burst_read_dt(&cfg->i2c, 0x0A, buf, sizeof(buf));
+    if (ret < 0)
+        return ret;
 
     *dy = (int8_t)buf[3];
     *dx = -(int8_t)buf[1];
@@ -191,11 +197,28 @@ static void a320_poll_work_handler(struct k_work *work) {
 
     int pin_state = gpio_pin_get(motion_gpio_dev, MOTION_GPIO_PIN);
 
+    /* Diagnostic (logged at most once each): proves at runtime whether the motion pin
+     * ever asserts when you touch the pad, and whether the first I2C read succeeds. */
+    static bool seen_low, seen_motion, logged_read_err;
+    if (pin_state == 0 && !seen_low) {
+        seen_low = true;
+        LOG_INF("A320 motion pin asserted LOW (data ready) for the first time");
+    }
+
     if (pin_state == 0) {
 
         int16_t dx = 0, dy = 0;
+        int rc = data->read_motion(data->dev, &dx, &dy);
 
-        if (data->read_motion(data->dev, &dx, &dy) == 0 && (dx || dy)) {
+        if (rc < 0 && !logged_read_err) {
+            logged_read_err = true;
+            LOG_ERR("A320 motion read failed: err=%d (I2C transaction not ACKed)", rc);
+        } else if (rc == 0 && !seen_motion && (dx || dy)) {
+            seen_motion = true;
+            LOG_INF("A320 first motion sample dx=%d dy=%d", dx, dy);
+        }
+
+        if (rc == 0 && (dx || dy)) {
 
             bool capslock = current_indicators & HID_INDICATORS_CAPS_LOCK;
 
@@ -306,6 +329,24 @@ static int a320_init(const struct device *dev) {
     }
 
     data->dev = dev;
+
+    /* Diagnostic: probe the sensor once at boot so the USB log shows, unambiguously,
+     * whether the device at this I2C address actually responds. A negative err here
+     * means the trackpad did NOT ACK -> wrong I2C address or a hardware/flex fault
+     * (compare against the working bbp9981, which uses addr 0x57). */
+    {
+        int16_t pdx = 0, pdy = 0;
+        int probe = data->read_motion(dev, &pdx, &pdy);
+        int pin = gpio_pin_get(motion_gpio_dev, MOTION_GPIO_PIN);
+        if (probe == 0) {
+            LOG_INF("A320 probe OK addr=0x%02X motion_pin(gpio1.%d)=%d", cfg->i2c.addr,
+                    MOTION_GPIO_PIN, pin);
+        } else {
+            LOG_ERR("A320 probe FAILED addr=0x%02X err=%d (sensor not responding -- wrong I2C "
+                    "address or hardware/flex fault)",
+                    cfg->i2c.addr, probe);
+        }
+    }
 
     k_work_init_delayable(&data->poll_work, a320_poll_work_handler);
 
