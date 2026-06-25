@@ -34,13 +34,13 @@
 #include "bb_lownbhold.keymap.dtsi"
 
 /*
-west build -d build/bbp9981 -p -b  bbp9981
 west build -d build/bbq10 -p -b  bbq10
-west build -d build/bbp9981_reset -p -b bbp9981 -- -DSHIELD=settings_reset
 west build -d build/bbq10_reset -p -b bbq10 -- -DSHIELD=settings_reset
+west build -d build/bbp9981 -p -b  bbp9981
+west build -d build/bbp9981_reset -p -b bbp9981 -- -DSHIELD=settings_reset
 
-docker cp zealous_pasteur:/workspaces/zmk/app/build/bbq10/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbq10.uf2"
-docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
-docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981_reset.uf2"
-docker cp zealous_pasteur:/workspaces/zmk/app/build/bbq10_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbq10_reset.uf2"
+docker cp naughty_cohen:/workspaces/zmk/app/build/bbq10/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbq10.uf2"
+docker cp naughty_cohen:/workspaces/zmk/app/build/bbq10_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbq10_reset.uf2"
+docker cp naughty_cohen:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
+docker cp naughty_cohen:/workspaces/zmk/app/build/bbp9981_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981_reset.uf2"
 */

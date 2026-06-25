@@ -244,11 +244,11 @@ macros {
 //        -----------------------------------------------------------------------------------------------------------------
 */
                  &sl_mo UPPER UPPER                                                                                           &sl_mo LOWER LOWER
-    &kp LEFT                    &qlt UPPER UP                        &mkp LCLK                   &kp DOWN              &kp RIGHT
+    &kp LEFT                    &kp UP                        &mkp LCLK                   &kp DOWN              &kp RIGHT
     &ht POUND Q   &ht N1 W   &ht N2 E   &ht N3 R   &ht LPAR T   &ht RPAR Y   &ht UNDER U   &ht MINUS I   &ht PLUS O   &ht EQUAL P
     &ht ASTRK A   &ht N4 S   &ht N5 D   &ht N6 F   &ht FSLH G   &ht COLON H   &ht SEMI J   &ht SQT K   &ht DQT L   &kp BSPC
     &shift_td   &ht N7 Z   &ht N8 X   &ht N9 C   &ht QMARK V   &ht EXCL B   &ht COMMA N   &ht DOT M   &commaq QMARK 0  &kp RET
-    &bhm LCTL ESC                  &qlmt UPPER RCLK               &bhm LGUI SPACE                          &qlt LOWER TAB                  &bhm LALT GLOBE
+    &qlt UPPER ESC &bhm LCTL N0                                &bhm LGUI SPACE                          &bhm LALT GLOBE &qlt LOWER TAB
             >;
         };
 //         game_layer {
@@ -277,7 +277,7 @@ macros {
     &trans    &tns EXCL N1        &tns AT N2          &tns POUND N3    &tns LT LPAR   &tns GT RPAR      &kp UNDER       &kp MINUS    &kp PLUS         &kp EQUAL
     &trans    &tns DLLR N4        &tns PRCNT N5       &tns CARET N6    &kp FSLH   &kp COLON     &kp SEMI        &tns GRAVE SQT &kp DQT        &kp DEL
     &trans    &tns AMPS N7        &tns ASTRK N8       &tns LPAR N9          &kp QMARK     &kp EXCL        &kp COMMA &kp DOT    &trans &kp ENTER
-    &sl_mo ADJUST ADJUST    &tns RPAR N0                         &kp CAPS                       &trans                       &trans
+    &trans    &tns RPAR N0                         &kp CAPS                       &trans                       &trans
             >;
         };
         upper_layer {
@@ -288,7 +288,7 @@ macros {
     &none        &kp F1   &kp F2 &kp F3      &tns LBRC LBKT &tns RBRC RBKT            &trans           &trans          &trans         &kp EQUAL
     &kp LEFT     &kp F4   &kp F5 &kp F6           &kp BSLH          &trans         &trans         &trans        &trans        &trans
     &trans      &kp F7   &kp F8 &kp F7  &trans        &trans  &trans       &trans &trans     &kp ENTER
-    &trans              &trans                                      &kp  SPACE                        &trans                      &trans
+    &trans              &trans                                      &kp  LG(SPACE)                        &trans                      &trans
         >;
         };
 

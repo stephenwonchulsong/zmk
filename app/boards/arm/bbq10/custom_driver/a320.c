@@ -37,6 +37,21 @@ LOG_MODULE_REGISTER(a320, CONFIG_A320_LOG_LEVEL);
 #endif
 
 /* =========================
+ * Diagnostics (temporary)
+ * ========================= */
+
+/* Scan the whole I2C bus once at boot and log every address that ACKs.
+ * Answers definitively whether the sensor is at the configured 0x3B, at some
+ * other address (e.g. 0x57 like the working bbp9981), or absent (nothing ACKs
+ * -> flex/hardware fault). Set to 0 to disable. */
+#define A320_DIAG_I2C_SCAN 1
+
+/* Read the sensor every poll cycle regardless of the motion pin. If the
+ * trackpad starts working with this on, the motion line (gpio1.1) is the
+ * wrong/dead pin rather than the I2C link. Set to 0 for normal gated polling. */
+#define A320_DIAG_BYPASS_MOTION_GATE 0
+
+/* =========================
  * HID indicators
  * ========================= */
 
@@ -205,7 +220,7 @@ static void a320_poll_work_handler(struct k_work *work) {
         LOG_INF("A320 motion pin asserted LOW (data ready) for the first time");
     }
 
-    if (pin_state == 0) {
+    if (pin_state == 0 || A320_DIAG_BYPASS_MOTION_GATE) {
 
         int16_t dx = 0, dy = 0;
         int rc = data->read_motion(data->dev, &dx, &dy);
@@ -329,6 +344,26 @@ static int a320_init(const struct device *dev) {
     }
 
     data->dev = dev;
+
+#if A320_DIAG_I2C_SCAN
+    /* Diagnostic: scan the whole I2C bus and log every address that ACKs, so the
+     * USB log shows where (if anywhere) the trackpad actually lives. If 0x3B is
+     * absent but another address responds, the dts reg + read variant are wrong;
+     * if NOTHING responds, it's a wiring/flex fault. */
+    {
+        int found = 0;
+        for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
+            uint8_t dummy;
+            if (i2c_read(cfg->i2c.bus, &dummy, 1, addr) == 0) {
+                LOG_INF("A320 I2C scan: device ACKed at 0x%02X", addr);
+                found++;
+            }
+        }
+        if (found == 0) {
+            LOG_ERR("A320 I2C scan: NO devices ACKed on the bus (wiring/flex fault?)");
+        }
+    }
+#endif
 
     /* Diagnostic: probe the sensor once at boot so the USB log shows, unambiguously,
      * whether the device at this I2C address actually responds. A negative err here

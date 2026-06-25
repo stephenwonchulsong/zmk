@@ -10,7 +10,7 @@ config ZMK_POINTING
     default y
 endif
 
-if SHIELD_369P_LEFT
+if SHIELD_369P_RIGHT
 
 config ZMK_KEYBOARD_NAME
 	default "369p"
