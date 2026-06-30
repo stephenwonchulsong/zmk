@@ -44,7 +44,7 @@
  * larger time-to-max-speed-ms → takes longer to reach full speed (slower acceleration).
  * (defaults were 300 ms / exponent 1.) */
 &mmv {
-    time-to-max-speed-ms = <1000>;
+    time-to-max-speed-ms = <750>;
     acceleration-exponent = <2>;
 };
 
