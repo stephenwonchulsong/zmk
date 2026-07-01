@@ -421,6 +421,12 @@
             bindings = <&kp ESC>, <&kp GRAVE>;
             mods = <(MOD_RGUI|MOD_LSFT|MOD_LALT|MOD_LCTL)>;
         };
+        gresc_f17: gresc_f17 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&gresc>, <&kp F17>;
+        };
         mnl: mouse_n_language {
             compatible = "zmk,behavior-hold-tap";
             label = "MOUSE_MODS";
@@ -454,6 +460,20 @@
             #binding-cells = <0>;
             bindings = <&kp COMMA>, <&kp LPAR>;
             mods = <(MOD_RSFT)>;
+        };
+        /* Hold-tap wrapper for comlpar: tap = comma/LPAR morph; hold = a single
+         * tap of the alphanumeric key passed as the first parameter (via single_tap,
+         * so it fires once with no auto-repeat). The second parameter feeds the tap
+         * side (comlpar ignores it), so pass 0.
+         * Keymap usage:  &comlpar_ht <ALPHA> 0     e.g.  &comlpar_ht M 0 */
+        comlpar_ht: comlpar_hold_alpha {
+            compatible = "zmk,behavior-hold-tap";
+            label = "COMLPAR_HOLD_ALPHA";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&single_tap>, <&comlpar>;
         };
         dotrpar: dot_parenthesis {
             compatible = "zmk,behavior-mod-morph";
@@ -671,6 +691,7 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <125>;
             bindings = <&mousecombo>, <&homef17base>;
+        
         };
     };
     combos {

@@ -50,13 +50,6 @@ SCK  D17 P1.03
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
         diode-direction = "col2row";
-        /* Chatter suppression: a key must read its new state continuously
-         * for this many ms before the change is reported. Spurious, inhumanly
-         * quick release/re-press blips are absorbed here, below the keymap, so
-         * hold-tap and tap-dance just see a clean continuous hold.
-         * Tune release upward if chatter persists; keep press low for snappy taps. */
-        debounce-press-ms = <6>;
-        debounce-release-ms = <25>;
         // compatible = "zmk,kscan-gpio-matrix";
         // diode-direction = "col2row";
     col-gpios
