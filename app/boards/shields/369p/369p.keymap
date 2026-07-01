@@ -27,8 +27,8 @@
         qwerty_layer {
             bindings = <    
     &homef17mm 0 0  &kp W           &kp E               &kp R               &kp T           &tns N7 Y           &tns N8 U           &tns N9 I       &tns PLUS O         &kp F12
-    &kp Q           &kp S           &mnl mouse D        &mnl extra F        &kp G           &tns N4 H           &tns N5 J           &tns N6 K       &tns MINUS L        &bhm LSHFT P
-    &kp A           &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns N1 N           &tns N2 M           &comlpar_ht N3 0 &dotrpar           &tns COLON SEMI
+    &kp Q           &bhm LCTL S           &mnl mouse D        &mnl extra F        &kp G           &tns N4 H           &tns N5 J           &tns N6 K       &tns MINUS L        &bhm LSHFT P
+    &bhm LALT A           &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns N1 N           &tns N2 M           &comlpar_ht N3 0 &dotrpar           &tns COLON SEMI
     &bhm LSHFT Z                    &gresc_f17 &qlt lower BSPC &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18         &mkp MB1            &mt RSHFT FSLH
                 >;
             sensor-bindings = <&inc_dec_kp X Y &scroll_up_down>;
