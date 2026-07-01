@@ -20,5 +20,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cmake.sourceDirectory": "/Users/song100/Documents/GitHub/zmk/app/src/settings",
-  "workbench.colorTheme": "Ariake Dark"
+  "workbench.colorTheme": "Ariake Dark",
+  "chat.tools.terminal.autoApprove": {
+    "git remote": true
+  }
 }
