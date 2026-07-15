@@ -206,6 +206,14 @@ macros {
         tapping-term-ms = <200>;
         bindings = <&kp &sk>;          /* hold=kp, tap=sticky key */
         };
+    skt: sticky_num_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "balanced";
+        tapping-term-ms = <250>;
+        quick-tap-ms = <0>;
+        bindings = <&single_tap>, <&sk>;   /* hold=single tap of number, tap=sticky key */
+        };
     shift_td: shift_td {
         compatible = "zmk,behavior-tap-dance";
         #binding-cells = <0>;
@@ -245,10 +253,10 @@ macros {
 */
                  &sl_mo UPPER UPPER                                                                                           &sl_mo LOWER LOWER
     &kp LEFT                    &kp UP                        &mkp LCLK                   &kp DOWN              &kp RIGHT
-    &ht POUND Q   &ht N1 W   &ht N2 E   &ht N3 R   &ht LPAR T   &ht RPAR Y   &ht UNDER U   &ht MINUS I   &ht PLUS O   &ht EQUAL P
+    &ht POUND Q   &ht N1 W   &ht N2 E   &ht N3 R   &ht LPAR T   &ht RPAR Y   &ht UNDER U   &ht MINUS I   &ht PLUS O   &ht AT P
     &ht ASTRK A   &ht N4 S   &ht N5 D   &ht N6 F   &ht FSLH G   &ht COLON H   &ht SEMI J   &ht SQT K   &ht DQT L   &kp BSPC
     &shift_td   &ht N7 Z   &ht N8 X   &ht N9 C   &ht QMARK V   &ht EXCL B   &ht COMMA N   &ht DOT M   &commaq QMARK 0  &kp RET
-    &qlt UPPER ESC &bhm LCTL N0                                &bhm LGUI SPACE                          &bhm LALT GLOBE &qlt LOWER TAB
+    &qlt UPPER ESC &skt N0 LCTL                                &bhm LGUI SPACE                          &bhm LALT GLOBE &qlt LOWER TAB
             >;
         };
 //         game_layer {
