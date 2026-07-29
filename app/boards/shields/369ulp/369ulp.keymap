@@ -28,7 +28,7 @@ docker cp gracious_gates:/workspaces/zmk/app/build/369ulp_r/zephyr/zmk.uf2 "/Use
             bindings = <
                     &kp W           &kp E               &kp R               &kp T           &tns N7 Y           &tns N8 U           &tns N9 I       &tns PLUS O
     &kp Q           &bhm LCTL S           &mnl mouse D    &mnl extra F        &kp G           &tns N4 H           &tns N5 J           &tns N6 K       &tns MINUS L        &bhm LSHFT P
-    &bhm LALT A           &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns N1 N           &tns N2 M           &comlpar_ht N3 0 &dotrpar           &tns COLON SEMI
+    &bhm LALT A           &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns N1 N           &tns N2 M           &comlpar_ht N3 0 &dotrpar           &mt RSHFT SEMI
     &bhm LSHFT Z                    &gresc_f17          &qlt lower BSPC     &tabgui 0 RET   &tns RSHFT SPACE    &lt raise TAB       &kp F18                             &mt RSHFT FSLH
                 >;
         };
@@ -44,15 +44,15 @@ docker cp gracious_gates:/workspaces/zmk/app/build/369ulp_r/zephyr/zmk.uf2 "/Use
             bindings = <
                     &lefttop        &toptop             &righttop           &kp LG(LS(N5))  &tns AMPS N7        &tns ASTRK N8       &tns LT N9      &kp PLUS
     &kp LG(LBKT)    &leftleft       &centercenter       &rightright         &R1WR2W         &tns DLLR N4        &tns PRCNT N5       &tns CARET N6   &kp MINUS           &kp EQUAL
-    &kp C_VOL_UP    &leftbot        &botbot             &rightbot           &bhm LGUI B     &tns EXCL N1        &tns AT N2          &tns POUND N3   &kp DOT             &kp EQUAL
+    &kp C_VOL_UP    &leftbot        &botbot             &rightbot           &bhm LGUI B     &tns EXCL N1        &tns AT N2          &tns POUND N3   &kp DOT             &mt RSHFT EQUAL
     &kp C_VOL_DN                    &mkp MB2            &qlt lower BSPC     &tabgui 0 RET   &tns RPAR N0        &lt adjust TAB      &kp F18                             &mt RSHFT FSLH
     >;
         };
         raise_layer {
             bindings = <
                     &kp F2          &kp F3              &kp F4              &kp F5          &kp F6              &kp F7              &kp UP          &kp F9
-    &kp F1          &kp LCTL        &kp LALT            &kp LGUI            &none           &toggleForkLift     &kp LEFT            &kp DOWN        &kp RIGHT           &kp RET
-    &kp LSHFT       &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns LBRC LBKT      &tns RBRC RBKT      &kp SQT         &kp DQT             &kp RIGHT
+    &kp F1          &kp LCTL        &kp LALT            &kp LGUI            &none           &kp LC(LS(GRAVE))     &kp LEFT            &kp DOWN        &kp RIGHT           &kp RET
+    &kp LSHFT       &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns LBRC LBKT      &tns RBRC RBKT      &kp SQT         &kp DQT             &mt RSHFT RIGHT
     &bhm LSHFT Z                    &trans              &qlt adjust DEL     &trans          &tns RSHFT SPACE    &lt raise TAB       &trans                              &mt RSHFT BSLH
     >;
         };
@@ -60,7 +60,7 @@ docker cp gracious_gates:/workspaces/zmk/app/build/369ulp_r/zephyr/zmk.uf2 "/Use
             bindings = <
                     &none           &none               &out OUT_TOG        &bt BT_CLR_ALL  &kp AMPS            &kp ASTRK           &LR_PAR         &kp EQUAL
     &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 3        &bt BT_SEL 3        &bt BT_CLR      &kp DLLR            &kp PRCNT           &kp CARET       &kp UNDER           &kp PIPE
-    &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C        &bhm LGUI V         &bhm LGUI B     &kp EXCL            &kp AT              &kp POUND       &none               &kp BSLH
+    &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C        &bhm LGUI V         &bhm LGUI B     &kp EXCL            &kp AT              &kp POUND       &none               &mt RSHFT BSLH
     &bhm LSHFT C_VOL_DN             &trans              &qlt adjust DEL     &trans          &kp RPAR            &lt adjust TAB      &trans                              &mt RSHFT BSLH
     >;
         };
