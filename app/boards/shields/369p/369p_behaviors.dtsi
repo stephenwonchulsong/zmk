@@ -582,6 +582,14 @@
             flavor = "hold-preferred";
             bindings = <&kp>, <&kp>;
         };
+        qmt_t: quick_mod_tap_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
         wintop: window_top {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
