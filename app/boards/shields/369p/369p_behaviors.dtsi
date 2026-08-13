@@ -421,11 +421,18 @@
             bindings = <&kp ESC>, <&kp GRAVE>;
             mods = <(MOD_RGUI|MOD_LSFT|MOD_LALT|MOD_LCTL)>;
         };
+        /* Hold-tap wrapper for gresc: tap = the grave/escape morph; hold = the
+         * keycode passed as the first parameter. The second parameter feeds the
+         * tap side (gresc ignores it), so pass 0.
+         * Keymap usage:  &gresc_f17 <KEYCODE> 0     e.g.  &gresc_f17 F17 0 */
         gresc_f17: gresc_f17 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
+            compatible = "zmk,behavior-hold-tap";
+            label = "GRESC_HOLD_KEY";
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
-            bindings = <&gresc>, <&kp F17>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&gresc>;
         };
         mnl: mouse_n_language {
             compatible = "zmk,behavior-hold-tap";
