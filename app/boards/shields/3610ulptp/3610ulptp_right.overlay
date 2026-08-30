@@ -1,0 +1,30 @@
+#include "3610ulptp.dtsi"
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+&default_transform {
+	col-offset = <5>;
+};
+
+/{
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+    // Right half: kscan col index 0 = innermost physical column.
+    // Net names on the right sheet run col10 (inner) -> col14 (outer).
+    col-gpios
+    	= <&gpio1 15 GPIO_ACTIVE_HIGH>//net col10, P1.15 (transform col 5, inner)
+        , <&gpio1 14 GPIO_ACTIVE_HIGH>//net col11, P1.14 (transform col 6)
+        , <&gpio1 13 GPIO_ACTIVE_HIGH>//net col12, P1.13 (transform col 7)
+        , <&gpio1 12 GPIO_ACTIVE_HIGH>//net col13, P1.12 (transform col 8)
+        , <&gpio1 11 GPIO_ACTIVE_HIGH>//net col14, P1.11 (transform col 9, outer)
+        ;
+	row-gpios
+        = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //net row10, P0.02 (top)
+        , <&gpio0 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   //net row11, P0.03
+        , <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  //net row12, P0.28
+        , <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  //net row13, P0.29 (bottom)
+        ;
+    };
+};

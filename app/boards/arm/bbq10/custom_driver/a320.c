@@ -1,6 +1,14 @@
 /*
  * A320 optical sensor driver (polling via motion GPIO, Zephyr input subsystem)
  *
+ * Module auto-detection: ZitaoTech has shipped BB-keyboard trackpad modules at
+ * I2C 0x3B (reg-0x82 burst protocol) and 0x37 / 0x57 (reg-0x0A burst protocol)
+ * across production runs, without the published sources always matching the
+ * fitted module. Instead of trusting the devicetree address alone, this driver
+ * probes the known module types at init (devicetree address first) and latches
+ * whichever one ACKs. If nothing ACKs, it keeps retrying from the poll loop
+ * (covers slow sensor power-up) and logs the failure.
+ *
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -29,27 +37,18 @@ LOG_MODULE_REGISTER(a320, CONFIG_A320_LOG_LEVEL);
  * Configurable parameters
  * ========================= */
 
-#define SHIFT_ARROW_DEBOUNCE_MS 50 // 
-#define SHIFT_ARROW_RELEASE_MS 20  // 
-
 #ifndef CONFIG_A320_POLL_INTERVAL_MS
 #define CONFIG_A320_POLL_INTERVAL_MS 2
 #endif
 
-/* =========================
- * Diagnostics (temporary)
- * ========================= */
-
-/* Scan the whole I2C bus once at boot and log every address that ACKs.
- * Answers definitively whether the sensor is at the configured 0x3B, at some
- * other address (e.g. 0x57 like the working bbp9981), or absent (nothing ACKs
- * -> flex/hardware fault). Set to 0 to disable. */
-#define A320_DIAG_I2C_SCAN 1
-
-/* Read the sensor every poll cycle regardless of the motion pin. If the
- * trackpad starts working with this on, the motion line (gpio1.1) is the
- * wrong/dead pin rather than the I2C link. Set to 0 for normal gated polling. */
-#define A320_DIAG_BYPASS_MOTION_GATE 0
+/* Interval between module-detection retries while no known module has ACKed. */
+#define A320_DETECT_RETRY_MS 500
+/* Log a warning every Nth failed detection retry (N * 500ms = every 10s). */
+#define A320_DETECT_LOG_EVERY 20
+/* After this many failed retries, scan the whole bus once: an ACK at an
+ * unlisted address means an unknown module type (report it); no ACK anywhere
+ * means the trackpad is unpowered or the flex/connector is faulty. */
+#define A320_DETECT_SCAN_ATTEMPT 10
 
 /* =========================
  * HID indicators
@@ -59,7 +58,7 @@ static zmk_hid_indicators_t current_indicators;
 #define HID_INDICATORS_CAPS_LOCK (1 << 1)
 
 /* =========================
- * Motion GPIO
+ * Motion GPIO (TP_MOTION on P1.01 per Q10 Pro schematic)
  * ========================= */
 
 #define MOTION_GPIO_NODE DT_NODELABEL(gpio1)
@@ -73,13 +72,6 @@ static const struct device *motion_gpio_dev;
 static bool touched = false;
 static bool tp_enabled = true; /* runtime trackpad on/off toggle (&tp_toggle) */
 static bool ctrl_pressed = false;
-static bool shift_pressed = false;
-
-static bool arrow_pressed = false;
-static int64_t last_arrow_time = 0;
-static const struct device *trackpoint_dev_ref = NULL;
-
-static struct k_work_delayable arrow_release_work;
 
 /* =========================
  * Data & Config structs
@@ -89,32 +81,23 @@ struct a320_dev_config {
     struct i2c_dt_spec i2c;
 };
 
-typedef int (*a320_read_fn_t)(const struct device *dev, int16_t *dx, int16_t *dy);
+typedef int (*a320_read_fn_t)(const struct device *dev, uint16_t addr, int16_t *dx, int16_t *dy);
+
+struct a320_module {
+    uint16_t addr;
+    a320_read_fn_t read;
+    const char *proto;
+};
 
 struct a320_data {
     const struct device *dev;
     struct k_work_delayable poll_work;
-    a320_read_fn_t read_motion;
+    const struct a320_module *active; /* NULL until a module has been detected */
+    uint32_t detect_attempts;
 };
 
 /* =========================
- * Arrow release work
- * ========================= */
-
-/*static void arrow_release_work_handler(struct k_work *work) {
-    if (arrow_pressed && trackpoint_dev_ref) {
-
-        input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 0, true, K_FOREVER);
-        input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 0, true, K_FOREVER);
-        input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 0, true, K_FOREVER);
-        input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 0, true, K_FOREVER);
-
-        arrow_pressed = false;
-    }
-}
-*/
-/* =========================
- * Key listener (Ctrl + Shift)
+ * Key listener (Ctrl)
  * ========================= */
 
 static int key_listener_cb(const zmk_event_t *eh) {
@@ -128,10 +111,6 @@ static int key_listener_cb(const zmk_event_t *eh) {
         ctrl_pressed = ev->state;
     }
 
-    /*  if (ev->position == 27) {
-          shift_pressed = ev->state;
-      }
-  */
     return 0;
 }
 
@@ -153,19 +132,27 @@ static int hid_indicators_listener(const zmk_event_t *eh) {
 
 /* =========================
  * I2C read variants
+ *
+ * Axis mapping is chassis-specific (sensor mounting), taken from ZitaoTech's
+ * Q10 sources for the 0x3B and 0x37 module types. The 0x57 type has never
+ * appeared in Q10 sources; it shares the reg-0x0A protocol, so it reuses the
+ * 0x37 mapping. If a detected 0x57 module moves the cursor mirrored or
+ * rotated, adjust the signs in a320_read_motion_reg0a().
  * ========================= */
 
-static int a320_read_motion_3b(const struct device *dev, int16_t *dx, int16_t *dy) {
+/* 0x3B module: burst read 3 bytes from reg 0x82. */
+static int a320_read_motion_reg82(const struct device *dev, uint16_t addr, int16_t *dx,
+                                  int16_t *dy) {
     const struct a320_dev_config *cfg = dev->config;
     uint8_t buf[3];
     uint8_t reg = 0x82;
     int ret;
 
-    ret = i2c_write_dt(&cfg->i2c, &reg, 1);
+    ret = i2c_write(cfg->i2c.bus, &reg, 1, addr);
     if (ret < 0)
         return ret;
 
-    ret = i2c_burst_read_dt(&cfg->i2c, 0x82, buf, sizeof(buf));
+    ret = i2c_burst_read(cfg->i2c.bus, addr, 0x82, buf, sizeof(buf));
     if (ret < 0)
         return ret;
 
@@ -175,17 +162,19 @@ static int a320_read_motion_3b(const struct device *dev, int16_t *dx, int16_t *d
     return 0;
 }
 
-static int a320_read_motion_37(const struct device *dev, int16_t *dx, int16_t *dy) {
+/* 0x37 / 0x57 modules: burst read 7 bytes from reg 0x0A. */
+static int a320_read_motion_reg0a(const struct device *dev, uint16_t addr, int16_t *dx,
+                                  int16_t *dy) {
     const struct a320_dev_config *cfg = dev->config;
     uint8_t buf[7];
     uint8_t reg = 0x0A;
     int ret;
 
-    ret = i2c_write_dt(&cfg->i2c, &reg, 1);
+    ret = i2c_write(cfg->i2c.bus, &reg, 1, addr);
     if (ret < 0)
         return ret;
 
-    ret = i2c_burst_read_dt(&cfg->i2c, 0x0A, buf, sizeof(buf));
+    ret = i2c_burst_read(cfg->i2c.bus, addr, 0x0A, buf, sizeof(buf));
     if (ret < 0)
         return ret;
 
@@ -193,6 +182,65 @@ static int a320_read_motion_37(const struct device *dev, int16_t *dx, int16_t *d
     *dx = -(int8_t)buf[1];
 
     return 0;
+}
+
+/* Known ZitaoTech BB-trackpad module types. */
+static const struct a320_module a320_modules[] = {
+    {0x3B, a320_read_motion_reg82, "reg-0x82"},
+    {0x37, a320_read_motion_reg0a, "reg-0x0A"},
+    {0x57, a320_read_motion_reg0a, "reg-0x0A"},
+};
+
+/* =========================
+ * Module detection
+ * ========================= */
+
+static int a320_try_detect(const struct device *dev) {
+    const struct a320_dev_config *cfg = dev->config;
+    struct a320_data *data = dev->data;
+    int16_t dx, dy;
+
+    /* Pass 0: the devicetree-configured address. Pass 1: the other known types. */
+    for (int pass = 0; pass < 2; pass++) {
+        for (size_t i = 0; i < ARRAY_SIZE(a320_modules); i++) {
+            const struct a320_module *m = &a320_modules[i];
+            bool is_dts_addr = (m->addr == cfg->i2c.addr);
+
+            if ((pass == 0) != is_dts_addr)
+                continue;
+
+            if (m->read(dev, m->addr, &dx, &dy) == 0) {
+                data->active = m;
+                LOG_INF("A320 detected: addr 0x%02X (%s protocol)%s", m->addr, m->proto,
+                        is_dts_addr ? "" : " -- differs from devicetree address!");
+                return 0;
+            }
+        }
+    }
+
+    data->detect_attempts++;
+    if (data->detect_attempts == 1 || (data->detect_attempts % A320_DETECT_LOG_EVERY) == 0) {
+        LOG_WRN("A320: no known module ACKed (tried 0x3B 0x37 0x57, attempt %u), retrying...",
+                data->detect_attempts);
+    }
+
+    if (data->detect_attempts == A320_DETECT_SCAN_ATTEMPT) {
+        int found = 0;
+        for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
+            uint8_t dummy;
+            if (i2c_read(cfg->i2c.bus, &dummy, 1, addr) == 0) {
+                LOG_WRN("A320 bus scan: device ACKs at 0x%02X -- unknown module type, "
+                        "report this address",
+                        addr);
+                found++;
+            }
+        }
+        if (!found) {
+            LOG_ERR("A320 bus scan: nothing ACKs on the trackpad bus -> trackpad unpowered "
+                    "or hardware/flex fault");
+        }
+    }
+    return -ENODEV;
 }
 
 /* =========================
@@ -203,6 +251,14 @@ static void a320_poll_work_handler(struct k_work *work) {
     struct k_work_delayable *dwork = CONTAINER_OF(work, struct k_work_delayable, work);
     struct a320_data *data = CONTAINER_OF(dwork, struct a320_data, poll_work);
 
+    /* No module found yet: keep trying at a relaxed pace. */
+    if (!data->active) {
+        if (a320_try_detect(data->dev) != 0) {
+            k_work_reschedule(&data->poll_work, K_MSEC(A320_DETECT_RETRY_MS));
+            return;
+        }
+    }
+
     /* Trackpad disabled via &tp_toggle: stop reporting but keep polling alive. */
     if (!tp_enabled) {
         touched = false;
@@ -212,22 +268,22 @@ static void a320_poll_work_handler(struct k_work *work) {
 
     int pin_state = gpio_pin_get(motion_gpio_dev, MOTION_GPIO_PIN);
 
-    /* Diagnostic (logged at most once each): proves at runtime whether the motion pin
-     * ever asserts when you touch the pad, and whether the first I2C read succeeds. */
+    /* One-shot runtime diagnostics: prove whether the motion pin ever asserts
+     * and whether reads keep succeeding once a module was detected. */
     static bool seen_low, seen_motion, logged_read_err;
     if (pin_state == 0 && !seen_low) {
         seen_low = true;
         LOG_INF("A320 motion pin asserted LOW (data ready) for the first time");
     }
 
-    if (pin_state == 0 || A320_DIAG_BYPASS_MOTION_GATE) {
+    if (pin_state == 0) {
 
         int16_t dx = 0, dy = 0;
-        int rc = data->read_motion(data->dev, &dx, &dy);
+        int rc = data->active->read(data->dev, data->active->addr, &dx, &dy);
 
         if (rc < 0 && !logged_read_err) {
             logged_read_err = true;
-            LOG_ERR("A320 motion read failed: err=%d (I2C transaction not ACKed)", rc);
+            LOG_ERR("A320 motion read failed after detection: err=%d", rc);
         } else if (rc == 0 && !seen_motion && (dx || dy)) {
             seen_motion = true;
             LOG_INF("A320 first motion sample dx=%d dy=%d", dx, dy);
@@ -242,34 +298,6 @@ static void a320_poll_work_handler(struct k_work *work) {
                 dy /= 2;
             }
 
-            /* ===== SHIFT → ARROW MODE ===== */
-            /*
-            if (shift_pressed) {
-
-                int64_t now = k_uptime_get();
-
-                if (!arrow_pressed && (now - last_arrow_time >= SHIFT_ARROW_DEBOUNCE_MS)) {
-
-                    uint16_t keycode;
-
-                    if (abs(dx) > abs(dy)) {
-                        keycode = (dx > 0) ? INPUT_BTN_1 : INPUT_BTN_1;
-                    } else {
-                        keycode = (dy > 0) ? INPUT_BTN_1 : INPUT_BTN_1;
-                    }
-
-                    input_report_key(data->dev, keycode, 1, true, K_FOREVER);
-
-                    arrow_pressed = true;
-                    trackpoint_dev_ref = data->dev;
-                    last_arrow_time = now;
-
-                    k_work_schedule(&arrow_release_work, K_MSEC(SHIFT_ARROW_RELEASE_MS));
-                }
-
-                goto reschedule;
-            }
-*/
             /* ===== Normal mouse mode ===== */
 
             if (!capslock) {
@@ -292,7 +320,6 @@ static void a320_poll_work_handler(struct k_work *work) {
         touched = false;
     }
 
-reschedule:
     k_work_reschedule(&data->poll_work, K_MSEC(CONFIG_A320_POLL_INTERVAL_MS));
 }
 
@@ -331,65 +358,20 @@ static int a320_init(const struct device *dev) {
 
     gpio_pin_configure(motion_gpio_dev, MOTION_GPIO_PIN, GPIO_INPUT | GPIO_PULL_UP);
 
-    switch (cfg->i2c.addr) {
-    case 0x3B:
-        data->read_motion = a320_read_motion_3b;
-        break;
-    case 0x37:
-        data->read_motion = a320_read_motion_37;
-        break;
-    default:
-        LOG_ERR("Unsupported A320 addr: 0x%02X", cfg->i2c.addr);
-        return -ENODEV;
-    }
-
     data->dev = dev;
+    data->active = NULL;
+    data->detect_attempts = 0;
 
-#if A320_DIAG_I2C_SCAN
-    /* Diagnostic: scan the whole I2C bus and log every address that ACKs, so the
-     * USB log shows where (if anywhere) the trackpad actually lives. If 0x3B is
-     * absent but another address responds, the dts reg + read variant are wrong;
-     * if NOTHING responds, it's a wiring/flex fault. */
-    {
-        int found = 0;
-        for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
-            uint8_t dummy;
-            if (i2c_read(cfg->i2c.bus, &dummy, 1, addr) == 0) {
-                LOG_INF("A320 I2C scan: device ACKed at 0x%02X", addr);
-                found++;
-            }
-        }
-        if (found == 0) {
-            LOG_ERR("A320 I2C scan: NO devices ACKed on the bus (wiring/flex fault?)");
-        }
-    }
-#endif
-
-    /* Diagnostic: probe the sensor once at boot so the USB log shows, unambiguously,
-     * whether the device at this I2C address actually responds. A negative err here
-     * means the trackpad did NOT ACK -> wrong I2C address or a hardware/flex fault
-     * (compare against the working bbp9981, which uses addr 0x57). */
-    {
-        int16_t pdx = 0, pdy = 0;
-        int probe = data->read_motion(dev, &pdx, &pdy);
-        int pin = gpio_pin_get(motion_gpio_dev, MOTION_GPIO_PIN);
-        if (probe == 0) {
-            LOG_INF("A320 probe OK addr=0x%02X motion_pin(gpio1.%d)=%d", cfg->i2c.addr,
-                    MOTION_GPIO_PIN, pin);
-        } else {
-            LOG_ERR("A320 probe FAILED addr=0x%02X err=%d (sensor not responding -- wrong I2C "
-                    "address or hardware/flex fault)",
-                    cfg->i2c.addr, probe);
-        }
-    }
+    /* First detection attempt; on failure the poll loop keeps retrying, so a
+     * sensor that powers up late is still picked up. */
+    a320_try_detect(dev);
 
     k_work_init_delayable(&data->poll_work, a320_poll_work_handler);
 
-    // k_work_init_delayable(&arrow_release_work, arrow_release_work_handler);
-
     k_work_schedule(&data->poll_work, K_MSEC(CONFIG_A320_POLL_INTERVAL_MS));
 
-    LOG_INF("A320 init OK addr=0x%02X", cfg->i2c.addr);
+    LOG_INF("A320 init OK (dts addr 0x%02X, module %s)", cfg->i2c.addr,
+            data->active ? "detected" : "not detected yet");
 
     return 0;
 }

@@ -1,0 +1,16 @@
+// 3610ulptp touchpad peripheral — Cirque Glidepoint via SPI, split peripheral.
+//
+// The touchpad hardware is identical to the 36cirque shield, so instead of
+// duplicating the glidepoint node / input-listener / kscan / transform here,
+// we include 36cirque's overlay directly. Any change to 36cirque's pin map,
+// input processors, etc. is automatically picked up by this peripheral.
+//
+// Only the BLE split-peripheral role differs, and that lives in
+// 3610ulptp_tp.conf (CONFIG_ZMK_SPLIT*, CONFIG_BT*), not in the device tree.
+//
+// Uses Zephyr's in-tree cirque,pinnacle driver — do NOT pass
+// -DZMK_EXTRA_MODULES=".../cirque-input-module-main" (the external module now
+// collides with the in-tree driver: duplicate INPUT_PINNACLE Kconfig and
+// duplicate cirque,pinnacle-spi binding).
+
+#include "../36Cirque/36cirque.overlay"

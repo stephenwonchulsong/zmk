@@ -1,0 +1,14 @@
+file_format: "1"
+id: 3610ulptp
+name: 36ChULP10
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+  - pointer
+siblings:
+  - 3610ulptp_left
+  - 3610ulptp_right
+  - 3610ulptp_tp

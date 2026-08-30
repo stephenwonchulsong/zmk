@@ -6,7 +6,9 @@
  west build -d build/bbp9981 -p -b  bbp9981
  west build -d build/bbp9981_reset -p -b bbp9981 -- -DSHIELD=settings_reset
  
- docker cp zealous_pasteur:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
+ docker cp naughty_cohen:/workspaces/zmk/app/build/bbp9981/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981.uf2"
+ docker cp naughty_cohen:/workspaces/zmk/app/build/bbp9981_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/bbp9981_reset.uf2"
+
  */
 
 

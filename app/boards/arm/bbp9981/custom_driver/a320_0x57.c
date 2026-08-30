@@ -1,6 +1,13 @@
 /*
  * A320 optical sensor driver (polling via motion GPIO, Zephyr input subsystem)
  *
+ * Module auto-detection: ZitaoTech has shipped BB-keyboard trackpad modules at
+ * I2C 0x57 / 0x37 (reg-0x0A burst protocol) and 0x3B (reg-0x82 burst protocol)
+ * across production runs. This driver probes the known module types at init
+ * (devicetree address first — 0x57 on this board, so a stock unit behaves
+ * exactly as before) and latches whichever one ACKs. If nothing ACKs, it keeps
+ * retrying from the poll loop and logs the failure.
+ *
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -52,17 +59,35 @@ struct a320_dev_config {
     uint16_t y_input_code;
 };
 
+typedef int (*a320_read_fn_t)(const struct device *dev, uint16_t addr, int16_t *dx, int16_t *dy);
+
+struct a320_module {
+    uint16_t addr;
+    a320_read_fn_t read;
+    const char *proto;
+};
+
 struct a320_data {
     const struct device *dev;
     struct k_work_delayable poll_work;
+    const struct a320_module *active; /* NULL until a module has been detected */
+    uint32_t detect_attempts;
 };
 
 #ifndef CONFIG_A320_POLL_INTERVAL_MS
 #define CONFIG_A320_POLL_INTERVAL_MS 10
 #endif
 
+/* Interval between module-detection retries while no known module has ACKed. */
+#define A320_DETECT_RETRY_MS 500
+/* Log a warning every Nth failed detection retry. */
+#define A320_DETECT_LOG_EVERY 20
+/* After this many failed retries, scan the whole bus once: an ACK at an
+ * unlisted address means an unknown module type (report it); no ACK anywhere
+ * means the trackpad is unpowered or the flex/connector is faulty. */
+#define A320_DETECT_SCAN_ATTEMPT 10
+
 static void a320_poll_work_handler(struct k_work *work);
-static int a320_read_motion(const struct device *dev, int16_t *dx, int16_t *dy);
 
 static bool ctrl_pressed = false;
 
@@ -91,6 +116,121 @@ static int hid_indicators_listener(const zmk_event_t *eh) {
 }
 
 /* =========================
+ *   I2C read variants
+ *
+ * Axis mapping for the 0x57 module is the original, proven-on-hardware 9981
+ * mapping. 0x37 shares the reg-0x0A protocol and reuses it. The 0x3B type
+ * (reg-0x82 protocol, from the Q10 sources) has never been seen on a 9981;
+ * its mapping follows the Q10 driver and may need sign flips if such a module
+ * ever shows up here.
+ * ========================= */
+
+/* 0x57 / 0x37 modules: burst read 7 bytes from reg 0x0A. */
+static int a320_read_motion_reg0a(const struct device *dev, uint16_t addr, int16_t *dx,
+                                  int16_t *dy) {
+    const struct a320_dev_config *cfg = dev->config;
+    uint8_t buf[7] = {0};
+    uint8_t reg = 0x0A;
+    int ret;
+
+    ret = i2c_write(cfg->i2c.bus, &reg, 1, addr);
+    if (ret < 0) {
+        return ret;
+    }
+
+    ret = i2c_burst_read(cfg->i2c.bus, addr, 0x0A, buf, sizeof(buf));
+    if (ret < 0) {
+        return ret;
+    }
+
+    *dy = (int8_t)buf[1];
+    *dx = (int8_t)buf[3];
+    return 0;
+}
+
+/* 0x3B module: burst read 3 bytes from reg 0x82. */
+static int a320_read_motion_reg82(const struct device *dev, uint16_t addr, int16_t *dx,
+                                  int16_t *dy) {
+    const struct a320_dev_config *cfg = dev->config;
+    uint8_t buf[3];
+    uint8_t reg = 0x82;
+    int ret;
+
+    ret = i2c_write(cfg->i2c.bus, &reg, 1, addr);
+    if (ret < 0) {
+        return ret;
+    }
+
+    ret = i2c_burst_read(cfg->i2c.bus, addr, 0x82, buf, sizeof(buf));
+    if (ret < 0) {
+        return ret;
+    }
+
+    *dx = -(int8_t)buf[2];
+    *dy = -(int8_t)buf[1];
+    return 0;
+}
+
+/* Known ZitaoTech BB-trackpad module types. */
+static const struct a320_module a320_modules[] = {
+    {0x57, a320_read_motion_reg0a, "reg-0x0A"},
+    {0x37, a320_read_motion_reg0a, "reg-0x0A"},
+    {0x3B, a320_read_motion_reg82, "reg-0x82"},
+};
+
+/* =========================
+ *   Module detection
+ * ========================= */
+
+static int a320_try_detect(const struct device *dev) {
+    const struct a320_dev_config *cfg = dev->config;
+    struct a320_data *data = dev->data;
+    int16_t dx, dy;
+
+    /* Pass 0: the devicetree-configured address. Pass 1: the other known types. */
+    for (int pass = 0; pass < 2; pass++) {
+        for (size_t i = 0; i < ARRAY_SIZE(a320_modules); i++) {
+            const struct a320_module *m = &a320_modules[i];
+            bool is_dts_addr = (m->addr == cfg->i2c.addr);
+
+            if ((pass == 0) != is_dts_addr)
+                continue;
+
+            if (m->read(dev, m->addr, &dx, &dy) == 0) {
+                data->active = m;
+                LOG_INF("A320 detected: addr 0x%02X (%s protocol)%s", m->addr, m->proto,
+                        is_dts_addr ? "" : " -- differs from devicetree address!");
+                return 0;
+            }
+        }
+    }
+
+    data->detect_attempts++;
+    if (data->detect_attempts == 1 || (data->detect_attempts % A320_DETECT_LOG_EVERY) == 0) {
+        LOG_WRN("A320: no known module ACKed (tried 0x57 0x37 0x3B, attempt %u), retrying...",
+                data->detect_attempts);
+    }
+
+    if (data->detect_attempts == A320_DETECT_SCAN_ATTEMPT) {
+        int found = 0;
+        for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
+            uint8_t dummy;
+            if (i2c_read(cfg->i2c.bus, &dummy, 1, addr) == 0) {
+                LOG_WRN("A320 bus scan: device ACKs at 0x%02X -- unknown module type, "
+                        "report this address",
+                        addr);
+                found++;
+            }
+        }
+        if (!found) {
+            LOG_ERR("A320 bus scan: nothing ACKs on the trackpad bus -> trackpad unpowered "
+                    "or hardware/flex fault");
+        }
+    }
+    return -ENODEV;
+}
+
+/* =========================
  *   Work handler (polling)
  * ========================= */
 
@@ -98,6 +238,14 @@ static void a320_poll_work_handler(struct k_work *work) {
     struct k_work_delayable *dwork = CONTAINER_OF(work, struct k_work_delayable, work);
     struct a320_data *data = CONTAINER_OF(dwork, struct a320_data, poll_work);
     const struct device *dev = data->dev;
+
+    /* No module found yet: keep trying at a relaxed pace. */
+    if (!data->active) {
+        if (a320_try_detect(dev) != 0) {
+            k_work_reschedule(&data->poll_work, K_MSEC(A320_DETECT_RETRY_MS));
+            return;
+        }
+    }
 
     int pin_state = gpio_pin_get(motion_gpio_dev, MOTION_GPIO_PIN);
 
@@ -115,7 +263,7 @@ static void a320_poll_work_handler(struct k_work *work) {
     if (pin_state == 0) {
         int16_t dx = 0, dy = 0;
 
-        if (a320_read_motion(dev, &dx, &dy) == 0) {
+        if (data->active->read(dev, data->active->addr, &dx, &dy) == 0) {
 
             if (ctrl_pressed) {
                 dx /= 2;
@@ -209,32 +357,6 @@ static void a320_poll_work_handler(struct k_work *work) {
     k_work_reschedule(&data->poll_work, K_MSEC(CONFIG_A320_POLL_INTERVAL_MS));
 }
 
-/* =========================
- *   I2C read sequence
- * ========================= */
-static int a320_read_motion(const struct device *dev, int16_t *dx, int16_t *dy) {
-    const struct a320_dev_config *cfg = dev->config;
-    uint8_t buf[7] = {0};
-    uint8_t reg = 0x0A;
-    int ret;
-
-    ret = i2c_write_dt(&cfg->i2c, &reg, 1);
-    if (ret < 0) {
-        LOG_ERR("i2c write 0x0A failed: %d", ret);
-        return ret;
-    }
-
-    ret = i2c_burst_read_dt(&cfg->i2c, 0x0A, buf, sizeof(buf));
-    if (ret < 0) {
-        LOG_ERR("i2c burst read from 0x0A failed: %d", ret);
-        return ret;
-    }
-
-    *dy = (int8_t)buf[1];
-    *dx = (int8_t)buf[3];
-    return 0;
-}
-
 bool tp_is_touched(void) { return touched; }
 
 /* =========================
@@ -259,6 +381,12 @@ static int a320_init(const struct device *dev) {
     gpio_pin_configure(motion_gpio_dev, MOTION_GPIO_PIN, GPIO_INPUT | GPIO_PULL_UP);
 
     data->dev = dev;
+    data->active = NULL;
+    data->detect_attempts = 0;
+
+    /* First detection attempt; on failure the poll loop keeps retrying, so a
+     * sensor that powers up late is still picked up. */
+    a320_try_detect(dev);
 
     k_work_init_delayable(&data->poll_work, a320_poll_work_handler);
     k_work_schedule(&data->poll_work, K_MSEC(CONFIG_A320_POLL_INTERVAL_MS));
