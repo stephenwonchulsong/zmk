@@ -1,5 +1,6 @@
 {
   "name": "ZMK Development (Zephyr 4.1)",
+  "containerName": "naughty_cohen",
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."
