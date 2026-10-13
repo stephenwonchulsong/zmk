@@ -1,0 +1,14 @@
+file_format: "1"
+id: 3610ulpred
+name: 3610ulpred
+type: shield
+url: https://github.com/
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - encoder
+  - pointer
+siblings:
+  - 3610ulpred_left
+  - 3610ulpred_right
+  - 3610ulpred_tp

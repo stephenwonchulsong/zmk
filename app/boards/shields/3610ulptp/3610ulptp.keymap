@@ -20,6 +20,7 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/3610ulptp_tp/zephyr/zmk.uf2 "/
 docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 "/Users/song100/Library/Mobile Documents/com~apple~CloudDocs/Keyboard/36firmware/3610ulptp_reset.uf2"
  */
 
+
 // Macros, behaviors, combos, and global settings are in:
 #include "../369p/369p_behaviors.dtsi"
 
@@ -38,8 +39,8 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
                     &kp W           &kp E               &kp R               &kp T           &tns N7 Y         &tns N8 U         &tns N9 I        &tns PLUS O
     &kp Q           &bhm LCTL S     &mnl mouse D        &mnl extra F        &kp G           &tns N4 H         &tns N5 J         &tns N6 K        &tns MINUS L &bhm LSHFT P
     &bhm LALT A     &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns N1 N         &tns N2 M         &comlpar_ht N3 0 &dotrpar     &qmt_t RSHFT SEMI
-    &bhm LSHFT Z                    &gresc_f17 F17 0    &qlt lower BSPC     &tabgui 0 RET   &bhm RSHFT SPACE  &lt raise TAB     &kp F18                       &mt RSHFT FSLH
-    &none           &none
+    &bhm LSHFT Z                    &gresc_f17 F17 0    &qlt lower BSPC     &tabgui 0 RET   &qlt_t raise SPACE  &lt raise TAB     &kp F18                       &mt RSHFT FSLH
+    &qlt lower BSPC        &mkp MB1
                 >;
         };
         colemnk_layer {
@@ -48,7 +49,7 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
     &trans          &trans          &trans              &trans              &trans          &trans              &trans              &trans          &trans              &trans
     &trans          &trans          &trans              &trans              &trans          &trans              &trans              &trans          &trans              &trans
     &trans                          &trans              &trans              &trans          &trans              &trans              &trans                              &trans
-    &trans          &trans
+    &qlt lower BSPC        &mkp MB2
             >;
         };
         lower_layer {
@@ -56,8 +57,8 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
                     &lefttop        &toptop             &righttop           &kp LG(LS(N5))  &tns AMPS N7        &tns ASTRK N8       &tns LT N9      &kp PLUS
     &kp LG(LBKT)    &leftleft       &centercenter       &rightright         &R1WR2W         &tns DLLR N4        &tns PRCNT N5       &tns CARET N6   &kp MINUS           &kp EQUAL
     &kp C_VOL_UP    &leftbot        &botbot             &rightbot           &bhm LGUI B     &tns EXCL N1        &tns AT N2          &tns POUND N3   &kp DOT             &mt RSHFT EQUAL
-    &kp C_VOL_DN                    &mkp MB2            &qlt lower BSPC     &tabgui 0 RET   &tns RPAR N0        &lt adjust TAB      &kp F18                             &mt RSHFT FSLH
-    &trans          &trans
+    &kp C_VOL_DN                    &mkp MB2            &qlt lower BSPC     &tabgui 0 RET   &qlt_t adjust N0        &lt adjust TAB      &kp F18                             &mt RSHFT FSLH
+    &qlt lower BSPC        &mkp MB2
     >;
         };
         raise_layer {
@@ -65,8 +66,8 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
                     &kp F2          &kp F3              &kp F4              &kp F5          &kp F6              &kp F7              &kp UP          &kp F9
     &kp F1          &kp LCTL        &kp LALT            &kp LGUI            &none           &kp LC(LS(GRAVE))     &kp LEFT            &kp DOWN        &kp RIGHT           &kp RET
     &kp LSHFT       &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &tns LBRC LBKT      &tns RBRC RBKT      &kp SQT         &kp DQT             &mt RSHFT RIGHT
-    &bhm LSHFT Z                    &trans              &qlt adjust DEL     &trans          &bhm RSHFT SPACE    &lt raise TAB       &trans                              &mt RSHFT BSLH
-    &trans          &trans
+    &bhm LSHFT Z                    &trans              &qlt adjust DEL     &trans          &qlt_t raise SPACE    &lt raise TAB       &trans                              &mt RSHFT BSLH
+    &qlt adjust DEL        &mkp MB2
     >;
         };
         adjust_layer {
@@ -74,8 +75,8 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
                     &none           &none               &out OUT_TOG        &bt BT_CLR_ALL  &kp AMPS            &kp ASTRK           &LR_PAR         &kp EQUAL
     &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 3        &bt BT_SEL 3        &bt BT_CLR      &kp DLLR            &kp PRCNT           &kp CARET       &kp UNDER           &kp PIPE
     &bhm LSHFT C_VOL_UP &bhm LCTRL X &bhm LALT C        &bhm LGUI V         &bhm LGUI B     &kp EXCL            &kp AT              &kp POUND       &none               &mt RSHFT BSLH
-    &bhm LSHFT C_VOL_DN             &trans              &qlt adjust DEL     &trans          &kp RPAR            &lt adjust TAB      &trans                              &mt RSHFT BSLH
-    &trans          &trans
+    &bhm LSHFT C_VOL_DN             &trans              &qlt adjust DEL     &trans          &qlt_t adjust SPACE    &lt adjust TAB      &trans                              &mt RSHFT BSLH
+    &qlt adjust DEL        &mkp MB2
     >;
         };
         commandlayer_layer {
@@ -83,8 +84,8 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
                     &arcwindow      &kp E               &bhm LSHFT R        &kp T           &kp Y               &kp U               &kp I           &kp O
     &qtab2 0 TAB    &kp S           &kp D               &kp F               &kp G           &kp H               &kp J               &kp K           &kp L               &kp RET
     &bhm LSHFT A    &bhm LCTRL X    &bhm LALT C         &tappaste           &bhm LGUI B     &kp N               &bhm LALT M         &comlpar        &dotrpar            &kp SEMI
-    &bhm LSHFT Z                    &mkp MB1            &qlt lower DEL      &kp RET         &kp SPACE           &lt raise TAB       &kp ESC                             &mt RSHFT FSLH
-    &trans          &trans
+    &bhm LSHFT Z                    &mkp MB1            &kp BSPC      &kp RET         &kp SPACE           &lt raise TAB       &kp ESC                             &mt RSHFT FSLH
+    &mkp MB1        &mkp MB1
     >;
         };
         extra_layer {
@@ -93,7 +94,7 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
     &kp Q           &bhm LGUI S     &mt mouse LG(LS(SPACE)) &mo extra       &kp G           &kp PG_DN           &kp F18             &kp END           &textit             &bhm LSHFT P
     &kp LC(LEFT)    &bhm LCTRL X    &copypaste          &bhm LGUI V         &textbf         &kp LBRC            &kp RBRC            &kp GRAVE       &kp SQT             &rightminusgt
     &parencite                      &gresc_f17 F17 0      &qlt lower DEL      &kp LS(LC(LA(LG(RET)))) &kp LS(LC(LA(LG(SPACE)))) &kp LS(LC(LA(LG(TAB)))) &kp CAPS         &mt RSHFT BSLH
-    &trans          &trans
+    &mkp MB2        &mkp MB2
                 >;
         };
         mouse_layer {
@@ -102,7 +103,7 @@ docker cp naughty_cohen:/workspaces/zmk/app/build/xiao_ble_reset/zephyr/zmk.uf2 
     &kp LG(LEFT)    &mkp MB2        &mo mouse           &mkp MB1            &kp LG(RIGHT)   &msc SCRL_DOWN      &mmv MOVE_LEFT      &mmv MOVE_DOWN  &mmv MOVE_RIGHT     &bhm LCTL P
     &msc SCRL_UP    &bhm LCTRL X    &bhm LALT C         &bhm LGUI V         &bhm LGUI B     &kp LBRC            &kp RBRC            &kp GRAVE       &kp SQT             &mnl mouse SEMI
     &msc SCRL_DOWN                  &mkp MB1            &qlt lower BSPC     &kp RET         &mkp MB1            &mkp MB2            &kp CAPS                            &mt RSHFT BSLH
-    &trans          &trans
+    &mkp MB1        &mkp MB2
                 >;
         };
     };
